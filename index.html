@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iWorth Technologies - IT Solutions & Digital Services</title>
+    <!-- Preloadlogos -->
+    <link rel="preload" as="image" href="/logos/neolife.webp"/>
+    <link rel="preload" as="image" href="/logos/nel.webp"/>
+    <link rel="preload" as="image" href="logos/ison.png"/>
+    <link rel="preload" as="image" href="logos/uokoaji.png"/>
+    <link rel="preload" as="image" href="logos/frontier.png"/>
+    <link rel="preload" as="image" href="logos/sybrin.png"/>
+    <link rel="preload" as="image" href="logos/kci.png"/>
+    <link rel="preload" as="image" href="logos/bihc.webp"/>
+    <link rel="preload" as="image" href="logos/kenton-college.png"/>
+    <link rel="preload" as="image" href="logos/sabis.png"/>
+    <link rel="preload" as="image" href="logos/indian-public-school.webp"/>
+    <link rel="preload" as="image" href="logos/zetech.png"/>
+    <link rel="preload" as="image" href="logos/talanta-institute.png"/>
+    <link rel="preload" as="image" href="logos/gapeka.webp"/>
+    <link rel="preload" as="image" href="logos/clay-international-school.webp"/>
+    <link rel="preload" as="image" href="logos/brookshine.webp"/>
+    <link rel="preload" as="image" href="logos/chavara.png"/>
+    <link rel="preload" as="image" href="logos/mount-sinai.png"/>
+    <link rel="preload" as="image" href="logos/fab.png"/>
+    <link rel="preload" as="image" href="logos/potter-house.png"/>
+    <link rel="preload" as="image" href="logos/itcer.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #e2e8f0;
+            --text-light: #f8fafc;
+            --text-dark: #94a3b8;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #000000;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #020617 0%, #1e3a8a 50%, #3b82f6 100%);
+            color: var(--text);
+            min-height: 100vh;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-element.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Header/Navigation */
+        header {
+            padding: 0 2rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 16px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card, .vision-card, .values-card {
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .mission-card h3, .vision-card h3, .values-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            background: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .service-features li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Interactive Panels Section */
+        .interactive-panels {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .panels-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .panel-card {
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .panel-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+        }
+        
+        .panel-card:hover .panel-image {
+            transform: scale(1.05);
+        }
+        
+        .panel-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .panel-features {
+            list-style: none;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .panel-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .panel-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Clients Section */
+        .clients {
+            padding: 4rem 2rem;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            align-items: center;
+        }
+        
+        logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100px;
+        }
+        
+        logo:hover {
+            transform: translateY(-5px);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%) brightness(2);
+            transition: filter 0.3s ease;
+        }
+        
+        logo:hover img {
+            filter: grayscale(0) brightness(1);
+        }
+        
+        placeholder {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            
+            .hero-content {
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+            
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="phone-link">
+            <i class="fas fa-phone-alt"></i>
+            <span>Call us now +254 741 404 232</span>
+        </div>
+        <div class="top-links">
+            <a href="#">Home</a>
+            <span>|</span>
+            <a href="#contact">Contact Us</a>
+            <span>|</span>
+            <a href="#clients">Our Customers</a>
+        </div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="glass">
+            <div class="logo-container">
+                <img src="logos/page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
+                <img src="logos/iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
+            </div>
+            <div class="nav-links">
+                <a href="#about">About Us</a>
+                <a href="#education">Education</a>
+                <a href="#networking">Networking</a>
+                <a href="#computers">Computers</a>
+                <a href="#projectors">Projectors</a>
+                <a href="#electrical">Electrical</a>
+                <a href="#coding">Coding</a>
+                <a href="#healthcare">Healthcare</a>
+                <a href="#boardrooms">Boardrooms</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-element">
+            <h1>iWorth <span>Innovation Working For Your Convenience</span></h1>
+            <p>Providing comprehensive IT solutions and services to businesses and educational institutions across Kenya.</p>
+            <button class="btn btn-primary">
+                <i class="fas fa-envelope"></i> Contact Us
+            </button>
+        </div>
+        <div class="hero-image fade-element">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Technology Solutions">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="section-title fade-element">
+                <h2>About <span>Us</span></h2>
+                <p>Learn more about our company, mission, and values</p>
+            </div>
+            <div class="mission-vision">
+                <div class="mission-card glass fade-element">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>To provide innovative and reliable technology solutions that empower businesses and educational institutions to achieve their goals.</p>
+                </div>
+                <div class="vision-card glass fade-element">
+                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                    <p>To be the leading provider of comprehensive IT solutions in Kenya, recognized for our quality service and innovative approach.</p>
+                </div>
+                <div class="values-card glass fade-element">
+                    <h3><i class="fas fa-heart"></i> Our Values</h3>
+                    <p>Integrity, Innovation, Customer Focus, Excellence, and Teamwork guide everything we do at iWorth Technologies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="about-container">
+            <div class="section-title fade-element">
+                <h2>Our <span>Services</span></h2>
+                <p>Comprehensive solutions tailored to meet your technology needs</p>
+            </div>
+            <div class="services-grid">
+                <!-- Education -->
+                <div class="service-card glass fade-element" id="education">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Technology solutions for educational institutions</p>
+                    <ul class="service-features">
+                        <li>Critical thinking</li>
+                        <li>Collaboration</li>
+                        <li>Communication</li>
+                        <li>Creativity</li>
+                        <li>Problem solving</li>
+                        <li>Decision making</li>
+                    </ul>
+                </div>
+                
+                <!-- Networking and Data Centre -->
+                <div class="service-card glass fade-element" id="networking">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Networking and Data Centre</h3>
+                    <p>Comprehensive networking solutions</p>
+                    <ul class="service-features">
+                        <li>LAN & Wireless LAN Setups</li>
+                        <li>Router</li>
+                        <li>Switches</li>
+                        <li>Firewalls Configuration</li>
+                        <li>ICT Labs & Office Installation</li>
+                    </ul>
+                </div>
+                
+                <!-- Computers, Laptops, Monitors -->
+                <div class="service-card glass fade-element" id="computers">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Computers, Laptops, Monitors</h3>
+                    <p>Complete computer solutions</p>
+                    <ul class="service-features">
+                        <li>Computer Repair</li>
+                        <li>Computer Upgrades</li>
+                        <li>Computer Maintenance</li>
+                        <li>Computer Security</li>
+                        <li>Computer Networking</li>
+                        <li>Computer Cleaning</li>
+                        <li>Computer Recycling</li>
+                    </ul>
+                </div>
+                
+                <!-- Projectors -->
+                <div class="service-card glass fade-element" id="projectors">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Projectors</h3>
+                    <p>Complete projector solutions</p>
+                    <ul class="service-features">
+                        <li>Projector Sales</li>
+                        <li>Projector Installation</li>
+                        <li>Projector Repair</li>
+                        <li>Projector Maintenance</li>
+                        <li>Projector Cleaning</li>
+                        <li>Projector Hire</li>
+                    </ul>
+                </div>
+                
+                <!-- Electrical Works -->
+                <div class="service-card glass fade-element" id="electrical">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Electrical Works</h3>
+                    <p>Professional electrical services</p>
+                    <ul class="service-features">
+                        <li>Electrical Installation</li>
+                        <li>Electrical Repair</li>
+                        <li>Electrical Maintenance</li>
+                        <li>Electrical Inspection</li>
+                        <li>Electrical Testing</li>
+                        <li>Wiring</li>
+                        <li>Lighting</li>
+                    </ul>
+                </div>
+                
+                <!-- Coding and Robotics -->
+                <div class="service-card glass fade-element" id="coding">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Coding and Robotics</h3>
+                    <p>Innovative programming solutions</p>
+                    <ul class="service-features">
+                        <li>Coding</li>
+                        <li>Robotics</li>
+                        <li>Artificial Intelligence</li>
+                        <li>Kids Coding</li>
+                        <li>Refresher Coding</li>
+                        <li>Coding for Beginners</li>
+                        <li>Coding for Adults</li>
+                    </ul>
+                </div>
+                
+                <!-- Healthcare -->
+                <div class="service-card glass fade-element" id="healthcare">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>Technology for healthcare</p>
+                    <ul class="service-features">
+                        <li>Healthcare Studies</li>
+                        <li>Telemedicine</li>
+                        <li>Consultations</li>
+                    </ul>
+                </div>
+                
+                <!-- Boardrooms -->
+                <div class="service-card glass fade-element" id="boardrooms">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Boardrooms</h3>
+                    <p>Professional meeting solutions</p>
+                    <ul class="service-features">
+                        <li>Boardroom Meetings</li>
+                        <li>Brainstorming</li>
+                        <li>Training</li>
+                        <li>Online Meeting Apps</li>
+                        <li>Data Sharing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Panels Section -->
+    <section class="interactive-panels" id="panels">
+        <div class="panels-container">
+            <div class="section-title fade-element">
+                <h2>Interactive <span>Flat Panels</span></h2>
+                <p>Cutting-edge interactive displays for modern workplaces and classrooms</p>
+            </div>
+            <div class="panels-grid">
+                <div class="panel-card glass fade-element">
+                    <div class="panel-badge">Windows</div>
+                    <!-- Updated with your provided image in higher quality -->
+                    <img src="https://i.imgur.com/EewBYcz.jpeg" alt="Windows Interactive Panel" class="panel-image" style="object-fit: cover; height: 300px;">
+                    <h3>Interactive Flat Panel</h3>
+                    <p>High-resolution touch displays with Windows OS integration</p>
+                    <ul class="panel-features">
+                        <li>4K Ultra HD Resolution</li>
+                        <li>Multi-touch capability</li>
+                        <li>Built-in Android and external Windows 10/11</li>
+                        <li>Interactive whiteboard software</li>
+                        <li>Video conferencing ready</li>
+                        <li>Built in Camera</li>
+                        <li>Wireless sharing</li>
+                    </ul>
+                </div>
+                <div class="panel-card glass fade-element">
+                    <div class="panel-badge">Professional</div>
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Professional Projector" class="panel-image">
+                    <h3>Interactive Projectors</h3>
+                    <p>Turn any surface into an interactive workspace</p>
+                    <ul class="panel-features">
+                        <li>Short-throw projection</li>
+                        <li>Interactive pen support</li>
+                        <li>5000+ lumens brightness</li>
+                        <li>Wireless connectivity</li>
+                        <li>Compatible with all devices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="clients" id="clients">
+        <div class="about-container">
+            <div class="section-title fade-element">
+                <h2>Our <span>Clients</span></h2>
+                <p>Some of the organizations that trust our services</p>
+            </div>
+            
+            <!-- Special case for the company's logo -->
+        
+            <h3 class="fade-element" style="text-align: center; margin-top: 2rem; color: var(--text-light);">Enterprise Clients</h3>
+            <div class="clients-grid">
+                <div class="logo glass fade-element">
+                    <img src="logos/neolife.webp" alt="NeoLife" loading="lazy">
+                    <p>NeoLife</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/nel.webp" alt="Nairobi Enterprises Limited" loading="lazy">
+                    <p>Nairobi Enterprises Limited</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/ison.png" alt="Ison BPO" loading="lazy">
+                    <p>Ison BPO</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/uokoaji.png" alt="Uokoaji Sacco" loading="lazy">
+                    <p>Uokoaji Sacco</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/frontier.png" alt="Frontier Optical Networks Ltd" loading="lazy">
+                    <p>Frontier Optical Networks Ltd</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/sybrin.png" alt="Sybrin" loading="lazy">
+                    <p>Sybrin</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/kci.png" alt="Kenya Coach Industries" loading="lazy">
+                    <p>Kenya Coach Industries</p>
+                </div>
+            </div>
+            
+            <h3 class="fade-element" style="text-align: center; margin-top: 3rem; color: var(--text-light);">Educational Institutions</h3>
+            <div class="clients-grid">
+                <div class="logo glass fade-element">
+                    <img src="logos/bihc.webp" alt="Boma International Hospitality College" loading="lazy">
+                    <p>Boma International Hospitality College</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/kenton-college.png" alt="Kenton College" loading="lazy">
+                    <p>Kenton College</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/sabis.png" alt="Sabis International School" loading="lazy">
+                    <p>Sabis International School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/indian-public-school.webp" alt="Indian Public School" loading="lazy">
+                    <p>Indian Public School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/zetech.png" alt="Zetech University" loading="lazy">
+                    <p>Zetech University</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/talanta-institute.png" alt="Talanta Institute" loading="lazy">
+                    <p>Talanta Institute</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/gapeka.webp" alt="GAPEKA Kilifi Vonwald School" loading="lazy">
+                    <p>GAPEKA Kilifi Vonwald School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/clay-international-school.webp" alt="Clay International School" loading="lazy">
+                    <p>Clay International School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/brookshine.webp" alt="Brookshine Schools" loading="lazy">
+                    <p>Brookshine Schools</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/chavara.png" alt="Chavara CMI Primary School" loading="lazy">
+                    <p>Chavara CMI Primary School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/mount-sinai.png" alt="Mount Sinai C.M.I School" loading="lazy">
+                    <p>Mount Sinai C.M.I School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/fab.png" alt="Fablab Winam" loading="lazy">
+                    <p>Fablab Winam</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/potter-house.png" alt="PotterHouse School" loading="lazy">
+                    <p>PotterHouse School</p>
+                </div>
+                <div class="logo glass fade-element">
+                    <img src="logos/itcer.png" alt="Itcer" loading="lazy">
+                    <p>Itcer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="about-container">
+            <div class="section-title fade-element">
+                <h2>Contact <span>Us</span></h2>
+                <p>Get in touch with our team for your technology needs</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info fade-element">
+                    <div class="glass" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Office</h4>
+                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>
+                                  <a href="tel:0741404232">0741 404 232</a><br>
+                                  <a href="tel:0774132425">0774 132 425</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>
+                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form glass fade-element">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="phone">Phone Number (Optional)</label>
+                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="message">Comment, Query or RFQ</label>
+                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                        </div>
+                      
+                        <!-- Disable CAPTCHA and auto-refresh after submit -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+                      
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                          <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                      </form>
+                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
+    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
+  <h3>✅ Thank you!</h3>
+  <p>Your message has been sent successfully.</p>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links fade-element">
+                <a href="#about">About Us</a>
+                <a href="#education">Education</a>
+                <a href="#networking">Networking</a>
+                <a href="#computers">Computers</a>
+                <a href="#projectors">Projectors</a>
+                <a href="#electrical">Electrical</a>
+                <a href="#coding">Coding</a>
+                <a href="#healthcare">Healthcare</a>
+                <a href="#boardrooms">Boardrooms</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright fade-element">
+                <p>&copy; 2025 iWorth Technologies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation functionality with fade-out
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-element');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = 100;
+            
+            const checkPosition = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    // Check if element is entering viewport
+                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
+                        element.classList.add('visible');
+                        element.classList.remove('fade-out');
+                    } 
+                    // Check if element is leaving viewport (scrolling up)
+                    else if (elementBottom < 0) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                    // Check if element is leaving viewport (scrolling down)
+                    else if (elementTop > windowHeight) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                });
+            };
+            
+            // Initial check
+            checkPosition();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkPosition);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
