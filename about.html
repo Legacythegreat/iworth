@@ -340,7 +340,40 @@
             border-radius: 16px;
             position: relative;
         }
+         .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
         .image-overlay {
             position: absolute;
             bottom: 0;
