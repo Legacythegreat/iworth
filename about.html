@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about iWorth Technologies - Our mission, vision, and approach to delivering innovative IT and Edtech solutions">
+    <title>About Us - iWorth Technologies | IT & Edtech Solutions</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="iworth-tech.png">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #f8fafc;
+            --text-light: #f8f9fa;
+            --text-dark: #e5e7e9;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #000000;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+            color: var(--text);
+            min-height: 100vh;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover, .btn-primary:focus {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover, .top-links a:focus {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Header/Navigation */
+        header {
+            padding: 0 2rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a:hover, .nav-links a:focus {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after, .nav-links a:focus::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card, .vision-card, .values-card {
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .mission-card h3, .vision-card h3, .values-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+        }
+        
+        /* Image Overlay Styles */
+        .image-overlay-container {
+            position: relative;
+            width: 100%;
+            margin: 3rem 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .scrolling-image {
+            width: 100%;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            border-radius: 0 0 16px 16px;
+        }
+        
+        .image-overlay h2, .image-overlay h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Optimized image sizes */
+        .optimized-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            
+            .hero-content {
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+            
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .image-overlay {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+            
+            .scrolling-image {
+                height: 40vh;
+            }
+            
+            .image-overlay {
+                padding: 1.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            nav.glass {
+                padding: 1rem;
+            }
+        }
+        
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="phone-link">
+            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            <span>Call us now +254 741 404 232</span>
+        </div>
+        <div class="top-links">
+            <a href="index.html">Home</a>
+            <span aria-hidden="true">|</span>
+            <a href="#contact">Contact Us</a>
+            <span aria-hidden="true">|</span>
+            <a href="#clients">Our Customers</a>
+        </div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="glass" aria-label="Main navigation">
+            <div class="logo-container">
+                <img src="iworth-tech.png" alt="iWorth Technologies Logo" class="logo-img" width="50" height="50">
+                <div class="logo-text">iWorth <span>Technologies</span></div>
+            </div>
+            <div class="nav-links">
+                <a href="about.html" class="active" aria-current="page">About Us</a>
+                <a href="index.html#education">Education</a>
+                <a href="index.html#networking">Networking</a>
+                <a href="index.html#computers">Computers</a>
+                <a href="index.html#projectors">Projectors</a>
+                <a href="index.html#electrical">Electrical</a>
+                <a href="index.html#coding">Coding</a>
+                <a href="index.html#healthcare">Healthcare</a>
+                <a href="index.html#boardrooms">Boardrooms</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- About Hero Section with Image Overlay -->
+        <section class="hero">
+            <div class="hero-content fade-element">
+                <h1>About <span>Us</span></h1>
+                <p>iWorth Technologies Ltd is an Information Technology and Edtech Company built on years of research, innovation, and technical excellence.</p>
+            </div>
+            <div class="hero-image fade-element">
+                <div class="image-overlay-container">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Our diverse team working together" 
+                         class="scrolling-image"
+                         width="800" height="600">
+                    <div class="image-overlay">
+                        <h2>Innovation Working For Your Convenience</h2>
+                        <p>With roots in IT, STEM, Power and AV solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Company Overview Section -->
+        <section class="about" id="overview">
+            <div class="about-container">
+                <div class="mission-vision">
+                    <div class="mission-card glass fade-element" style="grid-column: 1/-1; text-align: center;">
+                        <h3><i class="fas fa-building" aria-hidden="true"></i> Who We Are</h3>
+                        <p>With roots based in the IT, STEM, Power and AV world, iWorth Technologies focuses on technologies that impact our world. Through our Nairobi Kenya base we have a global reach through our alliance with partners and suppliers around the world. With the combination of industry leaders the company has the size, scope and technical talent to lead the industry into the future.</p>
+                        
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Our modern office space" 
+                             class="optimized-img"
+                             style="max-height: 400px; margin-top: 2rem;"
+                             width="800" height="600">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section with Image Overlay -->
+        <section class="about" aria-labelledby="mission-heading">
+            <div class="image-overlay-container">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Team discussing technology solutions" 
+                     class="scrolling-image"
+                     width="800" height="600">
+                <div class="image-overlay">
+                    <h2 id="mission-heading">Our Mission</h2>
+                    <p>At iWorth Technologies, we partner with educators to create desired solutions. We provide cutting-edge technology solutions that help enhance the learning environment, stimulate creativity, encourage collaboration and make learning more engaging.</p>
+                </div>
+            </div>
+            
+            <div class="about-container" style="padding-top: 3rem;">
+                <div class="mission-card glass fade-element" style="max-width: 800px; margin: 0 auto;">
+                    <div class="service-icon" style="margin: 0 auto 1.5rem;">
+                        <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    </div>
+                    <p>Our mission has always been to empower schools with the technologies and skills they need to prepare today's students for the world of tomorrow.</p>
+                    <p>We are gradually enabling businesses and organizations to discover that the innovative, comprehensive solutions we offer improve outcomes, efficiency, and lead to organizational success.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Approach Section -->
+        <section class="services" aria-labelledby="approach-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="approach-heading">Our <span>Approach</span></h2>
+                </div>
+                
+                <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
+                    <h3><i class="fas fa-handshake" aria-hidden="true"></i> Client Focused Services</h3>
+                    <p>The client focused services that iWorth Technologies provides showcase our passion for helping organizations and schools integrate technology into their workplaces. For schools, we understand the importance of technology in education and know the future impact it will have on the student learning experience.</p>
+                    
+                    <div class="image-overlay-container" style="margin: 2rem 0;">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Our team providing technical support" 
+                             class="optimized-img"
+                             width="800" height="600">
+                        <div class="image-overlay" style="background: rgba(99, 102, 241, 0.8);">
+                            <h3>Comprehensive Support</h3>
+                            <p>We support at all project stages</p>
+                        </div>
+                    </div>
+                    
+                    <p>We happily serve and support schools, vocational training, TVETs and organizations in implementation of projects with our know-how at all stages.</p>
+                    <p>Unsure where to start? Simply contact one of our local account executives on the contact form below, or call us or reach us on any of our social media accounts.</p>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="about" id="contact" aria-labelledby="contact-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="contact-heading">Contact <span>Us</span></h2>
+                    <p>Get in touch with our team for inquiries or support</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <div class="contact-info">
+                                <h3 style="margin-bottom: 1.5rem;">Contact Information</h3>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Address</h4>
+                                        <p>Nairobi, Kenya</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Phone</h4>
+                                        <p>+254 741 404 232</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-info-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Email</h4>
+                                        <p>info@iworthtech.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-form">
+                                <h3 style="margin-bottom: 1.5rem;">Send Us a Message</h3>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" id="name" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="message">Your Message</label>
+                                        <textarea id="message" class="form-control" rows="5" required></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn btn-primary">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass" style="margin-top: 4rem;">
+        <div class="about-container">
+            <div class="mission-vision">
+                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#clients">Clients</a>
+                    </div>
+                    
+                    <p style="color: var(--text-dark);">&copy; 2023 iWorth Technologies Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Right-click prevention script -->
+    <script>
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer for scroll animations
+            const fadeElements = document.querySelectorAll('.fade-element');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Image overlay scroll effect
+            const overlayContainers = document.querySelectorAll('.image-overlay-container');
+            
+            const handleOverlayScroll = () => {
+                overlayContainers.forEach(container => {
+                    const rect = container.getBoundingClientRect();
+                    const overlay = container.querySelector('.image-overlay');
+                    
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const scrollPercent = 1 - Math.max(0, Math.min(1, (rect.bottom - window.innerHeight) / rect.height));
+                        overlay.style.opacity = scrollPercent;
+                        overlay.style.transform = `translateY(${(1 - scrollPercent) * 20}px)`;
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', handleOverlayScroll);
+            handleOverlayScroll(); // Initialize
+            
+            // Focus management for accessibility
+            document.addEventListener('keyup', function(e) {
+                if (e.key === 'Tab') {
+                    document.documentElement.classList.add('keyboard-focus');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
