@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iWorth Technologies - Innovative education solutions including smart classrooms, STEM labs, and digital learning tools for modern schools">
+    <title>Education Solutions | iWorth Technologies | Smart Classrooms & STEM Labs</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" as="image" href="iworth-tech.png">
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+    <style>
+        /* Copy all CSS styles from your about.html file */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #f4f6f8;
+            --text-light: #f3f6f8;
+            --text-dark: #090b0e;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #000000;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #3b82f6 0%, #e0f2ff  60%, #ffffff 100%);
+            color: var(--text);
+            min-height: 100vh;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-element.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Header/Navigation */
+        header {
+            padding: 0 2rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 16px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card, .vision-card, .values-card {
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .mission-card h3, .vision-card h3, .values-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            background: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .service-features li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Interactive Panels Section */
+        .interactive-panels {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .panels-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .panel-card {
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .panel-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+        }
+        
+        .panel-card:hover .panel-image {
+            transform: scale(1.05);
+        }
+        
+        .panel-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .panel-features {
+            list-style: none;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .panel-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .panel-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Clients Section */
+        .clients {
+            padding: 4rem 2rem;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            align-items: center;
+        }
+        
+        logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100px;
+        }
+        
+        logo:hover {
+            transform: translateY(-5px);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%) brightness(2);
+            transition: filter 0.3s ease;
+        }
+        
+        logo:hover img {
+            filter: grayscale(0) brightness(1);
+        }
+        
+        placeholder {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            
+            .hero-content {
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+            
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+        /* Education-specific styles */
+        .solution-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background-size: cover;
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .solution-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .solution-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .solution-hero h1 span {
+            color: var(--primary);
+        }
+        
+        .solution-hero p {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+        }
+        
+        .solution-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .solution-card-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 16px 16px 0 0;
+            width: 100%;
+        }
+        
+        .solution-card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+        
+        .solution-card-body h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .solution-features {
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .benefit-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-top: 0.3rem;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Skip to content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="phone-link">
+            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            <span>Call us now +254 741 404 232</span>
+        </div>
+        <div class="top-links">
+            <a href="index.html">Home</a>
+            <span aria-hidden="true">|</span>
+            <a href="#contact">Contact Us</a>
+            <span aria-hidden="true">|</span>
+            <a href="#case-studies">Case Studies</a>
+        </div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="glass" aria-label="Main navigation">
+            <div class="logo-container">
+                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
+                <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
+            </div>
+            <div class="nav-links">
+                <a href="about.html">About Us</a>
+                <a href="education.html" class="active" aria-current="page">Education</a>
+                <a href="index.html#networking">Networking</a>
+                <a href="index.html#computers">Computers</a>
+                <a href="index.html#projectors">Projectors</a>
+                <a href="index.html#electrical">Electrical</a>
+                <a href="index.html#coding">Coding</a>
+                <a href="index.html#healthcare">Healthcare</a>
+                <a href="index.html#boardrooms">Boardrooms</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Education Hero Section -->
+        <section class="solution-hero" aria-labelledby="education-heading">
+            <div class="solution-hero-content fade-element">
+                <h1 id="education-heading">Transforming <span>Education</span> Through Technology</h1>
+                <p>Innovative solutions for schools, colleges, and universities to enhance teaching and learning experiences in the digital age.</p>
+                <a href="#contact" class="btn btn-primary">Get a Consultation</a>
+            </div>
+        </section>
+
+        <!-- Education Solutions Section -->
+        <section class="about" id="solutions" aria-labelledby="solutions-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="solutions-heading">Our <span>Education Solutions</span></h2>
+                    <p>Comprehensive technology packages designed for modern educational institutions</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <!-- Smart Classroom Solution -->
+                    <div class="glass fade-element">
+                        <div class="solution-card">
+                            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Smart classroom with interactive display" 
+                                 class="solution-card-img">
+                            <div class="solution-card-body">
+                                <h3><i class="fas fa-chalkboard-teacher"></i> Smart Classroom Packages</h3>
+                                <p>Complete digital classroom solutions featuring interactive displays, audio systems, and teaching software to create engaging learning environments.</p>
+                                
+                                <div class="solution-features">
+                                    <h4>Key Features:</h4>
+                                    <ul class="service-features">
+                                        <li>Interactive flat panel displays</li>
+                                        <li>Classroom audio systems</li>
+                                        <li>Digital whiteboarding software</li>
+                                        <li>Content management solutions</li>
+                                        <li>Teacher training and support</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- STEM Lab Solution -->
+                    <div class="glass fade-element">
+                        <div class="solution-card">
+                            <img src="https://images.unsplash.com/photo-1581093057305-25a0a6b9f46b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Students working in STEM lab" 
+                                 class="solution-card-img">
+                            <div class="solution-card-body">
+                                <h3><i class="fas fa-atom"></i> STEM Lab Solutions</h3>
+                                <p>Turnkey STEM laboratories equipped with robotics kits, 3D printers, and coding tools to foster innovation and hands-on learning.</p>
+                                
+                                <div class="solution-features">
+                                    <h4>Key Features:</h4>
+                                    <ul class="service-features">
+                                        <li>Robotics and coding kits</li>
+                                        <li>3D printing and design stations</li>
+                                        <li>Science experiment equipment</li>
+                                        <li>Interactive learning software</li>
+                                        <li>Curriculum-aligned content</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Digital Library Solution -->
+                    <div class="glass fade-element">
+                        <div class="solution-card">
+                            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                 alt="Digital library with e-books" 
+                                 class="solution-card-img">
+                            <div class="solution-card-body">
+                                <h3><i class="fas fa-book-open"></i> Digital Library Solutions</h3>
+                                <p>Modern library systems with e-book platforms, digital resource management, and reading analytics to support literacy development.</p>
+                                
+                                <div class="solution-features">
+                                    <h4>Key Features:</h4>
+                                    <ul class="service-features">
+                                        <li>E-book lending platforms</li>
+                                        <li>Digital resource management</li>
+                                        <li>Reading progress analytics</li>
+                                        <li>Multimedia learning stations</li>
+                                        <li>Accessibility features</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="services" aria-labelledby="benefits-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="benefits-heading">Why Choose Our <span>Education Solutions</span></h2>
+                    <p>We deliver measurable results for educational institutions of all sizes</p>
+                </div>
+                
+                <div class="glass fade-element" style="padding: 3rem;">
+                    <div class="benefits-grid">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3>Improved Learning Outcomes</h3>
+                                <p>Technology-enhanced teaching methods lead to better student engagement and retention.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h3>Future-Ready Skills</h3>
+                                <p>Students gain 21st century skills needed for tomorrow's workforce.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div>
+                                <h3>Comprehensive Support</h3>
+                                <p>From installation to teacher training, we support you at every step.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3>Reliable Infrastructure</h3>
+                                <p>Enterprise-grade solutions designed for educational environments.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section class="about" id="case-studies" aria-labelledby="case-studies-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="case-studies-heading">Education <span>Case Studies</span></h2>
+                    <p>See how we've helped institutions transform their learning environments</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <div class="glass fade-element" style="grid-column: 1/-1;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <!-- Case Study 1 -->
+                            <div class="solution-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="School building" 
+                                     class="solution-card-img">
+                                <div class="solution-card-body">
+                                    <h3>Nairobi STEM Academy</h3>
+                                    <p>Implemented a complete STEM lab solution serving 800 students, resulting in 40% increase in STEM course enrollment.</p>
+                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Case Study 2 -->
+                            <div class="solution-card">
+                                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="University campus" 
+                                     class="solution-card-img">
+                                <div class="solution-card-body">
+                                    <h3>Coast University</h3>
+                                    <p>Deployed smart classroom technology across 32 lecture halls, improving student satisfaction scores by 35%.</p>
+                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Case Study 3 -->
+                            <div class="solution-card">
+                                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                                     alt="Primary school" 
+                                     class="solution-card-img">
+                                <div class="solution-card-body">
+                                    <h3>Rift Valley Primary</h3>
+                                    <p>Digital library implementation increased student reading time by 60% and improved literacy test scores.</p>
+                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+  <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="about-container">
+            <div class="section-title fade-element">
+                <h2>Contact <span>Us</span></h2>
+                <p>Get in touch with our team for your technology needs</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info fade-element">
+                    <div class="glass" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Office</h4>
+                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>
+                                  <a href="tel:0741404232">0741 404 232</a><br>
+                                  <a href="tel:0774132425">0774 132 425</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>
+                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form glass fade-element">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                        <div class="form-group">
+                          <label for="name">Name</label>
+                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="phone">Phone Number (Optional)</label>
+                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                        </div>
+                      
+                        <div class="form-group">
+                          <label for="message">Comment, Query or RFQ</label>
+                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                        </div>
+                      
+                        <!-- Disable CAPTCHA and auto-refresh after submit -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+                      
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                          <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                      </form>
+                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
+    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
+  <h3>✅ Thank you!</h3>
+  <p>Your message has been sent successfully.</p>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="glass" style="margin-top: 4rem;">
+        <div class="about-container">
+            <div class="mission-vision">
+                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
+                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About Us</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#clients">Clients</a>
+                    </div>
+                    
+                    <p style="color: var(--text-dark);">&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script>
+        // Scroll animation functionality with fade-out
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-element');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = 100;
+            
+            const checkPosition = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    // Check if element is entering viewport
+                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
+                        element.classList.add('visible');
+                        element.classList.remove('fade-out');
+                    } 
+                    // Check if element is leaving viewport (scrolling up)
+                    else if (elementBottom < 0) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                    // Check if element is leaving viewport (scrolling down)
+                    else if (elementTop > windowHeight) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                });
+            };
+            
+            // Initial check
+            checkPosition();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkPosition);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
