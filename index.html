@@ -34,7 +34,7 @@
             --primary-dark: #4f46e5;
             --secondary: #10b981;
             --accent: #f59e0b;
-             --text: #f4f6f8;
+            --text: #f4f6f8;
             --text-light: #f3f6f8;
             --text-dark: #090b0e;
             --dark: #0f172a;
@@ -50,7 +50,8 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         
-         background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+        body {
+           background: linear-gradient(to right, #ffffff, #cce0ff, #99c2ff, #0077ff);
             color: var(--text);
             min-height: 100vh;
             background-attachment: fixed;
@@ -671,7 +672,7 @@
     <div class="top-bar">
         <div class="phone-link">
             <i class="fas fa-phone-alt"></i>
-            <span>Call us now <a href="tel:0741404232">+254 741 404 232</a></span>
+            <span>Call us now +254 741 404 232</span>
         </div>
         <div class="top-links">
             <a href="#">Home</a>
@@ -686,11 +687,11 @@
     <header>
         <nav class="glass">
             <div class="logo-container">
-                <img src="https://i.imgur.com/3rogu8r.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
-                <img src="https://i.imgur.com/6SvzUrz.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
+                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
+                <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
             </div>
             <div class="nav-links">
-                <a href="about.html">About Us</a>
+                <a href="about.html">More About Us</a>
                 <a href="education.html">Education</a>
                 <a href="#networking">Networking</a>
                 <a href="#computers">Computers</a>
@@ -709,7 +710,7 @@
             <h1>iWorth <span>Innovation Working For Your Convenience</span></h1>
             <p>Providing comprehensive IT solutions and services to businesses and educational institutions across Kenya.</p>
             <button class="btn btn-primary">
-                <i class="fas fa-envelope"></i> <a href="#contact">Contact Us</a>
+                <i class="fas fa-envelope"></i> Contact Us
             </button>
         </div>
         <div class="hero-image fade-element">
@@ -721,7 +722,7 @@
     <section class="about" id="about">
         <div class="about-container">
             <div class="section-title fade-element">
-                <h2> Briefly<span>About</span> <span>Us</span></h2>
+                <h2>Briefly <span>About </span><span>Us</span></h2>
                 <p>Learn more about our company, mission, and values</p>
             </div>
             <div class="mission-vision">
@@ -1079,7 +1080,7 @@
                 
                 <div class="contact-form glass fade-element">
                     <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form action="https://formsubmit.co/mwendaenoch@gmail.com" method="POST">
+                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
                         <div class="form-group">
                           <label for="name">Name</label>
                           <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
@@ -1101,9 +1102,8 @@
                         </div>
                       
                         <!-- Disable CAPTCHA and auto-refresh after submit -->
-                         <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_next" value="https://iworth.vercel.app/">
-
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
                       
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
                           <i class="fas fa-paper-plane"></i> Send Message
@@ -1123,8 +1123,8 @@
     <footer>
         <div class="footer-container">
             <div class="footer-links fade-element">
-                <a href="about.html">About Us</a>
-                <a href="education.html">Education</a>
+                <a href="#about">About Us</a>
+                <a href="#education">Education</a>
                 <a href="#networking">Networking</a>
                 <a href="#computers">Computers</a>
                 <a href="#projectors">Projectors</a>
