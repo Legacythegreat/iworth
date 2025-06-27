@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projector Solutions | iWorth Technologies | Professional AV Equipment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #f4f6f8;
+            --text-light: #f3f6f8;
+            --text-dark: #090b0e;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #000000;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+            color: var(--text);
+            min-height: 100vh;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Header/Navigation - Responsive */
+        header {
+            padding: 0 1rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: height 0.3s ease;
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            transition: font-size 0.3s ease;
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        /* Hero Section */
+        .solution-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .solution-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .solution-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .solution-hero h1 span {
+            color: var(--primary);
+        }
+        
+        .solution-hero p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Projector Cards */
+        .projector-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .projector-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .projector-img-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .projector-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .projector-card:hover .projector-img {
+            transform: scale(1.05);
+        }
+        
+        .projector-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .projector-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .projector-body h3 {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .projector-features {
+            list-style: none;
+            margin-top: 1rem;
+            flex-grow: 1;
+        }
+        
+        .projector-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .projector-features li i {
+            color: var(--primary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .solution-hero {
+                padding: 7rem 2rem 3rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.95);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                border-radius: 0 0 16px 16px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links a {
+                padding: 1rem 2rem;
+                width: 100%;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .solution-hero {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .solution-hero p {
+                font-size: 1rem;
+            }
+            
+            .projector-img-container {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="phone-link">
+            <i class="fas fa-phone-alt"></i>
+            <span>Call us now +254 741 404 232</span>
+        </div>
+        <div class="top-links">
+            <a href="index.html">Home</a>
+            <span>|</span>
+            <a href="#contact">Contact Us</a>
+            <span>|</span>
+            <a href="#projector-types">Projector Types</a>
+        </div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="glass">
+            <div class="logo-container">
+                <img src="iworth-tech.png" alt="iWorth Technologies Logo" class="logo-img">
+                <div class="logo-text">iWorth <span>Technologies</span></div>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="projectors.html" class="active">Projectors</a>
+                <a href="electrical.html">Electrical</a>
+                <a href="coding.html">Coding</a>
+                <a href="healthcare.html">Healthcare</a>
+                <a href="boardrooms.html">Boardrooms</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Projector Hero Section -->
+        <section class="solution-hero" aria-labelledby="projector-heading">
+            <div class="solution-hero-content fade-element">
+                <h1 id="projector-heading">Professional <span>Projector</span> Solutions</h1>
+                <p>High-quality projection systems for education, business, and home entertainment</p>
+                <a href="#contact" class="btn btn-primary">Get a Quote</a>
+            </div>
+        </section>
+
+        <!-- Projector Types Section -->
+        <section class="about" id="projector-types" aria-labelledby="types-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="types-heading">Projector <span>Types</span></h2>
+                    <p>We offer a wide range of projectors to suit every need and budget</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <!-- Standard Projector -->
+                    <div class="glass fade-element">
+                        <div class="projector-card">
+                            <div class="projector-img-container">
+                                <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                     alt="Standard Projector" 
+                                     class="projector-img">
+                                <div class="projector-badge">Standard</div>
+                            </div>
+                            <div class="projector-body">
+                                <h3>Standard Projectors</h3>
+                                <p>Reliable projectors for everyday use in classrooms and meeting rooms</p>
+                                
+                                <ul class="projector-features">
+                                    <li><i class="fas fa-check"></i> 3,000 - 4,000 lumens brightness</li>
+                                    <li><i class="fas fa-check"></i> XGA or WXGA resolution</li>
+                                    <li><i class="fas fa-check"></i> Lamp life up to 10,000 hours</li>
+                                    <li><i class="fas fa-check"></i> HDMI and VGA inputs</li>
+                                    <li><i class="fas fa-check"></i> Ceiling mountable</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Short Throw Projector -->
+                    <div class="glass fade-element">
+                        <div class="projector-card">
+                            <div class="projector-img-container">
+                                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                     alt="Short Throw Projector" 
+                                     class="projector-img">
+                                <div class="projector-badge">Short Throw</div>
+                            </div>
+                            <div class="projector-body">
+                                <h3>Short Throw Projectors</h3>
+                                <p>Ideal for small spaces where presenters need to stand close to the screen</p>
+                                
+                                <ul class="projector-features">
+                                    <li><i class="fas fa-check"></i> Projects large images from short distances</li>
+                                    <li><i class="fas fa-check"></i> Reduces shadows and glare</li>
+                                    <li><i class="fas fa-check"></i> 1080p or 4K resolution options</li>
+                                    <li><i class="fas fa-check"></i> Interactive options available</li>
+                                    <li><i class="fas fa-check"></i> Perfect for classrooms</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Laser Projector -->
+                    <div class="glass fade-element">
+                        <div class="projector-card">
+                            <div class="projector-img-container">
+                                <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                                     alt="Laser Projector" 
+                                     class="projector-img">
+                                <div class="projector-badge">Laser</div>
+                            </div>
+                            <div class="projector-body">
+                                <h3>Laser Projectors</h3>
+                                <p>Advanced projection technology with superior image quality and longevity</p>
+                                
+                                <ul class="projector-features">
+                                    <li><i class="fas fa-check"></i> 20,000+ hours light source life</li>
+                                    <li><i class="fas fa-check"></i> Instant on/off</li>
+                                    <li><i class="fas fa-check"></i> Maintenance-free operation</li>
+                                    <li><i class="fas fa-check"></i> Vibrant colors and high contrast</li>
+                                    <li><i class="fas fa-check"></i> Ideal for large venues</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projector Features Section -->
+        <section class="services" aria-labelledby="features-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="features-heading">Why Choose Our <span>Projector Solutions</span></h2>
+                    <p>Quality projection systems with professional installation and support</p>
+                </div>
+                
+                <div class="glass fade-element" style="padding: 3rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Premium Brands</h3>
+                                <p style="color: var(--text-dark);">We work with top brands like Epson, BenQ, and Sony</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Professional Installation</h3>
+                                <p style="color: var(--text-dark);">Proper setup for optimal performance and safety</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Local Support</h3>
+                                <p style="color: var(--text-dark);">Kenyan-based technicians for quick service</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Warranty</h3>
+                                <p style="color: var(--text-dark);">Comprehensive warranty on all products</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch for projector inquiries or support</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Projector Inquiry</h3>
+                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Your email" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your phone number">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="projector-type">Projector Type</label>
+                              <select name="projector-type" id="projector-type" class="form-control">
+                                <option value="">Select projector type</option>
+                                <option value="standard">Standard Projector</option>
+                                <option value="short-throw">Short Throw Projector</option>
+                                <option value="laser">Laser Projector</option>
+                                <option value="not-sure">Not sure - need advice</option>
+                              </select>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Message</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your message or specific requirements" required></textarea>
+                            </div>
+                          
+                            <input type="hidden" name="_subject" value="Projector Inquiry from Website">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links fade-element">
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="projectors.html">Projectors</a>
+                <a href="electrical.html">Electrical</a>
+                <a href="coding.html">Coding</a>
+                <a href="healthcare.html">Healthcare</a>
+                <a href="boardrooms.html">Boardrooms</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright fade-element">
+                <p>&copy; 2025 iWorth Technologies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close menu when a link is clicked
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Scroll animation functionality
+            const fadeElements = document.querySelectorAll('.fade-element');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
