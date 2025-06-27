@@ -139,7 +139,8 @@
             color: var(--primary);
             font-weight: 600;
         }
-         /* Back to Top Button */
+        
+        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -169,6 +170,7 @@
             background: var(--primary-dark);
             transform: translateY(-3px) scale(1.1);
         }
+        
         /* Header/Navigation - Responsive */
         header {
             padding: 0 1rem;
@@ -738,6 +740,11 @@
     </div>
     <div class="mobile-menu-overlay"></div>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Main Content -->
     <main>
         <!-- Coding Hero Section -->
@@ -1112,22 +1119,24 @@
         fadeElements.forEach(element => {
             observer.observe(element);
         });
-         // Back to top button functionality
-            const backToTopBtn = document.getElementById('backToTop');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
+        
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+        });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1141,7 +1150,6 @@
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
-                    
                 }
             });
         });
