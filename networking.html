@@ -49,6 +49,34 @@
             color: inherit;
         }
         
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Glassmorphism Styles */
         .glass {
             background: rgba(15, 23, 42, 0.5);
@@ -76,6 +104,11 @@
         .fade-element.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        .fade-element.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
         }
         
         /* Buttons */
@@ -154,6 +187,24 @@
             position: sticky;
             top: 32px;
             z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            top: 0;
+            padding: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        header.scrolled nav.glass {
+            border-radius: 0;
+            margin-top: 0;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            padding: 0.5rem 2rem;
         }
         
         nav.glass {
@@ -162,6 +213,7 @@
             align-items: center;
             padding: 1rem 2rem;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
         }
         
         .logo-container {
@@ -223,6 +275,107 @@
         
         .nav-links a.active::after {
             width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--darker);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.1);
         }
         
         /* Hero Section */
@@ -419,6 +572,11 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-card:hover .service-features li {
+            transform: translateX(5px);
         }
         
         /* Benefits Grid */
@@ -432,6 +590,11 @@
             display: flex;
             gap: 1rem;
             align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
         }
         
         .benefit-icon {
@@ -445,6 +608,13 @@
             justify-content: center;
             font-size: 1.2rem;
             flex-shrink: 0;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .benefit-item:hover .benefit-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(15deg);
         }
         
         /* Contact Section */
@@ -531,6 +701,54 @@
             border-radius: 12px;
             font-size: 1.5rem;
             margin-right: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-card:hover .network-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+        
+        /* Success Message Popup */
+        #thankYouPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-align: center;
+            color: var(--dark);
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        #thankYouPopup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        #thankYouPopup p {
+            margin-bottom: 1.5rem;
+        }
+        
+        #thankYouPopup .btn {
+            margin-top: 1rem;
+        }
+        
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
         }
         
         /* Responsive Adjustments */
@@ -553,6 +771,10 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .image-overlay {
@@ -613,6 +835,11 @@
             .solution-card-img-container {
                 height: 150px;
             }
+            
+            #thankYouPopup {
+                width: 90%;
+                padding: 1.5rem;
+            }
         }
         
         /* Skip to content link for accessibility */
@@ -633,6 +860,11 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
@@ -652,7 +884,7 @@
     </div>
 
     <!-- Header/Navigation -->
-    <header>
+    <header id="mainHeader">
         <nav class="glass" aria-label="Main navigation">
             <div class="logo-container">
                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
@@ -669,8 +901,30 @@
                 <a href="healthcare.html">Healthcare</a>
                 <a href="boardrooms.html">Boardrooms</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html" class="active" aria-current="page">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -934,7 +1188,7 @@
                     
                     <div class="contact-form glass fade-element">
                         <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST" id="contactForm">
                             <div class="form-group">
                               <label for="name">Name</label>
                               <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
@@ -962,12 +1216,7 @@
                             <button type="submit" class="btn btn-primary" style="width: 100%;">
                               <i class="fas fa-paper-plane"></i> Request Assessment
                             </button>
-                          </form>
-                          <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
-                background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-                  <h3>✅ Thank you!</h3>
-                  <p>Your message has been sent successfully.</p>
-                </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -975,47 +1224,198 @@
     </main>
 
     <!-- Footer -->
-    <footer class="glass" style="margin-top: 4rem;">
-        <div class="about-container">
-            <div class="mission-vision">
-                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
-                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About Us</a>
-                        <a href="education.html">Education</a>
-                        <a href="networking.html">Networking</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    
-                    <p style="color: var(--text-dark);">&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
-                </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links fade-element">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright fade-element">
+                <p>&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup" class="glass" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 2rem; z-index: 1000; text-align: center; max-width: 90%; width: 400px;">
+        <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+        <h3 style="margin-bottom: 1rem;">Thank You!</h3>
+        <p>Your message has been sent successfully.</p>
+        <button id="closePopup" class="btn btn-primary" style="margin-top: 1.5rem;">OK</button>
+    </div>
+    
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay"></div>
+
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for scroll animations
-            const fadeElements = document.querySelectorAll('.fade-element');
+            // Loading screen functionality
+            const loadingScreen = document.getElementById('loadingScreen');
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            });
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuOverlay.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+            });
+            
+            mobileMenuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            });
+            
+            // Sticky header functionality
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Back to top button functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Scroll animation functionality with fade-out
+            const fadeElements = document.querySelectorAll('.fade-element');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = 100;
+            
+            const checkPosition = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    // Check if element is entering viewport
+                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
+                        element.classList.add('visible');
+                        element.classList.remove('fade-out');
+                    } 
+                    // Check if element is leaving viewport (scrolling up)
+                    else if (elementBottom < 0) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                    // Check if element is leaving viewport (scrolling down)
+                    else if (elementTop > windowHeight) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
                     }
                 });
-            }, {
-                threshold: 0.1
+            };
+            
+            // Initial check
+            checkPosition();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkPosition);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            mobileMenuBtn.classList.remove('active');
+                        }
+                    }
+                });
             });
             
-            fadeElements.forEach(element => {
-                observer.observe(element);
+            // Form submission handling
+            const contactForm = document.getElementById('contactForm');
+            const thankYouPopup = document.getElementById('thankYouPopup');
+            const popupOverlay = document.getElementById('popupOverlay');
+            const closePopupBtn = document.getElementById('closePopup');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: new FormData(this)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show success message
+                        thankYouPopup.style.display = 'block';
+                        popupOverlay.style.display = 'block';
+                        
+                        // Reset form
+                        this.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was an error submitting your message. Please try again.');
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
+            
+            // Close popup functionality
+            closePopupBtn.addEventListener('click', function() {
+                thankYouPopup.style.display = 'none';
+                popupOverlay.style.display = 'none';
             });
             
-            // Right-click prevention
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
+            popupOverlay.addEventListener('click', function() {
+                thankYouPopup.style.display = 'none';
+                popupOverlay.style.display = 'none';
             });
         });
     </script>
