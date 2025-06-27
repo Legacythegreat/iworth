@@ -14,15 +14,15 @@
           crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
-        /* [Include all other CSS styles from your about.html file] */
+        /* Base Styles from index.html */
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
             --secondary: #10b981;
             --accent: #f59e0b;
-            --text: #f8fafc;
-            --text-light: #f8f9fa;
-            --text-dark: #e5e7e9;
+            --text: #f4f6f8;
+            --text-light: #f3f6f8;
+            --text-dark: #090b0e;
             --dark: #0f172a;
             --darker: #020617;
             --darkest: #000000;
@@ -42,14 +42,393 @@
             min-height: 100vh;
             background-attachment: fixed;
             scroll-behavior: smooth;
-            line-height: 1.6;
         }
         
         a {
             text-decoration: none;
             color: inherit;
         }
-        /*contact session */
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-element.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Header/Navigation */
+        header {
+            padding: 0 2rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-img {
+            height: 50px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 16px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .mission-card, .vision-card, .values-card {
+            padding: 2rem;
+            text-align: left;
+        }
+        
+        .mission-card h3, .vision-card h3, .values-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: white;
+            background: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1rem;
+        }
+        
+        .service-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .service-features li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Interactive Panels Section */
+        .interactive-panels {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .panels-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .panels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .panel-card {
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .panel-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .panel-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+        }
+        
+        .panel-card:hover .panel-image {
+            transform: scale(1.05);
+        }
+        
+        .panel-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .panel-features {
+            list-style: none;
+            margin-top: 1rem;
+            text-align: left;
+        }
+        
+        .panel-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .panel-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Clients Section */
+        .clients {
+            padding: 4rem 2rem;
+        }
+        
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            align-items: center;
+        }
+        
+        /* Contact Section */
         .contact {
             padding: 6rem 2rem;
             background: rgba(0, 0, 0, 0.2);
@@ -119,324 +498,41 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
-            background:white;
         }
         
-        /* Glassmorphism Styles */
-        .glass {
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* Scroll Animation Classes */
-        .fade-element {
-            opacity: 0;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            transform: translateY(20px);
-        }
-        
-        .fade-element.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        
-        /* Buttons */
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .btn-primary:hover, .btn-primary:focus {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-        }
-        
-        .btn-secondary:hover, .btn-secondary:focus {
-            background: rgba(99, 102, 241, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        /* Top Bar */
-        .top-bar {
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
             background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
         
-        .top-links {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
-        .top-links a {
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
             transition: color 0.3s ease;
         }
         
-        .top-links a:hover, .top-links a:focus {
+        .footer-links a:hover {
             color: var(--primary);
         }
         
-        .phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Header/Navigation */
-        header {
-            padding: 0 2rem;
-            position: sticky;
-            top: 32px;
-            z-index: 999;
-        }
-        
-        nav.glass {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            margin-top: 0.5rem;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-light);
-        }
-        
-        .logo-text span {
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            color: var(--text);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a:hover, .nav-links a:focus {
-            color: var(--primary);
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after, .nav-links a:focus::after {
-            width: 100%;
-        }
-        
-        .nav-links a.active {
-            color: var(--primary);
-        }
-        
-        .nav-links a.active::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .hero-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            color: var(--text-light);
-        }
-        
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .copyright {
             text-align: center;
-        }
-        
-        .section-title {
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        
-        .section-title h2 span {
-            color: var(--primary);
-        }
-        
-        .section-title p {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-dark);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .mission-card, .vision-card, .values-card {
-            padding: 2rem;
-            text-align: left;
-        }
-        
-        .mission-card h3, .vision-card h3, .values-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-        
-        /* Image Overlay Styles */
-        .image-overlay-container {
-            position: relative;
-            width: 100%;
-            margin: 3rem 0;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        
-        .scrolling-image {
-            width: 100%;
-            height: 60vh;
-            object-fit: cover;
-            border-radius: 16px;
-            position: relative;
-        }
-        
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            padding: 3rem 2rem 2rem;
-            color: white;
-            border-radius: 0 0 16px 16px;
-        }
-        
-        .image-overlay h2, .image-overlay h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Optimized image sizes */
-        .optimized-img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 12px;
         }
         
         /* Responsive Adjustments */
@@ -460,10 +556,6 @@
             .nav-links {
                 display: none;
             }
-            
-            .image-overlay {
-                padding: 2rem 1.5rem 1.5rem;
-            }
         }
         
         @media (max-width: 768px) {
@@ -485,49 +577,8 @@
             .logo-text {
                 font-size: 1.3rem;
             }
-            
-            .scrolling-image {
-                height: 40vh;
-            }
-            
-            .image-overlay {
-                padding: 1.5rem 1rem;
-            }
         }
         
-        @media (max-width: 480px) {
-            .hero {
-                padding: 6rem 1rem 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            nav.glass {
-                padding: 1rem;
-            }
-        }
-        
-        /* Skip to content link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
         /* Computer-specific styles */
         .solution-hero {
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
@@ -565,64 +616,60 @@
         .spec-icon {
             color: var(--primary);
         }
-        /* Improved image container styles */
-.solution-card-img-container {
-    height: 200px;
-    overflow: hidden;
-    border-radius: 16px 16px 0 0;
-    position: relative;
-}
-
-.solution-card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.solution-card:hover .solution-card-img {
-    transform: scale(1.05);
-}
-
-/* Ensure consistent card heights */
-.solution-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+        
+        .solution-card-img-container {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+        
+        .solution-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .solution-card:hover .solution-card-img {
+            transform: scale(1.05);
+        }
+        
+        .solution-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
-    <!-- Skip to content link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="phone-link">
-            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+            <i class="fas fa-phone-alt"></i>
             <span>Call us now +254 741 404 232</span>
         </div>
         <div class="top-links">
             <a href="index.html">Home</a>
-            <span aria-hidden="true">|</span>
+            <span>|</span>
             <a href="#contact">Contact Us</a>
-            <span aria-hidden="true">|</span>
+            <span>|</span>
             <a href="#configurator">PC Configurator</a>
         </div>
     </div>
 
     <!-- Header/Navigation -->
     <header>
-        <nav class="glass" aria-label="Main navigation">
+        <nav class="glass">
             <div class="logo-container">
-              <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
+                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
                 <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
             </div>
             <div class="nav-links">
                 <a href="about.html">About Us</a>
                 <a href="education.html">Education</a>
                 <a href="networking.html">Networking</a>
-                <a href="computers.html" class="active" aria-current="page">Computers</a>
+                <a href="computers.html" class="active">Computers</a>
                 <a href="projectors.html">Projectors</a>
                 <a href="electrical.html">Electrical</a>
                 <a href="coding.html">Coding</a>
@@ -635,19 +682,19 @@
     <!-- Main Content -->
     <main id="main-content">
         <!-- Computers Hero Section -->
-        <section class="solution-hero" aria-labelledby="computers-heading">
-            <div class="solution-hero-content fade-element">
-                <h1 id="computers-heading">Premium <span>Computer</span> Solutions</h1>
+        <section class="solution-hero">
+            <div class="hero-content fade-element">
+                <h1>Premium <span>Computer</span> Solutions</h1>
                 <p>High-performance desktops, laptops, and workstations tailored to your needs</p>
                 <a href="#configurator" class="btn btn-primary">Build Your PC</a>
             </div>
         </section>
 
         <!-- Computer Solutions Section -->
-        <section class="about" id="solutions" aria-labelledby="solutions-heading">
+        <section class="about" id="solutions">
             <div class="about-container">
                 <div class="section-title fade-element">
-                    <h2 id="solutions-heading">Our <span>Computer Solutions</span></h2>
+                    <h2>Our <span>Computer Solutions</span></h2>
                     <p>Custom-configured systems for business, education, and creative professionals</p>
                 </div>
                 
@@ -655,10 +702,12 @@
                     <!-- Business Desktops -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://www.ubuy.ke/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTFLcTBaOUYzaUwuX1NTNDAwXy5qcGc.jpg" 
-                                 alt="Business desktop computers" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
+                            <div class="solution-card-img-container">
+                                <img src="https://www.ubuy.ke/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNTFLcTBaOUYzaUwuX1NTNDAwXy5qcGc.jpg" 
+                                     alt="Business desktop computers" 
+                                     class="solution-card-img">
+                            </div>
+                            <div class="solution-card-body" style="padding: 2rem;">
                                 <h3><i class="fas fa-desktop" style="color: var(--primary); margin-right: 0.5rem;"></i> Business Desktops</h3>
                                 <p>Reliable office workstations with enterprise-grade components for productivity and efficiency.</p>
                                 
@@ -695,10 +744,12 @@
                     <!-- High-Performance Laptops -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://saudewala.in/cdn/shop/collections/Laptop.jpg?v=1732216115&width=1296" 
-                                 alt="Premium business laptops" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
+                            <div class="solution-card-img-container">
+                                <img src="https://saudewala.in/cdn/shop/collections/Laptop.jpg?v=1732216115&width=1296" 
+                                     alt="Premium business laptops" 
+                                     class="solution-card-img">
+                            </div>
+                            <div class="solution-card-body" style="padding: 2rem;">
                                 <h3><i class="fas fa-laptop" style="color: var(--primary); margin-right: 0.5rem;"></i> Premium Laptops</h3>
                                 <p>Mobile workstations with premium build quality and performance for professionals on the go.</p>
                                 
@@ -735,10 +786,12 @@
                     <!-- Workstations -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdY8hd3sb4pZife9QP6PtUtUzODXng4K7_tA&s" 
-                                 alt="High-end workstations" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
+                            <div class="solution-card-img-container">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdY8hd3sb4pZife9QP6PtUtUzODXng4K7_tA&s" 
+                                     alt="High-end workstations" 
+                                     class="solution-card-img">
+                            </div>
+                            <div class="solution-card-body" style="padding: 2rem;">
                                 <h3><i class="fas fa-server" style="color: var(--primary); margin-right: 0.5rem;"></i> Professional Workstations</h3>
                                 <p>High-performance systems for creative professionals, engineers, and data scientists.</p>
                                 
@@ -776,317 +829,253 @@
         </section>
 
         <!-- PC Configurator Section -->
-       <section class="about" id="configurator" aria-labelledby="configurator-heading">
-    <div class="about-container">
-        <div class="section-title fade-element">
-            <h2 id="configurator-heading">PC <span>Configurator</span></h2>
-            <p>Build your perfect system with our interactive configuration tool</p>
-        </div>
-        
-        <div class="mission-vision">
-            <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                    <div class="contact-info">
-                        <h3 style="margin-bottom: 1.5rem;">Select Components</h3>
-                        
-                        <div class="form-group">
-                            <label for="cpu">Processor (CPU)</label>
-                            <select id="cpu" class="form-control" style="background-color:rgba(15, 23, 42, 0.5)">
-                                <option value="">Select Processor</option>
-                                <option value="i5">Intel Core i5</option>
-                                <option value="i7">Intel Core i7</option>
-                                <option value="i9">Intel Core i9</option>
-                                <option value="ryzen5">AMD Ryzen 5</option>
-                                <option value="ryzen7">AMD Ryzen 7</option>
-                                <option value="ryzen9">AMD Ryzen 9</option>
-                            </select>
+        <section class="about" id="configurator">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>PC <span>Configurator</span></h2>
+                    <p>Build your perfect system with our interactive configuration tool</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                            <div class="contact-info">
+                                <h3 style="margin-bottom: 1.5rem;">Select Components</h3>
+                                
+                                <div class="form-group">
+                                    <label for="cpu">Processor (CPU)</label>
+                                    <select id="cpu" class="form-control">
+                                        <option value="">Select Processor</option>
+                                        <option value="i5">Intel Core i5</option>
+                                        <option value="i7">Intel Core i7</option>
+                                        <option value="i9">Intel Core i9</option>
+                                        <option value="ryzen5">AMD Ryzen 5</option>
+                                        <option value="ryzen7">AMD Ryzen 7</option>
+                                        <option value="ryzen9">AMD Ryzen 9</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ram">Memory (RAM)</label>
+                                    <select id="ram" class="form-control">
+                                        <option value="">Select Memory</option>
+                                        <option value="8gb">8GB DDR4</option>
+                                        <option value="16gb">16GB DDR4</option>
+                                        <option value="32gb">32GB DDR4</option>
+                                        <option value="64gb">64GB DDR4</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="storage">Storage</label>
+                                    <select id="storage" class="form-control">
+                                        <option value="">Select Storage</option>
+                                        <option value="256ssd">256GB SSD</option>
+                                        <option value="512ssd">512GB SSD</option>
+                                        <option value="1tbssd">1TB SSD</option>
+                                        <option value="2tbssd">2TB SSD</option>
+                                        <option value="1tb+">1TB SSD + 2TB HDD</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="config-email">Your Email Address</label>
+                                    <input type="email" id="config-email" class="form-control" placeholder="Enter your email to receive the quote" required>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-form">
+                                <h3 style="margin-bottom: 1.5rem;">Your Configuration</h3>
+                                
+                                <div class="glass" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                                    <h4 style="color: var(--primary); margin-bottom: 1rem;">Selected Components</h4>
+                                    <ul id="config-summary" style="list-style: none;">
+                                        <li><i class="fas fa-microchip" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>Processor: Not selected</span></li>
+                                        <li><i class="fas fa-memory" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>RAM: Not selected</span></li>
+                                        <li><i class="fas fa-hdd" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>Storage: Not selected</span></li>
+                                    </ul>
+                                </div>
+                                
+                                <button id="request-quote" class="btn btn-primary" style="width: 100%;">
+                                    <i class="fas fa-file-alt"></i> Request Quote
+                                </button>
+                            </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="ram">Memory (RAM)</label>
-                            <select id="ram" class="form-control" style="background-color:rgba(15, 23, 42, 0.5)">
-                                <option value="">Select Memory</option>
-                                <option value="8gb">8GB DDR4</option>
-                                <option value="16gb">16GB DDR4</option>
-                                <option value="32gb">32GB DDR4</option>
-                                <option value="64gb">64GB DDR4</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="storage">Storage</label>
-                            <select id="storage" class="form-control" style="background-color:rgba(15, 23, 42, 0.5)">
-                                <option value="">Select Storage</option>
-                                <option value="256ssd">256GB SSD</option>
-                                <option value="512ssd">512GB SSD</option>
-                                <option value="1tbssd">1TB SSD</option>
-                                <option value="2tbssd">2TB SSD</option>
-                                <option value="1tb+">1TB SSD + 2TB HDD</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="config-email">Your Email Address</label>
-                            <input type="email" id="config-email" class="form-control" placeholder="Enter your email to receive the quote" required>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form">
-                        <h3 style="margin-bottom: 1.5rem;">Your Configuration</h3>
-                        
-                        <div class="glass" style="padding: 1.5rem; margin-bottom: 1.5rem;">
-                            <h4 style="color: var(--primary); margin-bottom: 1rem;">Selected Components</h4>
-                            <ul id="config-summary" style="list-style: none;">
-                                <li><i class="fas fa-microchip" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>Processor: Not selected</span></li>
-                                <li><i class="fas fa-memory" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>RAM: Not selected</span></li>
-                                <li><i class="fas fa-hdd" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>Storage: Not selected</span></li>
-                            </ul>
-                        </div>
-                        
-                        <button id="request-quote" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-file-alt"></i> Request Quote
-                        </button>
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- Success Message Popup -->
+        <div id="quote-success" class="glass" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 2rem; z-index: 1000; text-align: center; max-width: 90%; width: 400px;">
+            <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem;">Quote Request Received!</h3>
+            <p>Your custom PC quote will be sent to your email shortly.</p>
+            <button id="close-success" class="btn btn-primary" style="margin-top: 1.5rem;">OK</button>
         </div>
-    </div>
-</section>
-
-<!-- Success Message Popup -->
-<div id="quote-success" class="glass" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 2rem; z-index: 1000; text-align: center; max-width: 90%; width: 400px;">
-    <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
-    <h3 style="margin-bottom: 1rem;">Quote Request Received!</h3>
-    <p>Your custom PC quote will be sent to your email shortly.</p>
-    <button id="close-success" class="btn btn-primary" style="margin-top: 1.5rem;">OK</button>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Configuration summary update
-        const cpuSelect = document.getElementById('cpu');
-        const ramSelect = document.getElementById('ram');
-        const storageSelect = document.getElementById('storage');
-        const configSummary = document.getElementById('config-summary');
-        
-        function updateSummary() {
-            const cpuText = cpuSelect.value ? `Processor: ${cpuSelect.options[cpuSelect.selectedIndex].text}` : 'Processor: Not selected';
-            const ramText = ramSelect.value ? `RAM: ${ramSelect.options[ramSelect.selectedIndex].text}` : 'RAM: Not selected';
-            const storageText = storageSelect.value ? `Storage: ${storageSelect.options[storageSelect.selectedIndex].text}` : 'Storage: Not selected';
-            
-            configSummary.innerHTML = `
-                <li><i class="fas fa-microchip" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>${cpuText}</span></li>
-                <li><i class="fas fa-memory" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>${ramText}</span></li>
-                <li><i class="fas fa-hdd" style="color: var(--primary); margin-right: 0.5rem;"></i> <span>${storageText}</span></li>
-            `;
-        }
-        
-        cpuSelect.addEventListener('change', updateSummary);
-        ramSelect.addEventListener('change', updateSummary);
-        storageSelect.addEventListener('change', updateSummary);
-        
-        // Quote request handling
-        const requestQuoteBtn = document.getElementById('request-quote');
-        const quoteSuccess = document.getElementById('quote-success');
-        const closeSuccessBtn = document.getElementById('close-success');
-        
-        requestQuoteBtn.addEventListener('click', function() {
-            const email = document.getElementById('config-email').value;
-            const cpu = cpuSelect.value;
-            const ram = ramSelect.value;
-            const storage = storageSelect.value;
-            
-            if (!email) {
-                alert('Please enter your email address');
-                return;
-            }
-            
-            if (!cpu || !ram || !storage) {
-                alert('Please select all components before requesting a quote');
-                return;
-            }
-            
-            // Prepare the form data
-            const formData = new FormData();
-            formData.append('email', email);
-            formData.append('cpu', cpuSelect.options[cpuSelect.selectedIndex].text);
-            formData.append('ram', ramSelect.options[ramSelect.selectedIndex].text);
-            formData.append('storage', storageSelect.options[storageSelect.selectedIndex].text);
-            formData.append('_subject', 'Custom PC Quote Request');
-            formData.append('_template', 'box');
-            formData.append('_replyto', email);
-            
-            // Show loading state
-            requestQuoteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            requestQuoteBtn.disabled = true;
-            
-            // Send the data to FormSubmit
-            fetch('https://formsubmit.co/ajax/info@iworth.co.ke', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Show success message
-                quoteSuccess.style.display = 'block';
-                
-                // Reset form
-                cpuSelect.selectedIndex = 0;
-                ramSelect.selectedIndex = 0;
-                storageSelect.selectedIndex = 0;
-                document.getElementById('config-email').value = '';
-                updateSummary();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error submitting your request. Please try again.');
-            })
-            .finally(() => {
-                requestQuoteBtn.innerHTML = '<i class="fas fa-file-alt"></i> Request Quote';
-                requestQuoteBtn.disabled = false;
-            });
-        });
-        
-        closeSuccessBtn.addEventListener('click', function() {
-            quoteSuccess.style.display = 'none';
-        });
-    });
-</script>
 
         <!-- Contact Section -->
         <section class="contact" id="contact">
-        <div class="about-container">
-            <div class="section-title fade-element">
-                <h2>Contact <span>Us</span></h2>
-                <p>Get in touch with our team for your technology needs</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info fade-element">
-                    <div class="glass" style="padding: 2rem;">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch with our team for your technology needs</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4>Office</h4>
-                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>
-                                  <a href="tel:0741404232">0741 404 232</a><br>
-                                  <a href="tel:0774132425">0774 132 425</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>
-                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                                </p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form glass fade-element">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                        <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="phone">Phone Number (Optional)</label>
-                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="message">Comment, Query or RFQ</label>
-                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
-                        </div>
-                      
-                        <!-- Disable CAPTCHA and auto-refresh after submit -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="">
-                      
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                          <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                      </form>
-                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
-    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-  <h3>✅ Thank you!</h3>
-  <p>Your message has been sent successfully.</p>
-</div>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone Number (Optional)</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Comment, Query or RFQ</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                            </div>
+                          
+                            <!-- Disable CAPTCHA and auto-refresh after submit -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="glass" style="margin-top: 4rem;">
-        <div class="about-container">
-            <div class="mission-vision">
-                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
-                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About Us</a>
-                        <a href="education.html">Education</a>
-                        <a href="networking.html">Networking</a>
-                        <a href="computers.html">Computers</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    
-                    <p style="color: var(--text-dark);">&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
-                </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links fade-element">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright fade-element">
+                <p>&copy; 2025 iWorth Technologies. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for scroll animations
+            // Scroll animation functionality with fade-out
             const fadeElements = document.querySelectorAll('.fade-element');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = 100;
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+            const checkPosition = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    // Check if element is entering viewport
+                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
+                        element.classList.add('visible');
+                        element.classList.remove('fade-out');
+                    } 
+                    // Check if element is leaving viewport (scrolling up)
+                    else if (elementBottom < 0) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                    // Check if element is leaving viewport (scrolling down)
+                    else if (elementTop > windowHeight) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            };
             
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
+            // Initial check
+            checkPosition();
             
+            // Check on scroll
+            window.addEventListener('scroll', checkPosition);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
             // PC Configurator functionality
             const cpuSelect = document.getElementById('cpu');
             const ramSelect = document.getElementById('ram');
             const storageSelect = document.getElementById('storage');
             const configSummary = document.getElementById('config-summary');
+            const requestQuoteBtn = document.getElementById('request-quote');
+            const quoteSuccess = document.getElementById('quote-success');
+            const closeSuccessBtn = document.getElementById('close-success');
             
             function updateConfigSummary() {
                 const cpuText = cpuSelect.value ? `Processor: ${cpuSelect.options[cpuSelect.selectedIndex].text}` : 'Processor: Not selected';
@@ -1104,9 +1093,65 @@
             ramSelect.addEventListener('change', updateConfigSummary);
             storageSelect.addEventListener('change', updateConfigSummary);
             
-            // Right-click prevention
-            document.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
+            requestQuoteBtn.addEventListener('click', function() {
+                const email = document.getElementById('config-email').value;
+                const cpu = cpuSelect.value;
+                const ram = ramSelect.value;
+                const storage = storageSelect.value;
+                
+                if (!email) {
+                    alert('Please enter your email address');
+                    return;
+                }
+                
+                if (!cpu || !ram || !storage) {
+                    alert('Please select all components before requesting a quote');
+                    return;
+                }
+                
+                // Prepare the form data
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('cpu', cpuSelect.options[cpuSelect.selectedIndex].text);
+                formData.append('ram', ramSelect.options[ramSelect.selectedIndex].text);
+                formData.append('storage', storageSelect.options[storageSelect.selectedIndex].text);
+                formData.append('_subject', 'Custom PC Quote Request');
+                formData.append('_template', 'box');
+                formData.append('_replyto', email);
+                
+                // Show loading state
+                requestQuoteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                requestQuoteBtn.disabled = true;
+                
+                // Send the data to FormSubmit
+                fetch('https://formsubmit.co/ajax/info@iworth.co.ke', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Show success message
+                    quoteSuccess.style.display = 'block';
+                    
+                    // Reset form
+                    cpuSelect.selectedIndex = 0;
+                    ramSelect.selectedIndex = 0;
+                    storageSelect.selectedIndex = 0;
+                    document.getElementById('config-email').value = '';
+                    updateConfigSummary();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error submitting your request. Please try again.');
+                })
+                .finally(() => {
+                    requestQuoteBtn.innerHTML = '<i class="fas fa-file-alt"></i> Request Quote';
+                    requestQuoteBtn.disabled = false;
+                });
+            });
+            
+            closeSuccessBtn.addEventListener('click', function() {
+                quoteSuccess.style.display = 'none';
             });
         });
     </script>
