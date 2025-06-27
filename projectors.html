@@ -980,16 +980,7 @@
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
         });
-          if (mobileMenu.classList.contains('active')) {
-                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                            mobileMenu.classList.remove('active');
-                            mobileMenuOverlay.classList.remove('active');
-                            mobileMenu.setAttribute('aria-hidden', 'true');
-                            
-                            // Reset icon
-                            const icon = mobileMenuBtn.querySelector('i');
-                            icon.classList.remove('fa-times');
-                            icon.classList.add('fa-bars');
+         
                         }
             // Scroll animation functionality
             const fadeElements = document.querySelectorAll('.fade-element');
