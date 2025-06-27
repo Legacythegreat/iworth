@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Solutions | iWorth Technologies | Medical Equipment & Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --text: #f4f6f8;
+            --text-light: #f3f6f8;
+            --text-dark: #090b0e;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #000000;
+            --card-bg: rgba(15, 23, 42, 0.7);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+            color: var(--text);
+            min-height: 100vh;
+            background-attachment: fixed;
+            scroll-behavior: smooth;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Glassmorphism Styles */
+        .glass {
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Scroll Animation Classes */
+        .fade-element {
+            opacity: 0;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+        }
+        
+        .fade-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Top Bar */
+        .top-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .top-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .top-links a {
+            transition: color 0.3s ease;
+        }
+        
+        .top-links a:hover {
+            color: var(--primary);
+        }
+        
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        /* Header/Navigation - Responsive */
+        header {
+            padding: 0 1rem;
+            position: sticky;
+            top: 32px;
+            z-index: 999;
+        }
+        
+        nav.glass {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-img {
+            height: 40px;
+            transition: height 0.3s ease;
+        }
+        
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            transition: font-size 0.3s ease;
+        }
+        
+        .logo-text span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--darker);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Hero Section */
+        .solution-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .solution-hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .solution-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--text-light);
+        }
+        
+        .solution-hero h1 span {
+            color: var(--primary);
+        }
+        
+        .solution-hero p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* Healthcare Cards */
+        .healthcare-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .healthcare-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        .healthcare-img-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .healthcare-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .healthcare-card:hover .healthcare-img {
+            transform: scale(1.05);
+        }
+        
+        .healthcare-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .healthcare-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .healthcare-body h3 {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .healthcare-features {
+            list-style: none;
+            margin-top: 1rem;
+            flex-grow: 1;
+        }
+        
+        .healthcare-features li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .healthcare-features li i {
+            color: var(--primary);
+        }
+        
+        /* Equipment Brands Section */
+        .brands {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .brands-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .brand-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            width: 120px;
+            text-align: center;
+        }
+        
+        .brand-logo img {
+            width: 100%;
+            height: auto;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.8);
+            transition: filter 0.3s ease;
+        }
+        
+        .brand-logo:hover img {
+            filter: grayscale(0%) brightness(1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .solution-hero {
+                padding: 7rem 2rem 3rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .solution-hero {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .solution-hero p {
+                font-size: 1rem;
+            }
+            
+            .healthcare-img-container {
+                height: 200px;
+            }
+            
+            .brand-logos {
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .solution-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .brand-logo {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="phone-link">
+            <i class="fas fa-phone-alt"></i>
+            <span>Call us now +254 741 404 232</span>
+        </div>
+        <div class="top-links">
+            <a href="index.html">Home</a>
+            <span>|</span>
+            <a href="#contact">Contact Us</a>
+            <span>|</span>
+            <a href="#healthcare-services">Our Services</a>
+        </div>
+    </div>
+
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="glass">
+            <div class="logo-container">
+               <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
+                <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="projectors.html">Projectors</a>
+                <a href="electrical.html">Electrical</a>
+                <a href="coding.html">Coding</a>
+                <a href="healthcare.html" class="active">Healthcare</a>
+                <a href="boardrooms.html">Boardrooms</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="about.html">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html" class="active">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+    </div>
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Healthcare Hero Section -->
+        <section class="solution-hero" aria-labelledby="healthcare-heading">
+            <div class="solution-hero-content fade-element">
+                <h1 id="healthcare-heading">Professional <span>Healthcare</span> Solutions</h1>
+                <p>Advanced medical equipment and technology solutions for healthcare providers</p>
+                <a href="#contact" class="btn btn-primary">Get a Quote</a>
+            </div>
+        </section>
+
+        <!-- Healthcare Services Section -->
+        <section class="about" id="healthcare-services" aria-labelledby="services-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="services-heading">Our Healthcare <span>Services</span></h2>
+                    <p>Comprehensive medical solutions for hospitals, clinics, and healthcare facilities</p>
+                </div>
+                
+                <div class="mission-vision">
+                    <!-- Medical Equipment -->
+                    <div class="glass fade-element">
+                        <div class="healthcare-card">
+                            <div class="healthcare-img-container">
+                                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                     alt="Medical Equipment" 
+                                     class="healthcare-img">
+                                <div class="healthcare-badge">Equipment</div>
+                            </div>
+                            <div class="healthcare-body">
+                                <h3>Medical Equipment</h3>
+                                <p>State-of-the-art medical devices and diagnostic equipment</p>
+                                
+                                <ul class="healthcare-features">
+                                    <li><i class="fas fa-check"></i> Diagnostic imaging systems</li>
+                                    <li><i class="fas fa-check"></i> Patient monitoring devices</li>
+                                    <li><i class="fas fa-check"></i> Surgical equipment</li>
+                                    <li><i class="fas fa-check"></i> Laboratory instruments</li>
+                                    <li><i class="fas fa-check"></i> Maintenance and calibration</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hospital IT Solutions -->
+                    <div class="glass fade-element">
+                        <div class="healthcare-card">
+                            <div class="healthcare-img-container">
+                                <img src="https://images.unsplash.com/photo-1581595219315-a187dd40c322?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                     alt="Hospital IT Solutions" 
+                                     class="healthcare-img">
+                                <div class="healthcare-badge">IT Solutions</div>
+                            </div>
+                            <div class="healthcare-body">
+                                <h3>Hospital IT Solutions</h3>
+                                <p>Integrated technology solutions for modern healthcare facilities</p>
+                                
+                                <ul class="healthcare-features">
+                                    <li><i class="fas fa-check"></i> Electronic Health Records (EHR)</li>
+                                    <li><i class="fas fa-check"></i> Hospital Management Systems</li>
+                                    <li><i class="fas fa-check"></i> Telemedicine platforms</li>
+                                    <li><i class="fas fa-check"></i> Medical imaging storage</li>
+                                    <li><i class="fas fa-check"></i> Data security solutions</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Maintenance & Support -->
+                    <div class="glass fade-element">
+                        <div class="healthcare-card">
+                            <div class="healthcare-img-container">
+                                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                     alt="Maintenance and Support" 
+                                     class="healthcare-img">
+                                <div class="healthcare-badge">Support</div>
+                            </div>
+                            <div class="healthcare-body">
+                                <h3>Maintenance & Support</h3>
+                                <p>Reliable service and maintenance for healthcare equipment</p>
+                                
+                                <ul class="healthcare-features">
+                                    <li><i class="fas fa-check"></i> Preventive maintenance</li>
+                                    <li><i class="fas fa-check"></i> Emergency repairs</li>
+                                    <li><i class="fas fa-check"></i> Equipment calibration</li>
+                                    <li><i class="fas fa-check"></i> Technical training</li>
+                                    <li><i class="fas fa-check"></i> 24/7 support</li>
+                                </ul>
+                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Brands Section -->
+        <section class="brands" aria-labelledby="brands-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="brands-heading">Trusted <span>Healthcare Brands</span></h2>
+                    <p>We partner with leading manufacturers to provide quality medical equipment</p>
+                </div>
+                
+                <div class="brand-logos">
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Siemens-logo.svg/1200px-Siemens-logo.svg.png" alt="Siemens Healthineers">
+                    </div>
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/GE_Healthcare_logo.svg/1200px-GE_Healthcare_logo.svg.png" alt="GE Healthcare">
+                    </div>
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Philips_logo.svg/1200px-Philips_logo.svg.png" alt="Philips Healthcare">
+                    </div>
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Medtronic_Logo.svg/1200px-Medtronic_Logo.svg.png" alt="Medtronic">
+                    </div>
+                    <div class="brand-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Roche_Logo.svg/1200px-Roche_Logo.svg.png" alt="Roche Diagnostics">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Healthcare Features Section -->
+        <section class="services" aria-labelledby="features-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="features-heading">Why Choose Our <span>Healthcare Solutions</span></h2>
+                    <p>Quality medical technology with professional support and service</p>
+                </div>
+                
+                <div class="glass fade-element" style="padding: 3rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Certified Equipment</h3>
+                                <p style="color: var(--text-dark);">All equipment meets international standards and certifications</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Expert Consultation</h3>
+                                <p style="color: var(--text-dark);">Healthcare professionals to guide your technology decisions</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Local Support</h3>
+                                <p style="color: var(--text-dark);">Kenyan-based technicians for quick service and maintenance</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem;">
+                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 style="margin-bottom: 0.5rem;">Training</h3>
+                                <p style="color: var(--text-dark);">Comprehensive training for your medical staff</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch for healthcare technology inquiries or support</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Healthcare Inquiry</h3>
+                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Your email" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your phone number">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="service-type">Service Needed</label>
+                              <select name="service-type" id="service-type" class="form-control">
+                                <option value="">Select service type</option>
+                                <option value="equipment">Medical Equipment</option>
+                                <option value="it">Hospital IT Solutions</option>
+                                <option value="maintenance">Maintenance & Support</option>
+                                <option value="other">Other - Please specify</option>
+                              </select>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Message</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your healthcare technology needs" required></textarea>
+                            </div>
+                          
+                            <input type="hidden" name="_subject" value="Healthcare Service Inquiry from Website">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links fade-element">
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="projectors.html">Projectors</a>
+                <a href="electrical.html">Electrical</a>
+                <a href="coding.html">Coding</a>
+                <a href="healthcare.html">Healthcare</a>
+                <a href="boardrooms.html">Boardrooms</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright fade-element">
+                <p>&copy; 2025 iWorth Technologies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenu.setAttribute('aria-hidden', isExpanded);
+            
+            // Change icon
+            const icon = this.querySelector('i');
+            if (isExpanded) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        // Close mobile menu when clicking overlay
+        mobileMenuOverlay.addEventListener('click', function() {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+            this.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            
+            // Reset icon
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+        
+        // Scroll animation functionality
+        const fadeElements = document.querySelectorAll('.fade-element');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
