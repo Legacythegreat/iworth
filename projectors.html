@@ -947,21 +947,50 @@
 
     <script>
         // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenu.setAttribute('aria-hidden', isExpanded);
             
-            menuToggle.addEventListener('click', function() {
-                navLinks.classList.toggle('active');
-            });
+            // Change icon
+            const icon = this.querySelector('i');
+            if (isExpanded) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
             
-            // Close menu when a link is clicked
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
-            
+            // Reset icon
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+          if (mobileMenu.classList.contains('active')) {
+                            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                            mobileMenu.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            mobileMenu.setAttribute('aria-hidden', 'true');
+                            
+                            // Reset icon
+                            const icon = mobileMenuBtn.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                        }
             // Scroll animation functionality
             const fadeElements = document.querySelectorAll('.fade-element');
             
