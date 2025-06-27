@@ -36,7 +36,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+           background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
             color: var(--text);
             min-height: 100vh;
             background-attachment: fixed;
@@ -49,6 +49,34 @@
             color: inherit;
         }
         
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Glassmorphism Styles */
         .glass {
             background: rgba(15, 23, 42, 0.5);
@@ -76,6 +104,11 @@
         .fade-element.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        .fade-element.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
         }
         
         /* Buttons */
@@ -154,6 +187,17 @@
             position: sticky;
             top: 32px;
             z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            top: 0;
+            padding: 0;
+        }
+        
+        header.scrolled nav.glass {
+            border-radius: 0;
+            margin-top: 0;
         }
         
         nav.glass {
@@ -162,6 +206,7 @@
             align-items: center;
             padding: 1rem 2rem;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
         }
         
         .logo-container {
@@ -223,6 +268,95 @@
         
         .nav-links a.active::after {
             width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--darker);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
         
         /* Hero Section */
@@ -340,7 +474,39 @@
             border-radius: 16px;
             position: relative;
         }
-         .contact-container {
+        
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            padding: 3rem 2rem 2rem;
+            color: white;
+            border-radius: 0 0 16px 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .image-overlay h2, .image-overlay h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Optimized image sizes */
+        .optimized-img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .optimized-img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Contact Section */
+        .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
@@ -373,7 +539,9 @@
         
         .contact-form {
             padding: 2rem;
-            .form-group {
+        }
+        
+        .form-group {
             margin-bottom: 1.5rem;
         }
         
@@ -403,29 +571,88 @@
             min-height: 150px;
             resize: vertical;
         }
-        }
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            padding: 3rem 2rem 2rem;
-            color: white;
-            border-radius: 0 0 16px 16px;
-        }
         
-        .image-overlay h2, .image-overlay h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Optimized image sizes */
-        .optimized-img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
+        /* Thank You Popup */
+        #thankYouPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
             border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-align: center;
+            color: var(--dark);
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        #thankYouPopup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        #thankYouPopup p {
+            margin-bottom: 1.5rem;
+        }
+        
+        #thankYouPopup .btn {
+            margin-top: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
+        }
+        
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
         }
         
         /* Responsive Adjustments */
@@ -448,6 +675,10 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .image-overlay {
@@ -500,26 +731,19 @@
             nav.glass {
                 padding: 1rem;
             }
-        }
-        
-        /* Skip to content link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-        
-        .skip-link:focus {
-            top: 0;
+            
+            .mission-card, .vision-card, .values-card {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
@@ -539,7 +763,7 @@
     </div>
 
     <!-- Header/Navigation -->
-    <header>
+    <header id="mainHeader">
         <nav class="glass" aria-label="Main navigation">
             <div class="logo-container">
                 <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
@@ -556,8 +780,32 @@
                 <a href="healthcare.html">Healthcare</a>
                 <a href="boardrooms.html">Boardrooms</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active" aria-current="page">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -650,93 +898,89 @@
                 </div>
             </div>
         </section>
+
         <!-- Contact Section -->
-         <section class="contact" id="contact">
-        <div class="about-container">
-            <div class="section-title fade-element">
-                <h2>Contact <span>Us</span></h2>
-                <p>Get in touch with our team for your technology needs</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info fade-element">
-                    <div class="glass" style="padding: 2rem;">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+        <section class="contact" id="contact">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch with our team for your technology needs</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4>Office</h4>
-                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>
-                                  <a href="tel:0741404232">0741 404 232</a><br>
-                                  <a href="tel:0774132425">0774 132 425</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>
-                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                                </p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form glass fade-element">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                        <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="phone">Phone Number (Optional)</label>
-                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="message">Comment, Query or RFQ</label>
-                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
-                        </div>
-                      
-                        <!-- Disable CAPTCHA and auto-refresh after submit -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="">
-                      
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                          <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                      </form>
-                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
-    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-  <h3>✅ Thank you!</h3>
-  <p>Your message has been sent successfully.</p>
-</div>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                        <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone Number (Optional)</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Comment, Query or RFQ</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                            </div>
+                          
+                            <!-- Disable CAPTCHA and auto-refresh after submit -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -757,31 +1001,145 @@
         </div>
     </footer>
 
-    <!-- Right-click prevention script -->
-    <script>
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-    </script>
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup">
+        <h3>✅ Thank you!</h3>
+        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+        <button class="btn btn-primary" id="closePopupBtn">Close</button>
+    </div>
 
-    <!-- Scroll Animation Script -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Intersection Observer for scroll animations
-            const fadeElements = document.querySelectorAll('.fade-element');
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const thankYouPopup = document.getElementById('thankYouPopup');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
+            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            setTimeout(function() {
+                thankYouPopup.style.display = 'block';
+                contactForm.reset();
+            }, 1000);
+        });
+        
+        closePopupBtn.addEventListener('click', function() {
+            thankYouPopup.style.display = 'none';
+        });
+        
+        // Close popup when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === thankYouPopup) {
+                thankYouPopup.style.display = 'none';
+            }
+        });
+
+        // Scroll animation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-element');
+            const windowHeight = window.innerHeight;
+            const triggerOffset = 100;
+            
+            const checkPosition = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    // Check if element is entering viewport
+                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
+                        element.classList.add('visible');
+                        element.classList.remove('fade-out');
+                    } 
+                    // Check if element is leaving viewport (scrolling up)
+                    else if (elementBottom < 0) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
+                    }
+                    // Check if element is leaving viewport (scrolling down)
+                    else if (elementTop > windowHeight) {
+                        element.classList.remove('visible');
+                        element.classList.add('fade-out');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            };
             
-            fadeElements.forEach(element => {
-                observer.observe(element);
+            // Initial check
+            checkPosition();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkPosition);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
             
             // Image overlay scroll effect
@@ -802,13 +1160,6 @@
             
             window.addEventListener('scroll', handleOverlayScroll);
             handleOverlayScroll(); // Initialize
-            
-            // Focus management for accessibility
-            document.addEventListener('keyup', function(e) {
-                if (e.key === 'Tab') {
-                    document.documentElement.classList.add('keyboard-focus');
-                }
-            });
         });
     </script>
 </body>
