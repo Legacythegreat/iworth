@@ -1083,7 +1083,22 @@
         fadeElements.forEach(element => {
             observer.observe(element);
         });
-        
+         // Back to top button functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1097,6 +1112,7 @@
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
                     });
+                    
                 }
             });
         });
