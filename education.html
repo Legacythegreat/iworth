@@ -387,57 +387,7 @@
             transform: translateY(-3px);
         }
         
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .hero-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            color: var(--text-light);
-        }
-        
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 16px;
-            transition: transform 0.5s ease;
-        }
-        
-        .hero-image:hover img {
-            transform: scale(1.02);
-        }
-        
-        /* Education-specific styles */
+        /* Education Hero Section */
         .solution-hero {
             background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
                         url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
@@ -468,6 +418,7 @@
             margin-bottom: 2rem;
         }
         
+        /* Solution Cards */
         .solution-card {
             display: flex;
             flex-direction: column;
@@ -480,11 +431,17 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
-        .solution-card-img {
+        .solution-card-img-container {
             height: 200px;
-            object-fit: cover;
+            overflow: hidden;
             border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+        
+        .solution-card-img {
             width: 100%;
+            height: 100%;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
         
@@ -511,6 +468,7 @@
             padding-top: 1.5rem;
         }
         
+        /* Benefits Grid */
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -576,20 +534,8 @@
         
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 8rem;
-            }
-            
-            .hero-content {
-                margin-bottom: 3rem;
-                text-align: center;
-            }
-            
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
+            .solution-hero h1 {
+                font-size: 3rem;
             }
             
             .nav-links {
@@ -602,16 +548,16 @@
         }
         
         @media (max-width: 768px) {
+            .solution-hero {
+                padding: 8rem 2rem 4rem;
+            }
+            
             .solution-hero h1 {
                 font-size: 2.5rem;
             }
             
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
+            .solution-hero p {
+                font-size: 1.1rem;
             }
             
             .top-bar {
@@ -619,14 +565,6 @@
                 gap: 0.5rem;
                 padding: 0.5rem 1rem;
                 text-align: center;
-            }
-            
-            .logo-text {
-                font-size: 1.3rem;
-            }
-            
-            .solution-card-img {
-                height: 150px;
             }
         }
         
@@ -636,7 +574,7 @@
             }
             
             .solution-hero p {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .benefits-grid {
@@ -738,9 +676,11 @@
                     <!-- Smart Classroom Solution -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://www.israk.my/wp-content/uploads/smart-classroom-arvia-interactive-3.webp" 
-                                 alt="Smart classroom with interactive display" 
-                                 class="solution-card-img" loading="lazy" width="400" height="200">
+                            <div class="solution-card-img-container">
+                                <img src="https://www.israk.my/wp-content/uploads/smart-classroom-arvia-interactive-3.webp" 
+                                     alt="Smart classroom with interactive display" 
+                                     class="solution-card-img" loading="lazy">
+                            </div>
                             <div class="solution-card-body">
                                 <h3><i class="fas fa-chalkboard-teacher"></i> Smart Classroom Packages</h3>
                                 <p>Complete digital classroom solutions featuring interactive displays, audio systems, and teaching software to create engaging learning environments.</p>
@@ -762,9 +702,11 @@
                     <!-- STEM Lab Solution -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://iprep.in/wp-content/themes/iprep/build/assets/stem-lab/fostering-technology-and-engineering-skills-in-school-kids-with-stem-labs-for-schools-by-iprep.webp" 
-                                 alt="Students working in STEM lab" 
-                                 class="solution-card-img" loading="lazy" width="400" height="200">
+                            <div class="solution-card-img-container">
+                                <img src="https://iprep.in/wp-content/themes/iprep/build/assets/stem-lab/fostering-technology-and-engineering-skills-in-school-kids-with-stem-labs-for-schools-by-iprep.webp" 
+                                     alt="Students working in STEM lab" 
+                                     class="solution-card-img" loading="lazy">
+                            </div>
                             <div class="solution-card-body">
                                 <h3><i class="fas fa-atom"></i> STEM Lab Solutions</h3>
                                 <p>Turnkey STEM laboratories equipped with robotics kits, 3D printers, and coding tools to foster innovation and hands-on learning.</p>
@@ -786,9 +728,11 @@
                     <!-- Digital Library Solution -->
                     <div class="glass fade-element">
                         <div class="solution-card">
-                            <img src="https://chennai.athena.edu.in/wp-content/uploads/2024/04/digital-library-6.jpg" 
-                                 alt="Digital library with e-books" 
-                                 class="solution-card-img" loading="lazy" width="400" height="200">
+                            <div class="solution-card-img-container">
+                                <img src="https://chennai.athena.edu.in/wp-content/uploads/2024/04/digital-library-6.jpg" 
+                                     alt="Digital library with e-books" 
+                                     class="solution-card-img" loading="lazy">
+                            </div>
                             <div class="solution-card-body">
                                 <h3><i class="fas fa-book-open"></i> Digital Library Solutions</h3>
                                 <p>Modern library systems with e-book platforms, digital resource management, and reading analytics to support literacy development.</p>
@@ -877,9 +821,11 @@
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
                             <!-- Case Study 1 -->
                             <div class="solution-card">
-                                <img src="https://newsletter.sabis.net/Prv/Images/Pages/Page_34/the-sabis-view-on-class-size62298848-l.jpg" 
-                                     alt="School building" 
-                                     class="solution-card-img" loading="lazy" width="400" height="200">
+                                <div class="solution-card-img-container">
+                                    <img src="https://newsletter.sabis.net/Prv/Images/Pages/Page_34/the-sabis-view-on-class-size62298848-l.jpg" 
+                                         alt="School building" 
+                                         class="solution-card-img" loading="lazy">
+                                </div>
                                 <div class="solution-card-body">
                                     <h3>Sabis International School</h3>
                                     <p>Implemented a complete STEM lab solution serving more than 300 students, resulting in 40% increase in STEM course enrollment.</p>
@@ -889,9 +835,11 @@
                             
                             <!-- Case Study 2 -->
                             <div class="solution-card">
-                                <img src="https://stowelink.com/wp-content/uploads/2024/10/polish_20241017_124700058.jpg?w=1568" 
-                                     alt="University campus" 
-                                     class="solution-card-img" loading="lazy" width="400" height="200">
+                                <div class="solution-card-img-container">
+                                    <img src="https://stowelink.com/wp-content/uploads/2024/10/polish_20241017_124700058.jpg?w=1568" 
+                                         alt="University campus" 
+                                         class="solution-card-img" loading="lazy">
+                                </div>
                                 <div class="solution-card-body">
                                     <h3>Zetech University</h3>
                                     <p>Deployed smart classroom technology across 15 lecture halls, improving student satisfaction scores by 35%.</p>
@@ -901,9 +849,11 @@
                             
                             <!-- Case Study 3 -->
                             <div class="solution-card">
-                                <img src="https://i.imgur.com/Rm4EVoA.jpeg" 
-                                     alt="Primary school" 
-                                     class="solution-card-img" loading="lazy" width="400" height="200">
+                                <div class="solution-card-img-container">
+                                    <img src="https://i.imgur.com/Rm4EVoA.jpeg" 
+                                         alt="Primary school" 
+                                         class="solution-card-img" loading="lazy">
+                                </div>
                                 <div class="solution-card-body">
                                     <h3>Nairobi International School</h3>
                                     <p>Digital library implementation increased student reading time by 60% and improved literacy test scores.</p>
@@ -916,97 +866,97 @@
             </div>
         </section>
         
-    </main>
-  <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="about-container">
-            <div class="section-title fade-element">
-                <h2>Contact <span>Us</span></h2>
-                <p>Get in touch with our team for your technology needs</p>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info fade-element">
-                    <div class="glass" style="padding: 2rem;">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch with our team for your technology needs</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4>Office</h4>
-                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>
-                                  <a href="tel:0741404232">0741 404 232</a><br>
-                                  <a href="tel:0774132425">0774 132 425</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>
-                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                                </p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form glass fade-element">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                        <input type="hidden" name="_subject" value="New Education Inquiry">
-                        <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="">
-                        <input type="hidden" name="_captcha" value="false">
-                        
-                        <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="phone">Phone Number (Optional)</label>
-                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="message">Comment, Query or RFQ</label>
-                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
-                        </div>
-                      
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                          <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                    </form>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                        <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <input type="hidden" name="_subject" value="New Education Inquiry">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_next" value="">
+                            <input type="hidden" name="_captcha" value="false">
+                            
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone Number (Optional)</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Comment, Query or RFQ</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                            </div>
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Thank You Popup -->
     <div id="thankYouPopup" aria-modal="true" role="dialog" aria-labelledby="thankYouHeading" style="display: none;">
         <button class="close-btn" aria-label="Close popup">×</button>
         <h3 id="thankYouHeading"><i class="fas fa-check-circle"></i> Thank you!</h3>
         <p>Your message has been sent successfully. We'll get back to you soon.</p>
-        <button class="btn btn-primary" id="closePopupBtn">Close</button>
+        <button class="btn btn-primary" id="closePopupBtn">OK</button>
     </div>
 
     <!-- Footer -->
@@ -1107,7 +1057,7 @@
             });
         });
         
-        // Scroll animation functionality with fade-out
+        // Scroll animation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-element');
             const windowHeight = window.innerHeight;
