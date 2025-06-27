@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="iWorth Technologies - Innovative education solutions including smart classrooms, STEM labs, and digital learning tools for modern schools">
-    <title>Education Solutions | iWorth Technologies | Smart Classrooms & STEM Labs</title>
+    <meta name="description" content="Learn about iWorth Technologies - Our mission, vision, and approach to delivering innovative IT and Edtech solutions">
+    <title>About Us - iWorth Technologies | IT & Edtech Solutions</title>
     
     <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="page-logo.png">
+    <link rel="preload" as="image" href="iworth-tech.png">
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
           integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
           crossorigin="anonymous" referrerpolicy="no-referrer">
     
     <style>
-        /* Copy all CSS styles from your about.html file */
         :root {
             --primary: #6366f1;
             --primary-dark: #4f46e5;
@@ -42,6 +41,7 @@
             min-height: 100vh;
             background-attachment: fixed;
             scroll-behavior: smooth;
+            line-height: 1.6;
         }
         
         a {
@@ -49,6 +49,34 @@
             color: inherit;
         }
         
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Glassmorphism Styles */
         .glass {
             background: rgba(15, 23, 42, 0.5);
@@ -101,7 +129,7 @@
             color: white;
         }
         
-        .btn-primary:hover {
+        .btn-primary:hover, .btn-primary:focus {
             background: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
@@ -113,7 +141,7 @@
             border: 2px solid var(--primary);
         }
         
-        .btn-secondary:hover {
+        .btn-secondary:hover, .btn-secondary:focus {
             background: rgba(99, 102, 241, 0.1);
             transform: translateY(-2px);
         }
@@ -134,13 +162,14 @@
         .top-links {
             display: flex;
             gap: 1rem;
+            align-items: center;
         }
         
         .top-links a {
             transition: color 0.3s ease;
         }
         
-        .top-links a:hover {
+        .top-links a:hover, .top-links a:focus {
             color: var(--primary);
         }
         
@@ -158,6 +187,17 @@
             position: sticky;
             top: 32px;
             z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            top: 0;
+            padding: 0;
+        }
+        
+        header.scrolled nav.glass {
+            border-radius: 0;
+            margin-top: 0;
         }
         
         nav.glass {
@@ -166,6 +206,7 @@
             align-items: center;
             padding: 1rem 2rem;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
         }
         
         .logo-container {
@@ -176,6 +217,7 @@
         
         .logo-img {
             height: 50px;
+            width: auto;
         }
         
         .logo-text {
@@ -198,9 +240,10 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
         
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a:focus {
             color: var(--primary);
         }
         
@@ -209,14 +252,111 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -4px;
+            bottom: 0;
             left: 0;
             background-color: var(--primary);
             transition: width 0.3s ease;
         }
         
-        .nav-links a:hover::after {
+        .nav-links a:hover::after, .nav-links a:focus::after {
             width: 100%;
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--darker);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
         
         /* Hero Section */
@@ -257,11 +397,6 @@
             display: flex;
             justify-content: center;
             position: relative;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 16px;
         }
         
         /* About Section */
@@ -323,190 +458,54 @@
             padding: 6rem 2rem;
         }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: white;
-            background: var(--primary);
-        }
-        
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .service-features li {
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .service-features li::before {
-            content: '•';
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* Interactive Panels Section */
-        .interactive-panels {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .panels-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .panels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .panel-card {
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
+        /* Image Overlay Styles */
+        .image-overlay-container {
             position: relative;
+            width: 100%;
+            margin: 3rem 0;
+            border-radius: 16px;
             overflow: hidden;
         }
         
-        .panel-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .panel-image {
+        .scrolling-image {
             width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.5s ease;
+            height: 60vh;
+            object-fit: cover;
+            border-radius: 16px;
+            position: relative;
         }
         
-        .panel-card:hover .panel-image {
-            transform: scale(1.05);
-        }
-        
-        .panel-badge {
+        .image-overlay {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            padding: 3rem 2rem 2rem;
             color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .panel-features {
-            list-style: none;
-            margin-top: 1rem;
-            text-align: left;
-        }
-        
-        .panel-features li {
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .panel-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* Clients Section */
-        .clients {
-            padding: 4rem 2rem;
-        }
-        
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            align-items: center;
-        }
-        
-        logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
+            border-radius: 0 0 16px 16px;
             transition: all 0.3s ease;
-            height: 100px;
         }
         
-        logo:hover {
-            transform: translateY(-5px);
-            background: rgba(99, 102, 241, 0.1);
+        .image-overlay h2, .image-overlay h3 {
+            margin-bottom: 0.5rem;
         }
         
-        logo img {
+        /* Optimized image sizes */
+        .optimized-img {
             max-width: 100%;
-            max-height: 60px;
-            filter: grayscale(100%) brightness(2);
-            transition: filter 0.3s ease;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
         }
         
-        logo:hover img {
-            filter: grayscale(0) brightness(1);
-        }
-        
-        placeholder {
-            font-weight: 600;
-            color: var(--text-dark);
+        .optimized-img:hover {
+            transform: scale(1.02);
         }
         
         /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
         .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -573,6 +572,38 @@
             resize: vertical;
         }
         
+        /* Thank You Popup */
+        #thankYouPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-align: center;
+            color: var(--dark);
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        #thankYouPopup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        #thankYouPopup p {
+            margin-bottom: 1.5rem;
+        }
+        
+        #thankYouPopup .btn {
+            margin-top: 1rem;
+        }
+        
         /* Footer */
         footer {
             padding: 4rem 2rem 2rem;
@@ -608,6 +639,22 @@
             color: var(--text-dark);
         }
         
+        /* Skip to content link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .hero {
@@ -628,6 +675,14 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .image-overlay {
+                padding: 2rem 1.5rem 1.5rem;
             }
         }
         
@@ -650,95 +705,45 @@
             .logo-text {
                 font-size: 1.3rem;
             }
-        }
-        /* Education-specific styles */
-        .solution-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
-                        url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
-            background-size: cover;
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .solution-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            
+            .scrolling-image {
+                height: 40vh;
+            }
+            
+            .image-overlay {
+                padding: 1.5rem 1rem;
+            }
         }
         
-        .solution-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-light);
+        @media (max-width: 480px) {
+            .hero {
+                padding: 6rem 1rem 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            nav.glass {
+                padding: 1rem;
+            }
+            
+            .mission-card, .vision-card, .values-card {
+                padding: 1.5rem;
+            }
         }
-        
-        .solution-hero h1 span {
-            color: var(--primary);
-        }
-        
-        .solution-hero p {
-            font-size: 1.3rem;
-            color: var(--text);
-            margin-bottom: 2rem;
-        }
-        
-        .solution-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .solution-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .solution-card-img {
-            height: 200px;
-            object-fit: cover;
-            border-radius: 16px 16px 0 0;
-            width: 100%;
-        }
-        
-        .solution-card-body {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-        }
-        
-        .solution-card-body h3 {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .solution-features {
-            margin-top: auto;
-            padding-top: 1.5rem;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .benefit-item {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .benefit-icon {
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-top: 0.3rem;
-        }
-        
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
@@ -746,27 +751,27 @@
     <div class="top-bar">
         <div class="phone-link">
             <i class="fas fa-phone-alt" aria-hidden="true"></i>
-            <span>Call us now +254 741 404 232</span>
+            <span>Call us now <a href="tel:0741404232">+254 741 404 232</a></span>
         </div>
         <div class="top-links">
             <a href="index.html">Home</a>
             <span aria-hidden="true">|</span>
             <a href="#contact">Contact Us</a>
             <span aria-hidden="true">|</span>
-            <a href="education.html#case-studies">Case Studies</a>
+            <a href="#clients">Our Customers</a>
         </div>
     </div>
 
     <!-- Header/Navigation -->
-    <header>
+    <header id="mainHeader">
         <nav class="glass" aria-label="Main navigation">
             <div class="logo-container">
                 <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
                 <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
             </div>
             <div class="nav-links">
-                <a href="about.html">About Us</a>
-                <a href="education.html" class="active" aria-current="page">Education</a>
+                <a href="about.html" class="active" aria-current="page">About Us</a>
+                <a href="education.html">Education</a>
                 <a href="networking.html">Networking</a>
                 <a href="computers.html">Computers</a>
                 <a href="projectors.html">Projectors</a>
@@ -775,299 +780,208 @@
                 <a href="healthcare.html">Healthcare</a>
                 <a href="boardrooms.html">Boardrooms</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active" aria-current="page">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <!-- Main Content -->
     <main id="main-content">
-        <!-- Education Hero Section -->
-        <section class="solution-hero" aria-labelledby="education-heading">
-            <div class="solution-hero-content fade-element">
-                <h1 id="education-heading">Transforming <span>Education</span> Through Technology</h1>
-                <p>Innovative solutions for schools, colleges, and universities to enhance teaching and learning experiences in the digital age.</p>
-                <a href="#contact" class="btn btn-primary">Get a Consultation</a>
+        <!-- About Hero Section with Image Overlay -->
+        <section class="hero">
+            <div class="hero-content fade-element">
+                <h1>About <span>Us</span></h1>
+                <p>iWorth Technologies Ltd is an Information Technology and Edtech Company built on years of research, innovation, and technical excellence.</p>
+            </div>
+            <div class="hero-image fade-element">
+                <div class="image-overlay-container">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Our diverse team working together" 
+                         class="scrolling-image"
+                         width="800" height="600">
+                    <div class="image-overlay">
+                        <h2>Innovation Working For Your Convenience</h2>
+                        <p>With roots in IT, STEM, Power and AV solutions</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Education Solutions Section -->
-        <section class="about" id="solutions" aria-labelledby="solutions-heading">
+        <!-- Company Overview Section -->
+        <section class="about" id="overview">
             <div class="about-container">
-                <div class="section-title fade-element">
-                    <h2 id="solutions-heading">Our <span>Education Solutions</span></h2>
-                    <p>Comprehensive technology packages designed for modern educational institutions</p>
-                </div>
-                
                 <div class="mission-vision">
-                    <!-- Smart Classroom Solution -->
-                    <div class="glass fade-element">
-                        <div class="solution-card">
-                            <img src="https://www.israk.my/wp-content/uploads/smart-classroom-arvia-interactive-3.webp" 
-                                 alt="Smart classroom with interactive display" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
-                                <h3><i class="fas fa-chalkboard-teacher"></i> Smart Classroom Packages</h3>
-                                <p>Complete digital classroom solutions featuring interactive displays, audio systems, and teaching software to create engaging learning environments.</p>
-                                
-                                <div class="solution-features">
-                                    <h4>Key Features:</h4>
-                                    <ul class="service-features">
-                                        <li>Interactive flat panel displays</li>
-                                        <li>Classroom audio systems</li>
-                                        <li>Digital whiteboarding software</li>
-                                        <li>Content management solutions</li>
-                                        <li>Teacher training and support</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- STEM Lab Solution -->
-                    <div class="glass fade-element">
-                        <div class="solution-card">
-                            <img src="https://iprep.in/wp-content/themes/iprep/build/assets/stem-lab/fostering-technology-and-engineering-skills-in-school-kids-with-stem-labs-for-schools-by-iprep.webp" 
-                                 alt="Students working in STEM lab" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
-                                <h3><i class="fas fa-atom"></i> STEM Lab Solutions</h3>
-                                <p>Turnkey STEM laboratories equipped with robotics kits, 3D printers, and coding tools to foster innovation and hands-on learning.</p>
-                                
-                                <div class="solution-features">
-                                    <h4>Key Features:</h4>
-                                    <ul class="service-features">
-                                        <li>Robotics and coding kits</li>
-                                        <li>3D printing and design stations</li>
-                                        <li>Science experiment equipment</li>
-                                        <li>Interactive learning software</li>
-                                        <li>Curriculum-aligned content</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Digital Library Solution -->
-                    <div class="glass fade-element">
-                        <div class="solution-card">
-                            <img src="https://chennai.athena.edu.in/wp-content/uploads/2024/04/digital-library-6.jpg" 
-                                 alt="Digital library with e-books" 
-                                 class="solution-card-img">
-                            <div class="solution-card-body">
-                                <h3><i class="fas fa-book-open"></i> Digital Library Solutions</h3>
-                                <p>Modern library systems with e-book platforms, digital resource management, and reading analytics to support literacy development.</p>
-                                
-                                <div class="solution-features">
-                                    <h4>Key Features:</h4>
-                                    <ul class="service-features">
-                                        <li>E-book lending platforms</li>
-                                        <li>Digital resource management</li>
-                                        <li>Reading progress analytics</li>
-                                        <li>Multimedia learning stations</li>
-                                        <li>Accessibility features</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="mission-card glass fade-element" style="grid-column: 1/-1; text-align: center;">
+                        <h3><i class="fas fa-building" aria-hidden="true"></i> Who We Are</h3>
+                        <p>With roots based in the IT, STEM, Power and AV world, iWorth Technologies focuses on technologies that impact our world. Through our Nairobi Kenya base we have a global reach through our alliance with partners and suppliers around the world. With the combination of industry leaders the company has the size, scope and technical talent to lead the industry into the future.</p>
+                        
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Our modern office space" 
+                             class="optimized-img"
+                             style="max-height: 400px; margin-top: 2rem;"
+                             width="800" height="600">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Benefits Section -->
-        <section class="services" aria-labelledby="benefits-heading">
-            <div class="about-container">
-                <div class="section-title fade-element">
-                    <h2 id="benefits-heading">Why Choose Our <span>Education Solutions</span></h2>
-                    <p>We deliver measurable results for educational institutions of all sizes</p>
+        <!-- Mission Section with Image Overlay -->
+        <section class="about" aria-labelledby="mission-heading">
+            <div class="image-overlay-container">
+                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                     alt="Team discussing technology solutions" 
+                     class="scrolling-image"
+                     width="800" height="600">
+                <div class="image-overlay">
+                    <h2 id="mission-heading">Our Mission</h2>
+                    <p>At iWorth Technologies, we partner with educators to create desired solutions. We provide cutting-edge technology solutions that help enhance the learning environment, stimulate creativity, encourage collaboration and make learning more engaging.</p>
                 </div>
-                
-                <div class="glass fade-element" style="padding: 3rem;">
-                    <div class="benefits-grid">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3>Improved Learning Outcomes</h3>
-                                <p>Technology-enhanced teaching methods lead to better student engagement and retention.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h3>Future-Ready Skills</h3>
-                                <p>Students gain 21st century skills needed for tomorrow's workforce.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <div>
-                                <h3>Comprehensive Support</h3>
-                                <p>From installation to teacher training, we support you at every step.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div>
-                                <h3>Reliable Infrastructure</h3>
-                                <p>Enterprise-grade solutions designed for educational environments.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Case Studies Section -->
-        <section class="about" id="case-studies" aria-labelledby="case-studies-heading">
-            <div class="about-container">
-                <div class="section-title fade-element">
-                    <h2 id="case-studies-heading">Education <span>Case Studies</span></h2>
-                    <p>See how we've helped institutions transform their learning environments</p>
-                </div>
-                
-                <div class="mission-vision">
-                    <div class="glass fade-element" style="grid-column: 1/-1;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                            <!-- Case Study 1 -->
-                            <div class="solution-card">
-                                <img src="https://newsletter.sabis.net/Prv/Images/Pages/Page_34/the-sabis-view-on-class-size62298848-l.jpg" 
-                                     alt="School building" 
-                                     class="solution-card-img">
-                                <div class="solution-card-body">
-                                    <h3>Sabis International School</h3>
-                                    <p>Implemented a complete STEM lab solution serving more than 300 students, resulting in 40% increase in STEM course enrollment.</p>
-                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Case Study 2 -->
-                            <div class="solution-card">
-                                <img src="https://stowelink.com/wp-content/uploads/2024/10/polish_20241017_124700058.jpg?w=1568" 
-                                     alt="University campus" 
-                                     class="solution-card-img">
-                                <div class="solution-card-body">
-                                    <h3>Zetech University</h3>
-                                    <p>Deployed smart classroom technology across 15 lecture halls, improving student satisfaction scores by 35%.</p>
-                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Case Study 3 -->
-                            <div class="solution-card">
-                                <img src="https://i.imgur.com/Rm4EVoA.jpeg" 
-                                     alt="Primary school" 
-                                     class="solution-card-img">
-                                <div class="solution-card-body">
-                                    <h3>Nairobi International School</h3>
-                                    <p>Digital library implementation increased student reading time by 60% and improved literacy test scores.</p>
-                                    <a href="#" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-    </main>
-  <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="about-container">
-            <div class="section-title fade-element">
-                <h2>Contact <span>Us</span></h2>
-                <p>Get in touch with our team for your technology needs</p>
             </div>
             
-            <div class="contact-container">
-                <div class="contact-info fade-element">
-                    <div class="glass" style="padding: 2rem;">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Office</h4>
-                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
-                            </div>
+            <div class="about-container" style="padding-top: 3rem;">
+                <div class="mission-card glass fade-element" style="max-width: 800px; margin: 0 auto;">
+                    <div class="service-icon" style="margin: 0 auto 1.5rem;">
+                        <i class="fas fa-bullseye" aria-hidden="true"></i>
+                    </div>
+                    <p>Our mission has always been to empower schools with the technologies and skills they need to prepare today's students for the world of tomorrow.</p>
+                    <p>We are gradually enabling businesses and organizations to discover that the innovative, comprehensive solutions we offer improve outcomes, efficiency, and lead to organizational success.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Approach Section -->
+        <section class="services" aria-labelledby="approach-heading">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2 id="approach-heading">Our <span>Approach</span></h2>
+                </div>
+                
+                <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
+                    <h3><i class="fas fa-handshake" aria-hidden="true"></i> Client Focused Services</h3>
+                    <p>The client focused services that iWorth Technologies provides showcase our passion for helping organizations and schools integrate technology into their workplaces. For schools, we understand the importance of technology in education and know the future impact it will have on the student learning experience.</p>
+                    
+                    <div class="image-overlay-container" style="margin: 2rem 0;">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                             alt="Our team providing technical support" 
+                             class="optimized-img"
+                             width="800" height="600">
+                        <div class="image-overlay" style="background: rgba(99, 102, 241, 0.8);">
+                            <h3>Comprehensive Support</h3>
+                            <p>We support at all project stages</p>
                         </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
+                    </div>
+                    
+                    <p>We happily serve and support schools, vocational training, TVETs and organizations in implementation of projects with our know-how at all stages.</p>
+                    <p>Unsure where to start? Simply contact one of our local account executives on the contact form below, or call us or reach us on any of our social media accounts.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="about-container">
+                <div class="section-title fade-element">
+                    <h2>Contact <span>Us</span></h2>
+                    <p>Get in touch with our team for your technology needs</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info fade-element">
+                        <div class="glass" style="padding: 2rem;">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Office</h4>
+                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>
-                                  <a href="tel:0741404232">0741 404 232</a><br>
-                                  <a href="tel:0774132425">0774 132 425</a>
-                                </p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>
+                                      <a href="tel:0741404232">0741 404 232</a><br>
+                                      <a href="tel:0774132425">0774 132 425</a>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Email</h4>
-                                <p>
-                                  <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                                </p>
+                            <div class="contact-info-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>
+                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="contact-form glass fade-element">
-                    <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                        <div class="form-group">
-                          <label for="name">Name</label>
-                          <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="phone">Phone Number (Optional)</label>
-                          <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
-                        </div>
-                      
-                        <div class="form-group">
-                          <label for="message">Comment, Query or RFQ</label>
-                          <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
-                        </div>
-                      
-                        <!-- Disable CAPTCHA and auto-refresh after submit -->
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="">
-                      
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                          <i class="fas fa-paper-plane"></i> Send Message
-                        </button>
-                      </form>
-                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
-    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-  <h3>✅ Thank you!</h3>
-  <p>Your message has been sent successfully.</p>
-</div>
+                    
+                    <div class="contact-form glass fade-element">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
+                        <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                              <label for="name">Name</label>
+                              <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="phone">Phone Number (Optional)</label>
+                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
+                            </div>
+                          
+                            <div class="form-group">
+                              <label for="message">Comment, Query or RFQ</label>
+                              <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
+                            </div>
+                          
+                            <!-- Disable CAPTCHA and auto-refresh after submit -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                          
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                              <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="glass" style="margin-top: 4rem;">
@@ -1086,9 +1000,97 @@
             </div>
         </div>
     </footer>
-    <!-- JavaScript -->
+
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup">
+        <h3>✅ Thank you!</h3>
+        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+        <button class="btn btn-primary" id="closePopupBtn">Close</button>
+    </div>
+
     <script>
-        // Scroll animation functionality with fade-out
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const thankYouPopup = document.getElementById('thankYouPopup');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            setTimeout(function() {
+                thankYouPopup.style.display = 'block';
+                contactForm.reset();
+            }, 1000);
+        });
+        
+        closePopupBtn.addEventListener('click', function() {
+            thankYouPopup.style.display = 'none';
+        });
+        
+        // Close popup when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === thankYouPopup) {
+                thankYouPopup.style.display = 'none';
+            }
+        });
+
+        // Scroll animation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-element');
             const windowHeight = window.innerHeight;
@@ -1139,6 +1141,25 @@
                     }
                 });
             });
+            
+            // Image overlay scroll effect
+            const overlayContainers = document.querySelectorAll('.image-overlay-container');
+            
+            const handleOverlayScroll = () => {
+                overlayContainers.forEach(container => {
+                    const rect = container.getBoundingClientRect();
+                    const overlay = container.querySelector('.image-overlay');
+                    
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        const scrollPercent = 1 - Math.max(0, Math.min(1, (rect.bottom - window.innerHeight) / rect.height));
+                        overlay.style.opacity = scrollPercent;
+                        overlay.style.transform = `translateY(${(1 - scrollPercent) * 20}px)`;
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', handleOverlayScroll);
+            handleOverlayScroll(); // Initialize
         });
     </script>
 </body>
