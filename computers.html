@@ -192,11 +192,18 @@
         header.scrolled {
             top: 0;
             padding: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
         
         header.scrolled nav.glass {
             border-radius: 0;
             margin-top: 0;
+            background: transparent;
+            box-shadow: none;
+            border: none;
+            padding: 0.5rem 2rem;
         }
         
         nav.glass {
@@ -268,6 +275,11 @@
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-btn.active {
+            transform: rotate(90deg);
         }
         
         .mobile-menu {
@@ -286,6 +298,7 @@
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
+            overflow-y: auto;
         }
         
         .mobile-menu.active {
@@ -297,6 +310,12 @@
             font-size: 1.1rem;
             padding: 0.5rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
         }
         
         .mobile-menu-overlay {
@@ -345,7 +364,7 @@
         
         .back-to-top:hover {
             background: var(--primary-dark);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
         }
         
         /* Hero Section */
@@ -641,6 +660,10 @@
             width: calc(150px * 14);
         }
         
+        .clients-carousel:hover {
+            animation-play-state: paused;
+        }
+        
         @keyframes scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(calc(-150px * 7)) }
@@ -783,6 +806,17 @@
             margin-top: 1rem;
         }
         
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9998;
+            display: none;
+        }
+        
         /* Footer */
         footer {
             padding: 4rem 2rem 2rem;
@@ -816,6 +850,68 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-dark);
+        }
+        
+        /* Computer-specific styles */
+        .solution-hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+                        url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
+            background-size: cover;
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .spec-badge {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .spec-icon {
+            color: var(--primary);
+        }
+        
+        .solution-card-img-container {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+        
+        .solution-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .solution-card:hover .solution-card-img {
+            transform: scale(1.05);
+        }
+        
+        .solution-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         /* Responsive Adjustments */
@@ -906,103 +1002,20 @@
                 gap: 1rem;
                 align-items: center;
             }
+            
+            #thankYouPopup {
+                width: 90%;
+                padding: 1.5rem;
+            }
         }
-    
-    
-        /* Computer-specific styles */
-        .solution-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
-                        url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center;
-            background-size: cover;
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .spec-badge {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .spec-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .spec-icon {
-            color: var(--primary);
-        }
-        
-        .solution-card-img-container {
-            height: 200px;
-            overflow: hidden;
-            border-radius: 16px 16px 0 0;
-            position: relative;
-        }
-        
-        .solution-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .solution-card:hover .solution-card-img {
-            transform: scale(1.05);
-        }
-        
-        .solution-card {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 998;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
-        }
-        
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-        
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="phone-link">
@@ -1019,7 +1032,7 @@
     </div>
 
     <!-- Header/Navigation -->
-    <header>
+    <header id="mainHeader">
         <nav class="glass">
             <div class="logo-container">
                 <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
@@ -1036,8 +1049,30 @@
                 <a href="healthcare.html">Healthcare</a>
                 <a href="boardrooms.html">Boardrooms</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html" class="active">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -1273,6 +1308,9 @@
             <p>Your custom PC quote will be sent to your email shortly.</p>
             <button id="close-success" class="btn btn-primary" style="margin-top: 1.5rem;">OK</button>
         </div>
+        
+        <!-- Popup Overlay -->
+        <div class="popup-overlay" id="popupOverlay"></div>
 
         <!-- Contact Section -->
         <section class="contact" id="contact">
@@ -1323,7 +1361,7 @@
                     
                     <div class="contact-form glass fade-element">
                         <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                        <form action="https://formsubmit.co/info@iworth.co.ke" method="POST" id="contactForm">
                             <div class="form-group">
                               <label for="name">Name</label>
                               <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
@@ -1377,6 +1415,61 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Loading screen functionality
+            const loadingScreen = document.getElementById('loadingScreen');
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            });
+            
+            // Mobile menu functionality
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuOverlay.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+            });
+            
+            mobileMenuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                mobileMenuOverlay.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            });
+            
+            // Sticky header functionality
+            const header = document.getElementById('mainHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Back to top button functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
             // Scroll animation functionality with fade-out
             const fadeElements = document.querySelectorAll('.fade-element');
             const windowHeight = window.innerHeight;
@@ -1424,6 +1517,13 @@
                             top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
                         });
+                        
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            mobileMenuOverlay.classList.remove('active');
+                            mobileMenuBtn.classList.remove('active');
+                        }
                     }
                 });
             });
@@ -1436,6 +1536,7 @@
             const requestQuoteBtn = document.getElementById('request-quote');
             const quoteSuccess = document.getElementById('quote-success');
             const closeSuccessBtn = document.getElementById('close-success');
+            const popupOverlay = document.getElementById('popupOverlay');
             
             function updateConfigSummary() {
                 const cpuText = cpuSelect.value ? `Processor: ${cpuSelect.options[cpuSelect.selectedIndex].text}` : 'Processor: Not selected';
@@ -1492,6 +1593,7 @@
                 .then(data => {
                     // Show success message
                     quoteSuccess.style.display = 'block';
+                    popupOverlay.style.display = 'block';
                     
                     // Reset form
                     cpuSelect.selectedIndex = 0;
@@ -1512,7 +1614,50 @@
             
             closeSuccessBtn.addEventListener('click', function() {
                 quoteSuccess.style.display = 'none';
+                popupOverlay.style.display = 'none';
             });
+            
+            popupOverlay.addEventListener('click', function() {
+                quoteSuccess.style.display = 'none';
+                popupOverlay.style.display = 'none';
+            });
+            
+            // Contact form submission
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    
+                    // Show loading state
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: new FormData(this)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show thank you popup
+                        quoteSuccess.style.display = 'block';
+                        popupOverlay.style.display = 'block';
+                        
+                        // Reset form
+                        this.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('There was an error submitting your message. Please try again.');
+                    })
+                    .finally(() => {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
+                });
+            }
         });
     </script>
 </body>
