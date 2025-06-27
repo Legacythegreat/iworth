@@ -220,8 +220,8 @@
             width: 100%;
         }
         
-        /* Mobile Menu Toggle */
-       .mobile-menu-btn {
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
@@ -289,7 +289,6 @@
             opacity: 1;
             pointer-events: all;
         }
-        
         
         /* Hero Section */
         .solution-hero {
@@ -566,39 +565,12 @@
                 text-align: center;
             }
             
-            .menu-toggle {
+            .mobile-menu-btn {
                 display: block;
             }
             
             .nav-links {
-                position: fixed;
-                top: 100px;
-                left: 0;
-                right: 0;
-                background: rgba(15, 23, 42, 0.95);
-                flex-direction: column;
-                gap: 0;
-                padding: 1rem 0;
-                border-radius: 0 0 16px 16px;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-                transform: translateY(-150%);
-                transition: transform 0.3s ease;
-                z-index: 998;
-            }
-            
-            .nav-links.active {
-                transform: translateY(0);
-            }
-            
-            .nav-links a {
-                padding: 1rem 2rem;
-                width: 100%;
-                text-align: center;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .nav-links a:last-child {
-                border-bottom: none;
+                display: none;
             }
             
             .solution-hero {
@@ -660,7 +632,7 @@
                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
                 <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
             </div>
-            <button class="menu-toggle" aria-label="Toggle navigation">
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobile-menu">
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links">
@@ -676,6 +648,20 @@
             </div>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <a href="about.html">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html" class="active">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+    </div>
+    <div class="mobile-menu-overlay"></div>
 
     <!-- Main Content -->
     <main>
@@ -980,40 +966,38 @@
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
         });
-         
-                        }
-            // Scroll animation functionality
-            const fadeElements = document.querySelectorAll('.fade-element');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
+        
+        // Scroll animation functionality
+        const fadeElements = document.querySelectorAll('.fade-element');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-            
-            fadeElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     </script>
