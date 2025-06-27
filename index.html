@@ -63,6 +63,34 @@
             color: inherit;
         }
         
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
         /* Glassmorphism Styles */
         .glass {
             background: rgba(15, 23, 42, 0.5);
@@ -172,6 +200,17 @@
             position: sticky;
             top: 32px;
             z-index: 999;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            top: 0;
+            padding: 0;
+        }
+        
+        header.scrolled nav.glass {
+            border-radius: 0;
+            margin-top: 0;
         }
         
         nav.glass {
@@ -180,6 +219,7 @@
             align-items: center;
             padding: 1rem 2rem;
             margin-top: 0.5rem;
+            transition: all 0.3s ease;
         }
         
         .logo-container {
@@ -231,6 +271,95 @@
         
         .nav-links a:hover::after {
             width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--darker);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .mobile-menu.active {
+            right: 0;
+        }
+        
+        .mobile-menu a {
+            color: var(--text);
+            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 998;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
         }
         
         /* Hero Section */
@@ -348,6 +477,24 @@
         .service-card {
             padding: 2rem;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
         }
         
         .service-card:hover {
@@ -367,12 +514,22 @@
             font-size: 1.5rem;
             color: white;
             background: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: rotate(15deg) scale(1.1);
         }
         
         .service-card h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover h3 {
+            color: var(--primary);
         }
         
         .service-features {
@@ -386,6 +543,13 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            transform: translateX(0);
+        }
+        
+        .service-card:hover .service-features li {
+            transform: translateX(5px);
+            color: var(--text);
         }
         
         .service-features li::before {
@@ -472,6 +636,7 @@
         /* Clients Section */
         .clients {
             padding: 4rem 2rem;
+            overflow: hidden;
         }
         
         .clients-grid {
@@ -483,6 +648,18 @@
             align-items: center;
         }
         
+        .clients-carousel {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 30s linear infinite;
+            width: calc(150px * 14);
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-150px * 7)) }
+        }
+        
         logo {
             display: flex;
             justify-content: center;
@@ -492,6 +669,7 @@
             border-radius: 8px;
             transition: all 0.3s ease;
             height: 100px;
+            min-width: 150px;
         }
         
         logo:hover {
@@ -587,6 +765,38 @@
             resize: vertical;
         }
         
+        /* Thank You Popup */
+        #thankYouPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-align: center;
+            color: var(--dark);
+            max-width: 90%;
+            width: 400px;
+        }
+        
+        #thankYouPopup h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        #thankYouPopup p {
+            margin-bottom: 1.5rem;
+        }
+        
+        #thankYouPopup .btn {
+            margin-top: 1rem;
+        }
+        
         /* Footer */
         footer {
             padding: 4rem 2rem 2rem;
@@ -643,6 +853,10 @@
             .nav-links {
                 display: none;
             }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
         }
         
         @media (max-width: 768px) {
@@ -664,10 +878,57 @@
             .logo-text {
                 font-size: 1.3rem;
             }
+            
+            .clients-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            logo {
+                min-width: 120px;
+                height: 80px;
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding-top: 6rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.5rem;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="phone-link">
@@ -684,7 +945,7 @@
     </div>
 
     <!-- Header/Navigation -->
-    <header>
+    <header id="mainHeader">
         <nav class="glass">
             <div class="logo-container">
                 <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
@@ -701,8 +962,31 @@
                 <a href="healthcare.html">Healthcare</a>
                 <a href="boardrooms.html">Boardrooms</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="about.html">About Us</a>
+        <a href="education.html">Education</a>
+        <a href="networking.html">Networking</a>
+        <a href="computers.html">Computers</a>
+        <a href="projectors.html">Projectors</a>
+        <a href="electrical.html">Electrical</a>
+        <a href="coding.html">Coding</a>
+        <a href="healthcare.html">Healthcare</a>
+        <a href="boardrooms.html">Boardrooms</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1080,7 +1364,7 @@
                 
                 <div class="contact-form glass fade-element">
                     <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                    <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
                         <div class="form-group">
                           <label for="name">Name</label>
                           <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
@@ -1109,11 +1393,6 @@
                           <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                       </form>
-                      <div id="thankYouPopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translate(-50%, -50%);
-    background: white; padding: 25px 30px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 999;">
-  <h3>✅ Thank you!</h3>
-  <p>Your message has been sent successfully.</p>
-</div>
                 </div>
             </div>
         </div>
@@ -1140,7 +1419,42 @@
         </div>
     </footer>
 
+    <!-- Thank You Popup -->
+    <div id="thankYouPopup">
+        <h3>✅ Thank you!</h3>
+        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+        <button class="btn btn-primary" id="closePopupBtn">Close</button>
+    </div>
+
     <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        mobileMenuOverlay.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+
         // Scroll animation functionality with fade-out
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-element');
@@ -1192,6 +1506,59 @@
                     }
                 });
             });
+        });
+
+        // Sticky header on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission handling
+        const contactForm = document.getElementById('contactForm');
+        const thankYouPopup = document.getElementById('thankYouPopup');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            setTimeout(function() {
+                thankYouPopup.style.display = 'block';
+                contactForm.reset();
+            }, 1000);
+        });
+        
+        closePopupBtn.addEventListener('click', function() {
+            thankYouPopup.style.display = 'none';
+        });
+        
+        // Close popup when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === thankYouPopup) {
+                thankYouPopup.style.display = 'none';
+            }
         });
     </script>
 </body>
