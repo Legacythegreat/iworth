@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Solutions | iWorth Technologies | Professional Software Development</title>
+    <title>Coding & Robotics Solutions | iWorth Technologies | Professional Development Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base Styles */
@@ -19,6 +19,7 @@
             --darker: #020617;
             --darkest: #000000;
             --card-bg: rgba(15, 23, 42, 0.7);
+            --robotics-accent: #f97316;
         }
         
         * {
@@ -103,6 +104,17 @@
         .btn-secondary:hover {
             background: rgba(99, 102, 241, 0.1);
             transform: translateY(-2px);
+        }
+        
+        .btn-robotics {
+            background: var(--robotics-accent);
+            color: white;
+        }
+        
+        .btn-robotics:hover {
+            background: #ea580c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(249, 115, 22, 0.3);
         }
         
         /* Top Bar */
@@ -432,13 +444,20 @@
             position: absolute;
             top: 15px;
             right: 15px;
-            background: var(--primary);
             color: white;
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 600;
             z-index: 1;
+        }
+        
+        .coding-badge {
+            background: var(--primary);
+        }
+        
+        .robotics-badge {
+            background: var(--robotics-accent);
         }
         
         .service-body {
@@ -469,6 +488,10 @@
         
         .service-features li i {
             color: var(--primary);
+        }
+        
+        .robotics-features li i {
+            color: var(--robotics-accent);
         }
         
         /* Tech Stack Section */
@@ -504,9 +527,52 @@
             color: var(--primary);
         }
         
+        .robotics-icon i {
+            color: var(--robotics-accent);
+        }
+        
         .tech-icon span {
             font-size: 0.8rem;
             color: var(--text-dark);
+        }
+        
+        /* Tabs */
+        .service-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        
+        .service-tab {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+        
+        .service-tab.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .service-tab.robotics-tab.active {
+            background: var(--robotics-accent);
+        }
+        
+        .service-tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
         
         /* Contact Section */
@@ -661,6 +727,11 @@
             .tech-icons {
                 gap: 1.5rem;
             }
+            
+            .service-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -720,7 +791,6 @@
                 <a href="projectors.html">Projectors</a>
                 <a href="electrical.html">Electrical</a>
                 <a href="codingandrobotics.html" class="active">Coding & Robotics</a>
-              
             </div>
         </nav>
     </header>
@@ -734,7 +804,6 @@
         <a href="projectors.html">Projectors</a>
         <a href="electrical.html">Electrical</a>
         <a href="codingandrobotics.html" class="active">Coding & Robotics</a>
-       
     </div>
     <div class="mobile-menu-overlay"></div>
 
@@ -745,95 +814,186 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Coding Hero Section -->
+        <!-- Coding & Robotics Hero Section -->
         <section class="solution-hero" aria-labelledby="coding-heading">
             <div class="solution-hero-content fade-element">
-                <h1 id="coding-heading">Professional <span>Coding</span> Solutions</h1>
-                <p>Custom software development and programming services tailored to your business needs</p>
-                <a href="#contact" class="btn btn-primary">Get a Quote</a>
+                <h1 id="coding-heading">Innovative <span>Coding</span> & <span style="color: var(--robotics-accent);">Robotics</span> Solutions</h1>
+                <p>Comprehensive development services from web applications to STEM robotics education</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="#coding-services" class="btn btn-primary">Coding Services</a>
+                    <a href="#robotics-services" class="btn btn-robotics">Robotics Services</a>
+                </div>
             </div>
         </section>
 
-        <!-- Coding Services Section -->
-        <section class="about" id="coding-services" aria-labelledby="services-heading">
+        <!-- Services Tabs -->
+        <section class="about" id="services" aria-labelledby="services-heading">
             <div class="about-container">
                 <div class="section-title fade-element">
-                    <h2 id="services-heading">Our Coding <span>Services</span></h2>
-                    <p>Comprehensive software development solutions for businesses of all sizes</p>
+                    <h2 id="services-heading">Our <span>Services</span></h2>
+                    <p>Explore our comprehensive range of coding and robotics solutions</p>
                 </div>
                 
-                <div class="mission-vision">
-                    <!-- Web Development -->
-                    <div class="glass fade-element">
-                        <div class="service-card">
-                            <div class="service-img-container">
-                                <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                                     alt="Web Development Services" 
-                                     class="service-img">
-                                <div class="service-badge">Web</div>
+                <div class="service-tabs fade-element">
+                    <div class="service-tab active" data-tab="coding">Coding Services</div>
+                    <div class="service-tab robotics-tab" data-tab="robotics">Robotics Solutions</div>
+                </div>
+                
+                <!-- Coding Services -->
+                <div class="tab-content active" id="coding-services">
+                    <div class="mission-vision">
+                        <!-- Web Development -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                         alt="Web Development Services" 
+                                         class="service-img">
+                                    <div class="service-badge coding-badge">Web</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>Web Development</h3>
+                                    <p>Custom websites and web applications for your business</p>
+                                    
+                                    <ul class="service-features">
+                                        <li><i class="fas fa-check"></i> Responsive website design</li>
+                                        <li><i class="fas fa-check"></i> E-commerce solutions</li>
+                                        <li><i class="fas fa-check"></i> Content management systems</li>
+                                        <li><i class="fas fa-check"></i> Web application development</li>
+                                        <li><i class="fas fa-check"></i> API integration</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
                             </div>
-                            <div class="service-body">
-                                <h3>Web Development</h3>
-                                <p>Custom websites and web applications for your business</p>
-                                
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> Responsive website design</li>
-                                    <li><i class="fas fa-check"></i> E-commerce solutions</li>
-                                    <li><i class="fas fa-check"></i> Content management systems</li>
-                                    <li><i class="fas fa-check"></i> Web application development</li>
-                                    <li><i class="fas fa-check"></i> API integration</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                        </div>
+                        
+                        <!-- Mobile App Development -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                         alt="Mobile App Development Services" 
+                                         class="service-img">
+                                    <div class="service-badge coding-badge">Mobile</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>Mobile App Development</h3>
+                                    <p>Native and cross-platform mobile applications for iOS and Android</p>
+                                    
+                                    <ul class="service-features">
+                                        <li><i class="fas fa-check"></i> iOS app development</li>
+                                        <li><i class="fas fa-check"></i> Android app development</li>
+                                        <li><i class="fas fa-check"></i> Cross-platform solutions</li>
+                                        <li><i class="fas fa-check"></i> App UI/UX design</li>
+                                        <li><i class="fas fa-check"></i> App maintenance & updates</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- UI/UX Design -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                         alt="UI/UX Design Services" 
+                                         class="service-img">
+                                    <div class="service-badge coding-badge">UI/UX</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>UI/UX Design</h3>
+                                    <p>Beautiful and intuitive user interfaces for digital products</p>
+                                    
+                                    <ul class="service-features">
+                                        <li><i class="fas fa-check"></i> User research & analysis</li>
+                                        <li><i class="fas fa-check"></i> Wireframing & prototyping</li>
+                                        <li><i class="fas fa-check"></i> Interface design</li>
+                                        <li><i class="fas fa-check"></i> User experience optimization</li>
+                                        <li><i class="fas fa-check"></i> Design systems</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Mobile App Development -->
-                    <div class="glass fade-element">
-                        <div class="service-card">
-                            <div class="service-img-container">
-                                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                                     alt="Mobile App Development Services" 
-                                     class="service-img">
-                                <div class="service-badge">Mobile</div>
-                            </div>
-                            <div class="service-body">
-                                <h3>Mobile App Development</h3>
-                                <p>Native and cross-platform mobile applications for iOS and Android</p>
-                                
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> iOS app development</li>
-                                    <li><i class="fas fa-check"></i> Android app development</li>
-                                    <li><i class="fas fa-check"></i> Cross-platform solutions</li>
-                                    <li><i class="fas fa-check"></i> App UI/UX design</li>
-                                    <li><i class="fas fa-check"></i> App maintenance & updates</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                </div>
+                
+                <!-- Robotics Services -->
+                <div class="tab-content" id="robotics-services">
+                    <div class="mission-vision">
+                        <!-- Arduino Development -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1627855437693-dcc7b0c4ba7b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                         alt="Arduino Development Services" 
+                                         class="service-img">
+                                    <div class="service-badge robotics-badge">Arduino</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>Arduino Development</h3>
+                                    <p>Custom Arduino-based solutions for automation and IoT</p>
+                                    
+                                    <ul class="service-features robotics-features">
+                                        <li><i class="fas fa-check"></i> Custom Arduino programming</li>
+                                        <li><i class="fas fa-check"></i> Sensor integration</li>
+                                        <li><i class="fas fa-check"></i> IoT solutions</li>
+                                        <li><i class="fas fa-check"></i> Home automation</li>
+                                        <li><i class="fas fa-check"></i> Robotics control systems</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-robotics" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Custom Software -->
-                    <div class="glass fade-element">
-                        <div class="service-card">
-                            <div class="service-img-container">
-                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                                     alt="Custom Software Development" 
-                                     class="service-img">
-                                <div class="service-badge">Software</div>
+                        
+                        <!-- STEM Education -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                         alt="STEM Education Services" 
+                                         class="service-img">
+                                    <div class="service-badge robotics-badge">STEM</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>STEM Education</h3>
+                                    <p>Comprehensive STEM education programs for schools</p>
+                                    
+                                    <ul class="service-features robotics-features">
+                                        <li><i class="fas fa-check"></i> Robotics curriculum development</li>
+                                        <li><i class="fas fa-check"></i> Coding classes for kids</li>
+                                        <li><i class="fas fa-check"></i> Teacher training programs</li>
+                                        <li><i class="fas fa-check"></i> STEM lab setup</li>
+                                        <li><i class="fas fa-check"></i> Competition preparation</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-robotics" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
                             </div>
-                            <div class="service-body">
-                                <h3>Custom Software</h3>
-                                <p>Tailored business solutions to streamline your operations</p>
-                                
-                                <ul class="service-features">
-                                    <li><i class="fas fa-check"></i> Business process automation</li>
-                                    <li><i class="fas fa-check"></i> Inventory management systems</li>
-                                    <li><i class="fas fa-check"></i> CRM solutions</li>
-                                    <li><i class="fas fa-check"></i> ERP systems</li>
-                                    <li><i class="fas fa-check"></i> Database solutions</li>
-                                </ul>
-                                <a href="#contact" class="btn btn-secondary" style="margin-top: 1rem;">Inquire Now</a>
+                        </div>
+                        
+                        <!-- Artec Robotics -->
+                        <div class="glass fade-element">
+                            <div class="service-card">
+                                <div class="service-img-container">
+                                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1478&q=80" 
+                                         alt="Artec Robotics Services" 
+                                         class="service-img">
+                                    <div class="service-badge robotics-badge">Artec</div>
+                                </div>
+                                <div class="service-body">
+                                    <h3>Artec Robotics</h3>
+                                    <p>Educational robotics kits and training programs</p>
+                                    
+                                    <ul class="service-features robotics-features">
+                                        <li><i class="fas fa-check"></i> Artec robot kits</li>
+                                        <li><i class="fas fa-check"></i> Educational programs</li>
+                                        <li><i class="fas fa-check"></i> Workshop facilitation</li>
+                                        <li><i class="fas fa-check"></i> Creative robotics projects</li>
+                                        <li><i class="fas fa-check"></i> Problem-solving skills</li>
+                                    </ul>
+                                    <a href="#contact" class="btn btn-robotics" style="margin-top: 1rem;">Inquire Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -882,24 +1042,24 @@
                         <i class="fas fa-database"></i>
                         <span>SQL</span>
                     </div>
-                    <div class="tech-icon">
-                        <i class="fab fa-android"></i>
-                        <span>Android</span>
+                    <div class="tech-icon robotics-icon">
+                        <i class="fas fa-microchip"></i>
+                        <span>Arduino</span>
                     </div>
-                    <div class="tech-icon">
-                        <i class="fab fa-apple"></i>
-                        <span>iOS</span>
+                    <div class="tech-icon robotics-icon">
+                        <i class="fas fa-robot"></i>
+                        <span>Robotics</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Coding Features Section -->
+        <!-- Features Section -->
         <section class="services" aria-labelledby="features-heading">
             <div class="about-container">
                 <div class="section-title fade-element">
-                    <h2 id="features-heading">Why Choose Our <span>Coding Services</span></h2>
-                    <p>Quality software development with professional standards and reliable support</p>
+                    <h2 id="features-heading">Why Choose Our <span>Solutions</span></h2>
+                    <p>Quality development services with professional standards and reliable support</p>
                 </div>
                 
                 <div class="glass fade-element" style="padding: 3rem;">
@@ -915,12 +1075,12 @@
                         </div>
                         
                         <div style="display: flex; gap: 1rem;">
-                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
-                                <i class="fas fa-mobile-alt"></i>
+                            <div style="background: rgba(249, 115, 22, 0.1); color: var(--robotics-accent); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-robot"></i>
                             </div>
                             <div>
-                                <h3 style="margin-bottom: 0.5rem;">Responsive Design</h3>
-                                <p style="color: var(--text-dark);">Solutions that work perfectly on all devices</p>
+                                <h3 style="margin-bottom: 0.5rem;">Hands-on Robotics</h3>
+                                <p style="color: var(--text-dark);">Practical, engaging robotics education</p>
                             </div>
                         </div>
                         
@@ -935,12 +1095,12 @@
                         </div>
                         
                         <div style="display: flex; gap: 1rem;">
-                            <div style="background: rgba(99, 102, 241, 0.1); color: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
-                                <i class="fas fa-headset"></i>
+                            <div style="background: rgba(249, 115, 22, 0.1); color: var(--robotics-accent); width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
                             <div>
-                                <h3 style="margin-bottom: 0.5rem;">Ongoing Support</h3>
-                                <p style="color: var(--text-dark);">Continued maintenance and updates</p>
+                                <h3 style="margin-bottom: 0.5rem;">STEM Education</h3>
+                                <p style="color: var(--text-dark);">Comprehensive STEM learning programs</p>
                             </div>
                         </div>
                     </div>
@@ -953,7 +1113,7 @@
             <div class="about-container">
                 <div class="section-title fade-element">
                     <h2>Contact <span>Us</span></h2>
-                    <p>Get in touch for coding service inquiries or support</p>
+                    <p>Get in touch for coding or robotics service inquiries</p>
                 </div>
                 
                 <div class="contact-container">
@@ -996,7 +1156,7 @@
                     </div>
                     
                     <div class="contact-form glass fade-element">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Development Inquiry</h3>
+                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Service Inquiry</h3>
                         <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
                             <div class="form-group">
                               <label for="name">Name</label>
@@ -1019,17 +1179,20 @@
                                 <option value="">Select service type</option>
                                 <option value="web">Web Development</option>
                                 <option value="mobile">Mobile App Development</option>
-                                <option value="software">Custom Software</option>
+                                <option value="ui">UI/UX Design</option>
+                                <option value="arduino">Arduino Development</option>
+                                <option value="stem">STEM Education</option>
+                                <option value="artec">Artec Robotics</option>
                                 <option value="other">Other - Please specify</option>
                               </select>
                             </div>
                           
                             <div class="form-group">
                               <label for="message">Project Details</label>
-                              <textarea name="message" id="message" class="form-control" placeholder="Describe your project requirements" required></textarea>
+                              <textarea name="message" id="message" class="form-control" placeholder="Describe your requirements" required></textarea>
                             </div>
                           
-                            <input type="hidden" name="_subject" value="Coding Service Inquiry from Website">
+                            <input type="hidden" name="_subject" value="Coding & Robotics Service Inquiry from Website">
                             <input type="hidden" name="_captcha" value="false">
                             <input type="hidden" name="_next" value="">
                           
@@ -1097,6 +1260,27 @@
             const icon = mobileMenuBtn.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
+        });
+        
+        // Service tabs functionality
+        const serviceTabs = document.querySelectorAll('.service-tab');
+        serviceTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                serviceTabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show corresponding tab content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-services`).classList.add('active');
+            });
         });
         
         // Scroll animation functionality
