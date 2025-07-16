@@ -4,270 +4,246 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn about iWorth Technologies - Our mission, vision, and approach to delivering innovative IT and Edtech solutions">
-    <title>About Us - iWorth Technologies | IT & Edtech Solutions</title>
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" as="image" href="iworth-tech.png">
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-          crossorigin="anonymous" referrerpolicy="no-referrer">
-    
+    <title>About Us - iWorth Technologies | AV & IT Solutions Provider</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Universal AV Inspired Styles */
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-             --accent:rgb(72, 37, 230);
-            --accent:rgb(72, 37, 230);
+            --primary-dark: #0a2240;
+            --primary-light: #1a3a6a;
+           --accent:rgb(72, 37, 230);
             --accent-light: #322fe2;
-            --text-dark: #090b0e;
-            --dark: #0f172a;
-            --darker: #020617;
-            --darkest: #000000;
-            --card-bg: rgba(15, 23, 42, 0.7);
+            --text: #333333;
+            --text-light: #f8f9fa;
+            --light-bg: #f8f9fa;
+            --dark-bg: #020617;
+            --border-radius: 4px;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
         
         body {
-           background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
             color: var(--text);
-            min-height: 100vh;
-            background-attachment: fixed;
-            scroll-behavior: smooth;
             line-height: 1.6;
+            background-color: white;
+            overflow-x: hidden;
         }
         
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
         
-        /* Loading Animation */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
             width: 100%;
-            height: 100%;
-            background: var(--darker);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
         
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(99, 102, 241, 0.3);
-            border-radius: 50%;
-            border-top-color: var(--primary);
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Glassmorphism Styles */
-        .glass {
-            background: rgba(15, 23, 42, 0.5);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        /* Scroll Animation Classes */
-        .fade-element {
-            opacity: 0;
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            transform: translateY(20px);
-        }
-        
-        .fade-element.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .fade-element.fade-out {
-            opacity: 0;
-            transform: translateY(-20px);
-        }
-        
-        /* Buttons */
         .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
             font-weight: 600;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
             border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            cursor: pointer;
         }
         
         .btn-primary {
-            background: var(--primary);
+            background-color: var(--accent);
             color: white;
         }
         
-        .btn-primary:hover, .btn-primary:focus {
-            background: var(--primary-dark);
+        .btn-primary:hover {
+            background-color: var(--accent-light);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 5px 15px rgba(241, 90, 41, 0.3);
         }
         
         .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+            background-color: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
         }
         
-        .btn-secondary:hover, .btn-secondary:focus {
-            background: rgba(99, 102, 241, 0.1);
-            transform: translateY(-2px);
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            color: white;
         }
         
-        /* Top Bar */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--text);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
         .top-bar {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 2rem;
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.9rem;
+        }
+        
+        .top-contact {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .top-contact a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+        }
+        
+        .top-contact a:hover {
+            color: var(--accent);
+        }
+        
+        .top-social a {
+            margin-left: 15px;
+            color: white;
+        }
+        
+        .top-social a:hover {
+            color: var(--accent);
+        }
+        
+        header {
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-        
-        .top-links {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .top-links a {
-            transition: color 0.3s ease;
-        }
-        
-        .top-links a:hover, .top-links a:focus {
-            color: var(--primary);
-        }
-        
-        .phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Header/Navigation */
-        header {
-            padding: 0 2rem;
-            position: sticky;
-            top: 32px;
-            z-index: 999;
             transition: all 0.3s ease;
         }
         
         header.scrolled {
-            top: 0;
-            padding: 0;
+            background-color: var(--primary-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        header.scrolled nav.glass {
-            border-radius: 0;
-            margin-top: 0;
-        }
-        
-        nav.glass {
+        .main-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            margin-top: 0.5rem;
+            padding: 20px 0;
             transition: all 0.3s ease;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        header.scrolled .main-nav {
+            padding: 10px 0;
         }
         
-        .logo-img {
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
             height: 50px;
-            width: auto;
         }
         
         .logo-text {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text-light);
+            color: var(--primary-dark);
+        }
+        
+        header.scrolled .logo-text {
+            color: white;
         }
         
         .logo-text span {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 25px;
         }
         
         .nav-links a {
-            color: var(--text);
+            color: var(--primary-dark);
             font-weight: 500;
-            transition: all 0.3s ease;
             position: relative;
-            padding: 0.5rem 0;
         }
         
-        .nav-links a:hover, .nav-links a:focus {
-            color: var(--primary);
+        header.scrolled .nav-links a {
+            color: white;
         }
         
-        .nav-links a::after {
+        .nav-links a:after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
-            background-color: var(--primary);
+            background-color: var(--accent);
             transition: width 0.3s ease;
         }
         
-        .nav-links a:hover::after, .nav-links a:focus::after {
+        .nav-links a:hover:after {
             width: 100%;
         }
         
         .nav-links a.active {
-            color: var(--primary);
+            color: var(--accent);
         }
         
-        .nav-links a.active::after {
-            width: 100%;
+        .nav-cta .btn {
+            margin-left: 20px;
         }
         
         /* Mobile Menu */
@@ -275,28 +251,28 @@
             display: none;
             background: none;
             border: none;
-            color: var(--text);
+            color: var(--primary-dark);
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 1001;
+        }
+        
+        header.scrolled .mobile-menu-btn {
+            color: white;
         }
         
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 80%;
-            max-width: 300px;
+            width: 300px;
             height: 100vh;
-            background: var(--darker);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 1000;
+            background-color: var(--primary-dark);
+            z-index: 1001;
             transition: right 0.3s ease;
-            padding: 6rem 2rem 2rem;
+            padding: 80px 30px 30px;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 20px;
         }
         
         .mobile-menu.active {
@@ -304,10 +280,14 @@
         }
         
         .mobile-menu a {
-            color: var(--text);
+            color: white;
             font-size: 1.1rem;
-            padding: 0.5rem 0;
+            padding: 10px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-menu .btn {
+            margin-top: 20px;
         }
         
         .mobile-menu-overlay {
@@ -316,8 +296,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -328,25 +308,400 @@
             pointer-events: all;
         }
         
+        .close-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .page-hero .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .page-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        /* About Content Section */
+        .about-content-section {
+            padding: 80px 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-image img {
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .mission-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(241, 90, 41, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 2rem;
+            margin: 0 auto 20px;
+        }
+        
+        /* Approach Section */
+        .approach-section {
+            padding: 80px 0;
+        }
+        
+        .approach-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .approach-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .approach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .approach-card-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(241, 90, 41, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+        }
+        
+        /* Image Banner */
+        .image-banner {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            margin: 60px 0;
+        }
+        
+        .image-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(10, 34, 64, 0.9), transparent);
+            padding: 40px;
+            color: white;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 80px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(241, 90, 41, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(241, 90, 41, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 50px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
+            background-color: var(--accent);
             color: white;
+            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            z-index: 998;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .back-to-top.visible {
@@ -355,325 +710,27 @@
         }
         
         .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
+            background-color: var(--accent-light);
+            transform: translateY(-5px);
         }
         
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .hero-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            color: var(--text-light);
-        }
-        
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .section-title {
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        
-        .section-title h2 span {
-            color: var(--primary);
-        }
-        
-        .section-title p {
-            color: var(--text-dark);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .mission-card, .vision-card, .values-card {
-            padding: 2rem;
-            text-align: left;
-        }
-        
-        .mission-card h3, .vision-card h3, .values-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-        
-        /* Image Overlay Styles */
-        .image-overlay-container {
-            position: relative;
-            width: 100%;
-            margin: 3rem 0;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        
-        .scrolling-image {
-            width: 100%;
-            height: 60vh;
-            object-fit: cover;
-            border-radius: 16px;
-            position: relative;
-        }
-        
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            padding: 3rem 2rem 2rem;
-            color: white;
-            border-radius: 0 0 16px 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .image-overlay h2, .image-overlay h3 {
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Optimized image sizes */
-        .optimized-img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .optimized-img:hover {
-            transform: scale(1.02);
-        }
-        
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
-        
-        .contact-form {
-            padding: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Thank You Popup */
-        #thankYouPopup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            z-index: 9999;
-            text-align: center;
-            color: var(--dark);
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        #thankYouPopup h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        #thankYouPopup p {
-            margin-bottom: 1.5rem;
-        }
-        
-        #thankYouPopup .btn {
-            margin-top: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 4rem 2rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-dark);
-        }
-        
-        /* Skip to content link for accessibility */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: white;
-            padding: 8px;
-            z-index: 100;
-            transition: top 0.3s;
-        }
-        
-        .skip-link:focus {
-            top: 0;
-        }
-        
-        /* Responsive Adjustments */
+        /* Responsive Styles */
         @media (max-width: 1024px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 8rem;
+            .about-content {
+                grid-template-columns: 1fr;
             }
             
-            .hero-content {
-                margin-bottom: 3rem;
-                text-align: center;
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
             }
             
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .nav-links {
+            .nav-links, .nav-cta {
                 display: none;
             }
             
@@ -681,361 +738,374 @@
                 display: block;
             }
             
-            .image-overlay {
-                padding: 2rem 1.5rem 1.5rem;
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
             }
         }
         
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
+        @media (max-width: 576px) {
+            .page-hero {
+                padding: 100px 0 60px;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
             }
             
             .section-title h2 {
                 font-size: 2rem;
             }
             
-            .top-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
-                text-align: center;
+            .footer-container {
+                grid-template-columns: 1fr;
             }
             
-            .logo-text {
-                font-size: 1.3rem;
+            .image-banner {
+                height: 300px;
             }
             
-            .scrolling-image {
-                height: 40vh;
-            }
-            
-            .image-overlay {
-                padding: 1.5rem 1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding: 6rem 1rem 2rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            nav.glass {
-                padding: 1rem;
-            }
-            
-            .mission-card, .vision-card, .values-card {
-                padding: 1.5rem;
+            .image-banner-content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <!-- Skip to content link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <!-- Top Bar -->
     <div class="top-bar">
-        <div class="phone-link">
-            <i class="fas fa-phone-alt" aria-hidden="true"></i>
-            <span>Call us now <a href="tel:0741404232">+254 741 404 232</a></span>
-        </div>
-        <div class="top-links">
-            <a href="index.html">Home</a>
-            <span aria-hidden="true">|</span>
-            <a href="#contact">Contact Us</a>
-            <span aria-hidden="true">|</span>
-            <a href="#clients">Our Customers</a>
+        <div class="container">
+            <div class="top-contact">
+                <a href="tel:+254741404232"><i class="fas fa-phone"></i> +254 741 404 232</a>
+                <a href="mailto:info@iworth.co.ke"><i class="fas fa-envelope"></i> info@iworth.co.ke</a>
+            </div>
+            <div class="top-social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
     </div>
 
-    <!-- Header/Navigation -->
+    <!-- Header -->
     <header id="mainHeader">
-        <nav class="glass" aria-label="Main navigation">
-            <div class="logo-container">
-                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
-                <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
-            </div>
-            <div class="nav-links">
-                <a href="about.html" class="active" aria-current="page">About Us</a>
-                <a href="education.html">Education</a>
-                <a href="networking.html">Networking</a>
-                <a href="computers.html">Computers</a>
-                <a href="projectors.html">Projectors</a>
-                <a href="electrical.html">Electrical</a>
-                <a href="codingandrobotics.html">Coding & Robotics</a>
-            
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo">
+                    <img src="iworth-tech.png" alt="iWorth Technologies">
+                    <div class="logo-text">iWorth <span>Tech</span></div>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html" class="active">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="solutions.html">Solutions</a>
+                    <a href="clients.html">Clients</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="nav-cta">
+                    <a href="tel:+254741404232" class="btn btn-primary">Call Now</a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
     </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu-btn" id="closeMenuBtn">
+            <i class="fas fa-times"></i>
+        </button>
         <a href="index.html">Home</a>
-        <a href="about.html" class="active" aria-current="page">About Us</a>
-        <a href="education.html">Education</a>
-        <a href="networking.html">Networking</a>
-        <a href="computers.html">Computers</a>
-        <a href="projectors.html">Projectors</a>
-        <a href="electrical.html">Electrical</a>
-        <a href="codingandrobotics.html">Coding & Robotics</a>
-        
-        <a href="#contact">Contact</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="clients.html">Clients</a>
+        <a href="contact.html">Contact</a>
+        <a href="tel:+254741404232" class="btn btn-primary">Call Now</a>
     </div>
+
+    <!-- Page Hero Section -->
+    <section class="page-hero">
+        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Team" class="page-hero-bg">
+        <div class="container">
+            <h1>About iWorth Technologies</h1>
+            <p>Innovative AV and IT solutions built on years of research, innovation, and technical excellence.</p>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Who We Are</h2>
+                    <p>With roots based in the IT, STEM, Power and AV world, iWorth Technologies focuses on technologies that impact our world. Through our Nairobi Kenya base we have a global reach through our alliance with partners and suppliers around the world.</p>
+                    <p>With the combination of industry leaders the company has the size, scope and technical talent to lead the industry into the future.</p>
+                    <p>Our team of certified professionals is dedicated to providing exceptional service and support, ensuring your technology infrastructure operates at peak performance.</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our modern office space">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Banner -->
+    <div class="image-banner">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team discussing technology solutions">
+        <div class="image-banner-content">
+            <h2>Innovation Working For Your Convenience</h2>
+            <p>With roots in IT, STEM, Power and AV solutions</p>
+        </div>
+    </div>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h2>Our Mission</h2>
+                <p>At iWorth Technologies, we partner with educators and businesses to create desired solutions. We provide cutting-edge technology solutions that help enhance the learning environment, stimulate creativity, encourage collaboration and make learning more engaging.</p>
+                <p>Our mission has always been to empower schools and businesses with the technologies and skills they need to prepare today's students and workforce for the world of tomorrow.</p>
+                <p>We are gradually enabling businesses and organizations to discover that the innovative, comprehensive solutions we offer improve outcomes, efficiency, and lead to organizational success.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="approach-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Approach</h2>
+                <p>Client-focused services that showcase our passion for helping organizations integrate technology</p>
+            </div>
+            
+            <div class="approach-cards">
+                <div class="approach-card">
+                    <div class="approach-card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Partnership</h3>
+                    <p>We work closely with our clients to understand their unique needs and challenges, creating tailored solutions that deliver real results.</p>
+                </div>
+                
+                <div class="approach-card">
+                    <div class="approach-card-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Our team stays at the forefront of technology trends to bring you the most advanced and effective solutions available.</p>
+                </div>
+                
+                <div class="approach-card">
+                    <div class="approach-card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support</h3>
+                    <p>From initial consultation to ongoing maintenance, we provide comprehensive support at every stage of your project.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p>We happily serve and support schools, vocational training, TVETs and organizations in implementation of projects with our know-how at all stages.</p>
+                <p>Unsure where to start? Simply contact one of our local account executives on the contact form below, or call us or reach us on any of our social media accounts.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team for all your technology needs</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Our Office</h3>
+                            <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Phone</h3>
+                            <p>
+                                <a href="tel:+254741404232">+254 741 404 232</a><br>
+                                <a href="tel:+254774132425">+254 774 132 425</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Email</h3>
+                            <p>
+                                <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Working Hours</h3>
+                            <p>
+                                Monday - Friday: 8:00 AM - 5:00 PM<br>
+                                Saturday: 9:00 AM - 1:00 PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        </div>
+                        
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="">
+                        
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="iworth-tech.png" alt="iWorth Technologies">
+                    </div>
+                    <p>Providing comprehensive AV and IT solutions to businesses and educational institutions across Kenya.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="solutions.html">Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="education.html">Education Technology</a></li>
+                        <li><a href="networking.html">Networking</a></li>
+                        <li><a href="computers.html">Computers</a></li>
+                        <li><a href="projectors.html">Projectors</a></li>
+                        <li><a href="electrical.html">Electrical</a></li>
+                        <li><a href="coding.html">Coding & Robotics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and technology insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 iWorth Technologies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- About Hero Section with Image Overlay -->
-        <section class="hero">
-            <div class="hero-content fade-element">
-                <h1>About <span>Us</span></h1>
-                <p>iWorth Technologies Ltd is an Information Technology and Edtech Company built on years of research, innovation, and technical excellence.</p>
-            </div>
-            <div class="hero-image fade-element">
-                <div class="image-overlay-container">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                         alt="Our diverse team working together" 
-                         class="scrolling-image"
-                         width="800" height="600">
-                    <div class="image-overlay">
-                        <h2>Innovation Working For Your Convenience</h2>
-                        <p>With roots in IT, STEM, Power and AV solutions</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Company Overview Section -->
-        <section class="about" id="overview">
-            <div class="about-container">
-                <div class="mission-vision">
-                    <div class="mission-card glass fade-element" style="grid-column: 1/-1; text-align: center;">
-                        <h3><i class="fas fa-building" aria-hidden="true"></i> Who We Are</h3>
-                        <p>With roots based in the IT, STEM, Power and AV world, iWorth Technologies focuses on technologies that impact our world. Through our Nairobi Kenya base we have a global reach through our alliance with partners and suppliers around the world. With the combination of industry leaders the company has the size, scope and technical talent to lead the industry into the future.</p>
-                        
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Our modern office space" 
-                             class="optimized-img"
-                             style="max-height: 400px; margin-top: 2rem;"
-                             width="800" height="600">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Mission Section with Image Overlay -->
-        <section class="about" aria-labelledby="mission-heading">
-            <div class="image-overlay-container">
-                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                     alt="Team discussing technology solutions" 
-                     class="scrolling-image"
-                     width="800" height="600">
-                <div class="image-overlay">
-                    <h2 id="mission-heading">Our Mission</h2>
-                    <p>At iWorth Technologies, we partner with educators to create desired solutions. We provide cutting-edge technology solutions that help enhance the learning environment, stimulate creativity, encourage collaboration and make learning more engaging.</p>
-                </div>
-            </div>
-            
-            <div class="about-container" style="padding-top: 3rem;">
-                <div class="mission-card glass fade-element" style="max-width: 800px; margin: 0 auto;">
-                    <div class="service-icon" style="margin: 0 auto 1.5rem;">
-                        <i class="fas fa-bullseye" aria-hidden="true"></i>
-                    </div>
-                    <p>Our mission has always been to empower schools with the technologies and skills they need to prepare today's students for the world of tomorrow.</p>
-                    <p>We are gradually enabling businesses and organizations to discover that the innovative, comprehensive solutions we offer improve outcomes, efficiency, and lead to organizational success.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Approach Section -->
-        <section class="services" aria-labelledby="approach-heading">
-            <div class="about-container">
-                <div class="section-title fade-element">
-                    <h2 id="approach-heading">Our <span>Approach</span></h2>
-                </div>
-                
-                <div class="mission-card glass fade-element" style="grid-column: 1/-1;">
-                    <h3><i class="fas fa-handshake" aria-hidden="true"></i> Client Focused Services</h3>
-                    <p>The client focused services that iWorth Technologies provides showcase our passion for helping organizations and schools integrate technology into their workplaces. For schools, we understand the importance of technology in education and know the future impact it will have on the student learning experience.</p>
-                    
-                    <div class="image-overlay-container" style="margin: 2rem 0;">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                             alt="Our team providing technical support" 
-                             class="optimized-img"
-                             width="800" height="600">
-                        <div class="image-overlay" style="background: rgba(99, 102, 241, 0.8);">
-                            <h3>Comprehensive Support</h3>
-                            <p>We support at all project stages</p>
-                        </div>
-                    </div>
-                    
-                    <p>We happily serve and support schools, vocational training, TVETs and organizations in implementation of projects with our know-how at all stages.</p>
-                    <p>Unsure where to start? Simply contact one of our local account executives on the contact form below, or call us or reach us on any of our social media accounts.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact" id="contact">
-            <div class="about-container">
-                <div class="section-title fade-element">
-                    <h2>Contact <span>Us</span></h2>
-                    <p>Get in touch with our team for your technology needs</p>
-                </div>
-                
-                <div class="contact-container">
-                    <div class="contact-info fade-element">
-                        <div class="glass" style="padding: 2rem;">
-                            <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Contact Information</h3>
-                            <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div>
-                                    <h4>Office</h4>
-                                    <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div>
-                                    <h4>Phone</h4>
-                                    <p>
-                                      <a href="tel:0741404232">0741 404 232</a><br>
-                                      <a href="tel:0774132425">0774 132 425</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="contact-info-item">
-                                <div class="contact-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>
-                                      <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-form glass fade-element">
-                        <h3 style="margin-bottom: 1.5rem; color: var(--text-light);">Send Us a Message</h3>
-                        <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                            <div class="form-group">
-                              <label for="name">Name</label>
-                              <input type="text" name="name" id="name" class="form-control" placeholder="Your first and last name" required>
-                            </div>
-                          
-                            <div class="form-group">
-                              <label for="email">Email</label>
-                              <input type="email" name="email" id="email" class="form-control" placeholder="Email address to reach you at" required>
-                            </div>
-                          
-                            <div class="form-group">
-                              <label for="phone">Phone Number (Optional)</label>
-                              <input type="tel" name="phone" id="phone" class="form-control" placeholder="Phone number we can call you back on">
-                            </div>
-                          
-                            <div class="form-group">
-                              <label for="message">Comment, Query or RFQ</label>
-                              <textarea name="message" id="message" class="form-control" placeholder="Your message" required></textarea>
-                            </div>
-                          
-                            <!-- Disable CAPTCHA and auto-refresh after submit -->
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="">
-                          
-                            <button type="submit" class="btn btn-primary" style="width: 100%;">
-                              <i class="fas fa-paper-plane"></i> Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="glass" style="margin-top: 4rem;">
-        <div class="about-container">
-            <div class="mission-vision">
-                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
-                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About Us</a>
-                        <a href="#contact">Contact</a>
-                        <a href="index.html#clients">Clients</a>
-                    </div>
-                    
-                    <p style="color: var(--text-dark);">&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Thank You Popup -->
-    <div id="thankYouPopup">
-        <h3>✅ Thank you!</h3>
-        <p>Your message has been sent successfully. We'll get back to you soon.</p>
-        <button class="btn btn-primary" id="closePopupBtn">Close</button>
-    </div>
-
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('loadingScreen').style.opacity = '0';
-                setTimeout(function() {
-                    document.getElementById('loadingScreen').style.display = 'none';
-                }, 500);
-            }, 800);
-        });
-
-        // Mobile menu toggle
+        // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         
         mobileMenuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuOverlay.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mobileMenu.classList.contains('active') ? 
-                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+        });
+        
+        closeMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
         });
         
         mobileMenuOverlay.addEventListener('click', function() {
             mobileMenu.classList.remove('active');
             mobileMenuOverlay.classList.remove('active');
-            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
         });
-
-        // Sticky header on scroll
+        
+        // Sticky Header
         window.addEventListener('scroll', function() {
             const header = document.getElementById('mainHeader');
             if (window.scrollY > 100) {
@@ -1044,120 +1114,56 @@
                 header.classList.remove('scrolled');
             }
         });
-
-        // Back to top button
-        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Back to Top Button
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
             } else {
-                backToTopBtn.classList.remove('visible');
+                backToTop.classList.remove('visible');
             }
         });
-
-        backToTopBtn.addEventListener('click', function() {
+        
+        document.getElementById('backToTop').addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
-
-        // Form submission handling
-        const contactForm = document.getElementById('contactForm');
-        const thankYouPopup = document.getElementById('thankYouPopup');
-        const closePopupBtn = document.getElementById('closePopupBtn');
         
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simulate form submission (in a real scenario, this would be an AJAX call)
+            // Simulate form submission
             setTimeout(function() {
-                thankYouPopup.style.display = 'block';
+                alert('Thank you for your message! We will get back to you soon.');
                 contactForm.reset();
             }, 1000);
         });
         
-        closePopupBtn.addEventListener('click', function() {
-            thankYouPopup.style.display = 'none';
-        });
-        
-        // Close popup when clicking outside
-        window.addEventListener('click', function(e) {
-            if (e.target === thankYouPopup) {
-                thankYouPopup.style.display = 'none';
-            }
-        });
-
-        // Scroll animation functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const fadeElements = document.querySelectorAll('.fade-element');
-            const windowHeight = window.innerHeight;
-            const triggerOffset = 100;
-            
-            const checkPosition = function() {
-                fadeElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementBottom = element.getBoundingClientRect().bottom;
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
                     
-                    // Check if element is entering viewport
-                    if (elementTop < windowHeight - triggerOffset && elementBottom > 0) {
-                        element.classList.add('visible');
-                        element.classList.remove('fade-out');
-                    } 
-                    // Check if element is leaving viewport (scrolling up)
-                    else if (elementBottom < 0) {
-                        element.classList.remove('visible');
-                        element.classList.add('fade-out');
-                    }
-                    // Check if element is leaving viewport (scrolling down)
-                    else if (elementTop > windowHeight) {
-                        element.classList.remove('visible');
-                        element.classList.add('fade-out');
-                    }
-                });
-            };
-            
-            // Initial check
-            checkPosition();
-            
-            // Check on scroll
-            window.addEventListener('scroll', checkPosition);
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                }
             });
-            
-            // Image overlay scroll effect
-            const overlayContainers = document.querySelectorAll('.image-overlay-container');
-            
-            const handleOverlayScroll = () => {
-                overlayContainers.forEach(container => {
-                    const rect = container.getBoundingClientRect();
-                    const overlay = container.querySelector('.image-overlay');
-                    
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        const scrollPercent = 1 - Math.max(0, Math.min(1, (rect.bottom - window.innerHeight) / rect.height));
-                        overlay.style.opacity = scrollPercent;
-                        overlay.style.transform = `translateY(${(1 - scrollPercent) * 20}px)`;
-                    }
-                });
-            };
-            
-            window.addEventListener('scroll', handleOverlayScroll);
-            handleOverlayScroll(); // Initialize
         });
     </script>
 </body>
