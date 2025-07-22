@@ -1807,7 +1807,16 @@
                 });
             });
         });
-
+// ...existing code...
+thumbnails.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+        thumbnails.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+        mainImg.src = thumb.src;
+        mainImg.alt = thumb.alt;
+    });
+});
+// ...existing code...
         // Quick View Modal
         const productModal = document.getElementById('productModal');
         const closeModal = document.getElementById('closeModal');
