@@ -17,17 +17,19 @@
    <style>
         /* Base Styles */
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
             --secondary: #10b981;
             --accent: #f59e0b;
-            --text: #f4f6f8;
-            --text-light: #f3f6f8;
-            --text-dark: #090b0e;
+            --text: #f8fafc;
+            --text-light: #f1f5f9;
+            --text-dark: #64748b;
             --dark: #0f172a;
             --darker: #020617;
             --darkest: #000000;
             --card-bg: rgba(15, 23, 42, 0.7);
+            --header-bg: rgba(2, 6, 23, 0.8);
         }
         
         * {
@@ -38,16 +40,18 @@
         }
         
         body {
-           background: linear-gradient(135deg, #4d68df 0%, #7190e4 60%, #edf0f3 100%);
+            background-color: var(--dark);
             color: var(--text);
             min-height: 100vh;
             background-attachment: fixed;
             scroll-behavior: smooth;
+            line-height: 1.6;
         }
         
         a {
             text-decoration: none;
             color: inherit;
+            transition: all 0.3s ease;
         }
         
         /* Loading Animation */
@@ -68,7 +72,7 @@
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid rgba(99, 102, 241, 0.3);
+            border: 5px solid rgba(37, 99, 235, 0.3);
             border-radius: 50%;
             border-top-color: var(--primary);
             animation: spin 1s ease-in-out infinite;
@@ -83,7 +87,7 @@
             background: rgba(15, 23, 42, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px;
+            border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
@@ -115,7 +119,7 @@
         /* Buttons */
         .btn {
             padding: 0.75rem 1.5rem;
-            border-radius: 12px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -133,7 +137,7 @@
         .btn-primary:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
         
         .btn-secondary {
@@ -143,70 +147,30 @@
         }
         
         .btn-secondary:hover {
-            background: rgba(99, 102, 241, 0.1);
+            background: rgba(37, 99, 235, 0.1);
             transform: translateY(-2px);
         }
         
-        /* Top Bar */
-        .top-bar {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .top-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .top-links a {
-            transition: color 0.3s ease;
-        }
-        
-        .top-links a:hover {
-            color: var(--primary);
-        }
-        
-        .phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        /* Header/Navigation */
+        /* Header/Navigation - Updated to match landing page */
         header {
-            padding: 0 2rem;
-            position: sticky;
-            top: 32px;
-            z-index: 999;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled {
+            position: fixed;
             top: 0;
-            padding: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 2rem;
         }
         
-        header.scrolled nav.glass {
-            border-radius: 0;
-            margin-top: 0;
-        }
-        
-        nav.glass {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
+            max-width: 1400px;
+            margin: 0 auto;
         }
         
         .logo-container {
@@ -231,7 +195,7 @@
         
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
         
         .nav-links a {
@@ -239,9 +203,14 @@
             font-weight: 500;
             transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
         
         .nav-links a:hover {
+            color: var(--primary-light);
+        }
+        
+        .nav-links a.active {
             color: var(--primary);
         }
         
@@ -250,14 +219,19 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -4px;
+            bottom: 0;
             left: 0;
             background-color: var(--primary);
             transition: width 0.3s ease;
         }
         
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+        
+        .nav-cta {
+            margin-left: 2rem;
         }
         
         /* Mobile Menu */
@@ -330,604 +304,17 @@
             pointer-events: all;
         }
         
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 998;
-            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        /* Main content padding to account for fixed header */
+        main {
+            padding-top: 80px;
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            display: flex;
-            align-items: center;
-            min-height: 80vh;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
-        .hero-content {
-            flex: 1;
-            padding: 2rem;
-        }
-        
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            color: var(--text-light);
-        }
-        
-        .hero-content h1 span {
-            color: var(--primary);
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-        
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 16px;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .section-title {
-            margin-bottom: 3rem;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-        }
-        
-        .section-title h2 span {
-            color: var(--primary);
-        }
-        
-        .section-title p {
-            color: var(--text-dark);
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .mission-vision {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .mission-card, .vision-card, .values-card {
-            padding: 2rem;
-            text-align: left;
-        }
-        
-        .mission-card h3, .vision-card h3, .values-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .service-card {
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: white;
-            background: var(--primary);
-            transition: transform 0.3s ease;
-        }
-        
-        .service-card:hover .service-icon {
-            transform: rotate(15deg) scale(1.1);
-        }
-        
-        .service-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            transition: color 0.3s ease;
-        }
-        
-        .service-card:hover h3 {
-            color: var(--primary);
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-top: 1rem;
-        }
-        
-        .service-features li {
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-            transform: translateX(0);
-        }
-        
-        .service-card:hover .service-features li {
-            transform: translateX(5px);
-            color: var(--text);
-        }
-        
-        .service-features li::before {
-            content: '•';
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* Interactive Panels Section */
-        .interactive-panels {
-            padding: 4rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .panels-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .panels-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .panel-card {
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .panel-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .panel-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.5s ease;
-        }
-        
-        .panel-card:hover .panel-image {
-            transform: scale(1.05);
-        }
-        
-        .panel-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .panel-features {
-            list-style: none;
-            margin-top: 1rem;
-            text-align: left;
-        }
-        
-        .panel-features li {
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .panel-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: bold;
-        }
-        
-        /* Clients Section */
-        .clients {
-            padding: 4rem 2rem;
-            overflow: hidden;
-        }
-        
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            align-items: center;
-        }
-        
-        .clients-carousel {
-            display: flex;
-            gap: 2rem;
-            animation: scroll 30s linear infinite;
-            width: calc(150px * 14);
-        }
-        
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-150px * 7)) }
-        }
-        
-        logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            height: 100px;
-            min-width: 150px;
-        }
-        
-        logo:hover {
-            transform: translateY(-5px);
-            background: rgba(99, 102, 241, 0.1);
-        }
-        
-        logo img {
-            max-width: 100%;
-            max-height: 60px;
-            filter: grayscale(100%) brightness(2);
-            transition: filter 0.3s ease;
-        }
-        
-        logo:hover img {
-            filter: grayscale(0) brightness(1);
-        }
-        
-        placeholder {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
-        
-        .contact-form {
-            padding: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--text);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Thank You Popup */
-        #thankYouPopup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            z-index: 9999;
-            text-align: center;
-            color: var(--dark);
-            max-width: 90%;
-            width: 400px;
-        }
-        
-        #thankYouPopup h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-        
-        #thankYouPopup p {
-            margin-bottom: 1.5rem;
-        }
-        
-        #thankYouPopup .btn {
-            margin-top: 1rem;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 4rem 2rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: var(--text-dark);
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-dark);
-        }
-        
-        /* Responsive Adjustments */
-        @media (max-width: 1024px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 8rem;
-            }
-            
-            .hero-content {
-                margin-bottom: 3rem;
-                text-align: center;
-            }
-            
-            .hero-content p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .top-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
-                text-align: center;
-            }
-            
-            .logo-text {
-                font-size: 1.3rem;
-            }
-            
-            .clients-grid {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            
-            logo {
-                min-width: 120px;
-                height: 80px;
-                padding: 1rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding-top: 6rem;
-            }
-            
-            .hero-content h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 1.5rem;
-            }
-            
-            .mission-vision {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: center;
-            }
-        }
-    
-        
-        /* Education Hero Section */
+        /* Education Hero Section - Updated to match landing page style */
         .solution-hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), 
+            background: linear-gradient(rgba(2, 6, 23, 0.8), rgba(2, 6, 23, 0.9)), 
                         url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
             background-size: cover;
-            padding: 10rem 2rem 6rem;
+            padding: 8rem 2rem 6rem;
             text-align: center;
             position: relative;
         }
@@ -941,6 +328,7 @@
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             color: var(--text-light);
+            line-height: 1.2;
         }
         
         .solution-hero h1 span {
@@ -948,28 +336,30 @@
         }
         
         .solution-hero p {
-            font-size: 1.3rem;
-            color: var(--text);
+            font-size: 1.25rem;
+            color: var(--text-light);
             margin-bottom: 2rem;
+            opacity: 0.9;
         }
         
-        /* Solution Cards */
+        /* Solution Cards - Updated styling */
         .solution-card {
             display: flex;
             flex-direction: column;
             height: 100%;
             transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         .solution-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
         }
         
         .solution-card-img-container {
             height: 200px;
             overflow: hidden;
-            border-radius: 16px 16px 0 0;
             position: relative;
         }
         
@@ -989,6 +379,7 @@
             display: flex;
             flex-direction: column;
             padding: 2rem;
+            background: var(--card-bg);
         }
         
         .solution-card-body h3 {
@@ -996,6 +387,13 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            color: var(--text-light);
+            font-size: 1.5rem;
+        }
+        
+        .solution-card-body p {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
         }
         
         .solution-features {
@@ -1003,7 +401,47 @@
             padding-top: 1.5rem;
         }
         
-        /* Benefits Grid */
+        .solution-features h4 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 6rem 2rem;
+        }
+        
+        .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title h2 span {
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--text-dark);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        /* Benefits Section */
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1013,6 +451,15 @@
         .benefit-item {
             display: flex;
             gap: 1rem;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            background: rgba(37, 99, 235, 0.1);
         }
         
         .benefit-icon {
@@ -1021,70 +468,113 @@
             margin-top: 0.3rem;
         }
         
-        /* Thank You Popup */
-        #thankYouPopup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: var(--dark);
+        .benefit-content h3 {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-content p {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+        
+        /* Contact Section */
+        .contact-form {
             padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1002;
-            max-width: 90%;
-            width: 400px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border-radius: 12px;
         }
         
-        #thankYouPopup h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        #thankYouPopup p {
+        .form-group {
             margin-bottom: 1.5rem;
         }
         
-        #thankYouPopup .btn {
-            margin: 0 auto;
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
         }
         
-        #thankYouPopup .close-btn {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
             border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text);
-            font-size: 1.2rem;
-            cursor: pointer;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            background: var(--header-bg);
+            margin-top: 4rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-dark);
         }
         
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
-            .solution-hero h1 {
-                font-size: 3rem;
-            }
-            
-            .nav-links {
+            .nav-links, .nav-cta {
                 display: none;
             }
             
             .mobile-menu-btn {
                 display: block;
             }
+            
+            .solution-hero h1 {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+            
             .solution-hero {
-                padding: 8rem 2rem 4rem;
+                padding: 6rem 1rem 4rem;
             }
             
             .solution-hero h1 {
@@ -1095,11 +585,8 @@
                 font-size: 1.1rem;
             }
             
-            .top-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-                padding: 0.5rem 1rem;
-                text-align: center;
+            .section-title h2 {
+                font-size: 2rem;
             }
         }
         
@@ -1112,8 +599,17 @@
                 font-size: 1rem;
             }
             
-            .benefits-grid {
-                grid-template-columns: 1fr;
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -1127,37 +623,29 @@
     <!-- Skip to content link -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="phone-link">
-            <i class="fas fa-phone-alt" aria-hidden="true"></i>
-            <span>Call us now +254 741 404 232</span>
-        </div>
-        <div class="top-links">
-            <a href="index.html">Home</a>
-            <span aria-hidden="true">|</span>
-            <a href="#contact">Contact Us</a>
-            <span aria-hidden="true">|</span>
-            <a href="education.html#case-studies">Case Studies</a>
-        </div>
-    </div>
-
-    <!-- Header/Navigation -->
+    <!-- Header/Navigation - Updated to match landing page -->
     <header>
-        <nav class="glass" aria-label="Main navigation">
+        <nav>
             <div class="logo-container">
-                <img src="page-logo.png" alt="Page Logo" loading="lazy" style="max-height: 60px;">
-                <img src="iworth-tech.png" alt="iWorth Tech Logo" loading="lazy" style="max-height: 60px;">
+                <a href="index.html">
+                    <img src="page-logo.png" alt="iWorth Technologies Logo" class="logo-img" loading="lazy">
+                </a>
             </div>
+            
             <div class="nav-links">
+                <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
-                <a href="education.html" class="active" aria-current="page">Education</a>
+                <a href="education.html" class="active">Education</a>
                 <a href="networking.html">Networking</a>
                 <a href="computers.html">Computers</a>
                 <a href="projectors.html">Projectors</a>
                 <a href="electrical.html">Electrical</a>
                 <a href="codingandrobotics.html">Coding & Robotics</a>
+                <div class="nav-cta">
+                    <a href="#contact" class="btn btn-primary">Contact Us</a>
+                </div>
             </div>
+            
             <button class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1167,15 +655,16 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
     <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
         <a href="about.html">About Us</a>
-        <a href="education.html">Education</a>
-        <a href="networking.html" class="active" aria-current="page">Networking</a>
+        <a href="education.html" class="active">Education</a>
+        <a href="networking.html">Networking</a>
         <a href="computers.html">Computers</a>
         <a href="projectors.html">Projectors</a>
         <a href="electrical.html">Electrical</a>
         <a href="codingandrobotics.html">Coding & Robotics</a>
+        <a href="#contact" class="btn btn-primary" style="margin-top: 1rem;">Contact Us</a>
     </div>
-
 
     <!-- Back to Top Button -->
     <button class="back-to-top" aria-label="Back to top">
@@ -1194,16 +683,16 @@
         </section>
 
         <!-- Education Solutions Section -->
-        <section class="about" id="solutions" aria-labelledby="solutions-heading">
+        <section class="section" id="solutions" aria-labelledby="solutions-heading">
             <div class="about-container">
                 <div class="section-title fade-element">
                     <h2 id="solutions-heading">Our <span>Education Solutions</span></h2>
                     <p>Comprehensive technology packages designed for modern educational institutions</p>
                 </div>
                 
-                <div class="mission-vision">
+                <div class="grid-3">
                     <!-- Smart Classroom Solution -->
-                    <div class="glass fade-element">
+                    <div class="fade-element">
                         <div class="solution-card">
                             <div class="solution-card-img-container">
                                 <img src="https://www.israk.my/wp-content/uploads/smart-classroom-arvia-interactive-3.webp" 
@@ -1229,7 +718,7 @@
                     </div>
                     
                     <!-- STEM Lab Solution -->
-                    <div class="glass fade-element">
+                    <div class="fade-element">
                         <div class="solution-card">
                             <div class="solution-card-img-container">
                                 <img src="https://iprep.in/wp-content/themes/iprep/build/assets/stem-lab/fostering-technology-and-engineering-skills-in-school-kids-with-stem-labs-for-schools-by-iprep.webp" 
@@ -1255,7 +744,7 @@
                     </div>
                     
                     <!-- Digital Library Solution -->
-                    <div class="glass fade-element">
+                    <div class="fade-element">
                         <div class="solution-card">
                             <div class="solution-card-img-container">
                                 <img src="https://chennai.athena.edu.in/wp-content/uploads/2024/04/digital-library-6.jpg" 
@@ -1284,53 +773,51 @@
         </section>
 
         <!-- Benefits Section -->
-        <section class="services" aria-labelledby="benefits-heading">
+        <section class="section" style="background: rgba(0, 0, 0, 0.2);" aria-labelledby="benefits-heading">
             <div class="about-container">
                 <div class="section-title fade-element">
                     <h2 id="benefits-heading">Why Choose Our <span>Education Solutions</span></h2>
                     <p>We deliver measurable results for educational institutions of all sizes</p>
                 </div>
                 
-                <div class="glass fade-element" style="padding: 3rem;">
-                    <div class="benefits-grid">
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3>Improved Learning Outcomes</h3>
-                                <p>Technology-enhanced teaching methods lead to better student engagement and retention.</p>
-                            </div>
+                <div class="benefits-grid">
+                    <div class="benefit-item fade-element">
+                        <div class="benefit-icon">
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div>
-                                <h3>Future-Ready Skills</h3>
-                                <p>Students gain 21st century skills needed for tomorrow's workforce.</p>
-                            </div>
+                        <div class="benefit-content">
+                            <h3>Improved Learning Outcomes</h3>
+                            <p>Technology-enhanced teaching methods lead to better student engagement and retention.</p>
                         </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-cogs"></i>
-                            </div>
-                            <div>
-                                <h3>Comprehensive Support</h3>
-                                <p>From installation to teacher training, we support you at every step.</p>
-                            </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-element">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
                         </div>
-                        
-                        <div class="benefit-item">
-                            <div class="benefit-icon">
-                                <i class="fas fa-shield-alt"></i>
-                            </div>
-                            <div>
-                                <h3>Reliable Infrastructure</h3>
-                                <p>Enterprise-grade solutions designed for educational environments.</p>
-                            </div>
+                        <div class="benefit-content">
+                            <h3>Future-Ready Skills</h3>
+                            <p>Students gain 21st century skills needed for tomorrow's workforce.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-element">
+                        <div class="benefit-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Comprehensive Support</h3>
+                            <p>From installation to teacher training, we support you at every step.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item fade-element">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="benefit-content">
+                            <h3>Reliable Infrastructure</h3>
+                            <p>Enterprise-grade solutions designed for educational environments.</p>
                         </div>
                     </div>
                 </div>
@@ -1338,56 +825,58 @@
         </section>
 
         <!-- Case Studies Section -->
-        <section class="about" id="case-studies" aria-labelledby="case-studies-heading">
+        <section class="section" id="case-studies" aria-labelledby="case-studies-heading">
             <div class="about-container">
                 <div class="section-title fade-element">
                     <h2 id="case-studies-heading">Education <span>Case Studies</span></h2>
                     <p>See how we've helped institutions transform their learning environments</p>
                 </div>
                 
-                <div class="mission-vision">
-                    <div class="glass fade-element" style="grid-column: 1/-1;">
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
-                            <!-- Case Study 1 -->
-                            <div class="solution-card">
-                                <div class="solution-card-img-container">
-                                    <img src="https://newsletter.sabis.net/Prv/Images/Pages/Page_34/the-sabis-view-on-class-size62298848-l.jpg" 
-                                         alt="School building" 
-                                         class="solution-card-img" loading="lazy">
-                                </div>
-                                <div class="solution-card-body">
-                                    <h3>Sabis International School</h3>
-                                    <p>Implemented a complete STEM lab solution serving more than 300 students, resulting in 40% increase in STEM course enrollment.</p>
-                                    <a href="sabis-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
+                <div class="grid-3">
+                    <!-- Case Study 1 -->
+                    <div class="fade-element">
+                        <div class="solution-card">
+                            <div class="solution-card-img-container">
+                                <img src="https://newsletter.sabis.net/Prv/Images/Pages/Page_34/the-sabis-view-on-class-size62298848-l.jpg" 
+                                     alt="School building" 
+                                     class="solution-card-img" loading="lazy">
                             </div>
-                            
-                            <!-- Case Study 2 -->
-                            <div class="solution-card">
-                                <div class="solution-card-img-container">
-                                    <img src="https://stowelink.com/wp-content/uploads/2024/10/polish_20241017_124700058.jpg?w=1568" 
-                                         alt="University campus" 
-                                         class="solution-card-img" loading="lazy">
-                                </div>
-                                <div class="solution-card-body">
-                                    <h3>Zetech University</h3>
-                                    <p>Deployed smart classroom technology across 15 lecture halls, improving student satisfaction scores by 35%.</p>
-                                    <a href="zetech-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
+                            <div class="solution-card-body">
+                                <h3>Sabis International School</h3>
+                                <p>Implemented a complete STEM lab solution serving more than 300 students, resulting in 40% increase in STEM course enrollment.</p>
+                                <a href="sabis-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
                             </div>
-                            
-                            <!-- Case Study 3 -->
-                            <div class="solution-card">
-                                <div class="solution-card-img-container">
-                                    <img src="https://i.imgur.com/Rm4EVoA.jpeg" 
-                                         alt="Primary school" 
-                                         class="solution-card-img" loading="lazy">
-                                </div>
-                                <div class="solution-card-body">
-                                    <h3>Nairobi International School</h3>
-                                    <p>Digital library implementation increased student reading time by 60% and improved literacy test scores.</p>
-                                    <a href="nis-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
-                                </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Case Study 2 -->
+                    <div class="fade-element">
+                        <div class="solution-card">
+                            <div class="solution-card-img-container">
+                                <img src="https://stowelink.com/wp-content/uploads/2024/10/polish_20241017_124700058.jpg?w=1568" 
+                                     alt="University campus" 
+                                     class="solution-card-img" loading="lazy">
+                            </div>
+                            <div class="solution-card-body">
+                                <h3>Zetech University</h3>
+                                <p>Deployed smart classroom technology across 15 lecture halls, improving student satisfaction scores by 35%.</p>
+                                <a href="zetech-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Case Study 3 -->
+                    <div class="fade-element">
+                        <div class="solution-card">
+                            <div class="solution-card-img-container">
+                                <img src="https://i.imgur.com/Rm4EVoA.jpeg" 
+                                     alt="Primary school" 
+                                     class="solution-card-img" loading="lazy">
+                            </div>
+                            <div class="solution-card-body">
+                                <h3>Nairobi International School</h3>
+                                <p>Digital library implementation increased student reading time by 60% and improved literacy test scores.</p>
+                                <a href="nis-case-study.html" class="btn btn-secondary" style="margin-top: 1rem;">Read Full Case Study</a>
                             </div>
                         </div>
                     </div>
@@ -1396,7 +885,7 @@
         </section>
         
         <!-- Contact Section -->
-        <section class="contact" id="contact">
+        <section class="section" id="contact" style="background: rgba(0, 0, 0, 0.2);">
             <div class="about-container">
                 <div class="section-title fade-element">
                     <h2>Contact <span>Us</span></h2>
@@ -1489,19 +978,22 @@
     </div>
 
     <!-- Footer -->
-    <footer class="glass" style="margin-top: 4rem;">
-        <div class="about-container">
-            <div class="mission-vision">
-                <div class="mission-card" style="grid-column: 1/-1; text-align: center; padding: 2rem 0;">
-                    <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <a href="index.html">Home</a>
-                        <a href="about.html">About Us</a>
-                        <a href="#contact">Contact</a>
-                        <a href="index.html#clients">Clients</a>
-                    </div>
-                    
-                    <p style="color: var(--text-dark);">&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
-                </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="education.html">Education</a>
+                <a href="networking.html">Networking</a>
+                <a href="computers.html">Computers</a>
+                <a href="projectors.html">Projectors</a>
+                <a href="electrical.html">Electrical</a>
+                <a href="codingandrobotics.html">Coding & Robotics</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 iWorth Technologies Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1554,29 +1046,6 @@
             icon.classList.add('fa-bars');
         });
         
-        // Sticky header on scroll
-        window.addEventListener('scroll', function() {
-            const topBar = document.querySelector('.top-bar');
-            const header = document.querySelector('header');
-            const scrollY = window.scrollY;
-            
-            if (scrollY > 50) {
-                topBar.classList.add('scrolled');
-                header.classList.add('scrolled');
-            } else {
-                topBar.classList.remove('scrolled');
-                header.classList.remove('scrolled');
-            }
-            
-            // Back to top button visibility
-            const backToTop = document.querySelector('.back-to-top');
-            if (scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-        
         // Back to top button
         const backToTop = document.querySelector('.back-to-top');
         backToTop.addEventListener('click', function() {
@@ -1584,6 +1053,15 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+        
+        // Show/hide back to top button
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
         
         // Scroll animation functionality
@@ -1688,6 +1166,7 @@
         
         closePopupBtn.addEventListener('click', closePopup);
         popupCloseBtn.addEventListener('click', closePopup);
+
         
         // Close popup when clicking outside
         thankYouPopup.addEventListener('click', function(e) {
