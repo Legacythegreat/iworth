@@ -763,6 +763,33 @@
                 grid-template-columns: 1fr;
             }
         }
+        /*new one*/
+        .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-tagline {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.2;
+    margin-top: 5px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo-tagline {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .logo-tagline {
+        font-size: 0.6rem;
+        margin-top: 3px;
+    }
+}
     </style>
 </head>
 <body>
@@ -786,12 +813,14 @@
 
     <!-- Header -->
     <header id="mainHeader">
-        <div class="container">
-            <nav class="main-nav">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="logo-container">
                 <a href="index.html" class="logo">
                     <img src="iworth-tech.png" alt="iWorth Technologies">
                 </a>
-                
+                <div class="logo-tagline">Touch, Discover & Learn</div>
+            </div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
@@ -809,10 +838,10 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu-btn" id="closeMenuBtn">
-            <i class="fas fa-times"></i>
-        </button>
+<div class="mobile-menu" id="mobileMenu">
+    <button class="close-menu-btn" id="closeMenuBtn">
+        <i class="fas fa-times"></i>
+    </button>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="education.html" class="active">Education</a>
