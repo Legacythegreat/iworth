@@ -991,19 +991,10 @@
         
     }
     
-    .logo-text {
+    .logo-container {
         display: flex;
         flex-direction: column;
-    }
-    
-    .logo-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-    }
-    
-    header.scrolled .logo-title {
-        color: white;
+        align-items: center;
     }
     
     .logo-tagline {
@@ -1011,7 +1002,9 @@
         font-weight: 500;
         color: var(--accent);
         line-height: 1.2;
-        margin-top: 2px;
+        margin-top: 5px;
+        text-align: center;
+        transition: all 0.3s ease;
     }
     
     header.scrolled .logo-tagline {
@@ -1019,12 +1012,9 @@
     }
     
     @media (max-width: 768px) {
-        .logo-title {
-            font-size: 1.2rem;
-        }
-        
         .logo-tagline {
             font-size: 0.6rem;
+            margin-top: 3px;
         }
     }
     </style>
@@ -1054,9 +1044,8 @@
             <nav class="main-nav">
                 <a href="index.html" class="logo">
                     <img src="iworth-tech.png" alt="iWorth Technologies">
+                    <div class="logo-tagline">Touch, Discover & Learn</div>
                 </a>
-                <div class="logo-text">
-        <div class="logo-tagline">Touch, Discover & Learn</div>
     </div>
                 <div class="nav-links">
                    <a href="index.html">Home</a>
