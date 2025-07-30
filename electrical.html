@@ -1336,55 +1336,7 @@
             });
         });
         
-        // FAQ Functionality
-        const faqNavIcon = document.getElementById('faqNavIcon');
-        const mobileFaqLink = document.getElementById('mobileFaqLink');
-        const footerFaqLink = document.getElementById('footerFaqLink');
-        const faqModal = document.getElementById('faqModal');
-        const closeFaq = document.getElementById('closeFaq');
-        
-        // Toggle FAQ modal
-        function toggleFaqModal() {
-            faqModal.classList.toggle('active');
-            document.body.style.overflow = faqModal.classList.contains('active') ? 'hidden' : '';
-        }
-        
-        // FAQ icon click
-        faqNavIcon.addEventListener('click', toggleFaqModal);
-        
-        // Mobile FAQ link click
-        mobileFaqLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            toggleFaqModal();
-        });
-        
-        // Footer FAQ link click
-        footerFaqLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            toggleFaqModal();
-        });
-        
-        // Close FAQ modal
-        closeFaq.addEventListener('click', toggleFaqModal);
-        
-        // FAQ accordion functionality
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function() {
-                const answer = this.nextElementSibling;
-                this.classList.toggle('active');
-                answer.classList.toggle('active');
-            });
-        });
-        
-        // Close FAQ when clicking outside content
-        faqModal.addEventListener('click', function(e) {
-            if (e.target === faqModal) {
-                toggleFaqModal();
-            }
-        });
+      
         
         // Newsletter Form Submission
         const newsletterForm = document.querySelector('.newsletter-form');
