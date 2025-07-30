@@ -194,7 +194,7 @@
         }
         
         .logo-text {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-dark);
         }
@@ -243,6 +243,80 @@
         
         .nav-cta .btn {
             margin-left: 20px;
+        }
+        
+        /* FAQ Icon in Navigation */
+        .faq-nav-icon {
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-left: 15px;
+            color: var(--primary-dark);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled .faq-nav-icon {
+            color: white;
+        }
+        
+        .faq-nav-icon:hover {
+            color: var(--accent);
+        }
+        
+        /* FAQ Modal */
+        .faq-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        
+        .faq-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .faq-container {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .faq-header h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+        }
+        
+        .close-faq {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+        
+        .close-faq:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
         }
         
         /* Mobile Menu */
@@ -651,6 +725,45 @@
             padding-left: 5px;
         }
         
+        .footer-newsletter p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--accent-light);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
         /* Back to Top Button */
         .back-to-top {
             position: fixed;
@@ -682,48 +795,50 @@
             transform: translateY(-5px);
         }
         
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
         
-        @media (max-width: 768px) {
-            .nav-links, .nav-cta {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 15px;
-            }
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
         }
         
-        @media (max-width: 576px) {
-            .hero {
-                padding: 100px 0;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 70px;
+            background-color: white;
+            color: var(--text);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .whatsapp-button:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
         }
         
         /* Electrical Page Specific Styles */
@@ -764,64 +879,110 @@
             margin-top: 30px;
         }
         
-        /* Features Grid */
-        .features-flex {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
         }
         
-        .feature-item {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-            background-color: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            flex: 1 1 250px;
-            max-width: 300px;
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form button {
+                width: 100%;
+                padding: 12px;
+                border-radius: var(--border-radius);
+            }
+            
+            .newsletter-form input {
+                border-radius: var(--border-radius);
+                margin-bottom: 10px;
+            }
+            
+            .logo-tagline {
+                font-size: 0.6rem;
+                margin-top: 3px;
+            }
+            
+            .whatsapp-button {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                left: 20px;
+            }
         }
         
-        .feature-icon-small {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(72, 37, 230, 0.1);
-            border-radius: 50%;
+        @media (max-width: 576px) {
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-button {
+                width: 45px;
+                height: 45px;
+                font-size: 22px;
+                bottom: 15px;
+                left: 15px;
+            }
+            
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
+        
+        /* Logo Container */
+        .logo-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-size: 1.2rem;
-            flex-shrink: 0;
         }
-        /*new one*/
-         .logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.logo-tagline {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--accent);
-    line-height: 1.2;
-    margin-top: 5px;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-header.scrolled .logo-tagline {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-@media (max-width: 768px) {
-    .logo-tagline {
-        font-size: 0.6rem;
-        margin-top: 3px;
-    }
+        
+        .logo-tagline {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1.2;
+            margin-top: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled .logo-tagline {
+            color: rgba(255, 255, 255, 0.8);
+        }
     </style>
 </head>
 <body>
@@ -857,8 +1018,9 @@ header.scrolled .logo-tagline {
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
-                   <a href="index.html#service">Services</a>
+                    <a href="index.html#services">Services</a>
                     <a href="electrical.html#contact">Contact</a>
+                    <i class="fas fa-question-circle faq-nav-icon" id="faqNavIcon"></i>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -866,6 +1028,70 @@ header.scrolled .logo-tagline {
             </nav>
         </div>
     </header>
+
+    <!-- FAQ Modal -->
+    <div class="faq-modal" id="faqModal">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>Frequently Asked Questions</h2>
+                <button class="close-faq" id="closeFaq">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>1. What electrical services do you offer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer comprehensive electrical services including installations, maintenance, repairs, and upgrades for commercial, industrial, and institutional clients.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>2. Are your electricians certified?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all our electricians are fully certified and licensed to work in Kenya, with extensive experience in various electrical systems.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>3. Do you offer emergency services?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide 24/7 emergency electrical services for urgent repairs and critical situations.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>4. What areas do you serve?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We serve Nairobi and surrounding areas, with the ability to handle projects throughout Kenya.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>5. How quickly can you respond to service requests?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We typically respond within 24 hours for standard requests and within 2 hours for emergency calls.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
@@ -875,8 +1101,9 @@ header.scrolled .logo-tagline {
         </button>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-       <a href="index.html#service">Services</a>
+        <a href="index.html#services">Services</a>
         <a href="electrical.html#contact">Contact</a>
+        <a href="#" id="mobileFaqLink"><i class="fas fa-question-circle"></i> FAQs</a>
         <a href="tel:+254741404232" class="btn btn-primary">Call Now</a>
     </div>
 
@@ -1128,7 +1355,7 @@ header.scrolled .logo-tagline {
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" id="footerFaqLink">FAQs</a></li>
                     </ul>
                 </div>
                 
@@ -1143,6 +1370,15 @@ header.scrolled .logo-tagline {
                         <li><a href="codingandrobotics.html">Coding & Robotics</a></li>
                     </ul>
                 </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter for the latest updates and technology insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email Address">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
             </div>
             
             <div class="footer-bottom">
@@ -1155,6 +1391,12 @@ header.scrolled .logo-tagline {
     <div class="back-to-top" id="backToTop">
         <i class="fas fa-arrow-up"></i>
     </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/254774132425" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
 
     <script>
         // Mobile Menu Toggle
@@ -1226,6 +1468,70 @@ header.scrolled .logo-tagline {
                 }
             });
         });
+        
+        // FAQ Functionality
+        const faqNavIcon = document.getElementById('faqNavIcon');
+        const mobileFaqLink = document.getElementById('mobileFaqLink');
+        const footerFaqLink = document.getElementById('footerFaqLink');
+        const faqModal = document.getElementById('faqModal');
+        const closeFaq = document.getElementById('closeFaq');
+        
+        // Toggle FAQ modal
+        function toggleFaqModal() {
+            faqModal.classList.toggle('active');
+            document.body.style.overflow = faqModal.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        // FAQ icon click
+        faqNavIcon.addEventListener('click', toggleFaqModal);
+        
+        // Mobile FAQ link click
+        mobileFaqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            toggleFaqModal();
+        });
+        
+        // Footer FAQ link click
+        footerFaqLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleFaqModal();
+        });
+        
+        // Close FAQ modal
+        closeFaq.addEventListener('click', toggleFaqModal);
+        
+        // FAQ accordion functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                this.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+        
+        // Close FAQ when clicking outside content
+        faqModal.addEventListener('click', function(e) {
+            if (e.target === faqModal) {
+                toggleFaqModal();
+            }
+        });
+        
+        // Newsletter Form Submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                setTimeout(function() {
+                    alert('Thank you for subscribing to our newsletter!');
+                    newsletterForm.reset();
+                }, 1000);
+            });
+        }
     </script>
 </body>
 </html>
