@@ -319,7 +319,7 @@
             cursor: pointer;
         }
         
-        /* Projector-specific styles */
+        /* Solar Hero Section */
         .solution-hero {
             background: linear-gradient(rgba(10, 34, 64, 0.8), rgba(10, 34, 64, 0.9)), 
                         url('https://images.unsplash.com/photo-1509395062183-67c5ad6faff9?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
@@ -351,8 +351,14 @@
             margin: 0 auto 30px;
         }
         
-        /* Projector Cards */
-        .projector-card {
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Solar System Cards */
+        .solar-card {
             background-color: white;
             border-radius: var(--border-radius);
             overflow: hidden;
@@ -360,29 +366,29 @@
             transition: all 0.3s ease;
         }
         
-        .projector-card:hover {
+        .solar-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .projector-img-container {
+        .solar-img-container {
             height: 250px;
             overflow: hidden;
             position: relative;
         }
         
-        .projector-img {
+        .solar-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         
-        .projector-card:hover .projector-img {
+        .solar-card:hover .solar-img {
             transform: scale(1.05);
         }
         
-        .projector-badge {
+        .solar-badge {
             position: absolute;
             top: 15px;
             right: 15px;
@@ -394,28 +400,28 @@
             font-weight: 600;
         }
         
-        .projector-body {
+        .solar-body {
             padding: 25px;
         }
         
-        .projector-features {
+        .solar-features {
             list-style: none;
             margin: 15px 0;
         }
         
-        .projector-features li {
+        .solar-features li {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .projector-features i {
+        .solar-features i {
             color: var(--accent);
         }
         
-        /* Mission Vision Grid */
-        .mission-vision {
+        /* Solar Systems Grid */
+        .solar-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -468,6 +474,64 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 37, 230, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23484848' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
         }
         
         /* Footer */
@@ -528,49 +592,6 @@
             opacity: 0.7;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .solution-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links, .nav-cta {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .solution-hero {
-                padding: 100px 0;
-            }
-            
-            .solution-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
         /* Logo Tagline */
         .logo-container {
             display: flex;
@@ -592,12 +613,6 @@
             color: rgba(255, 255, 255, 0.8);
         }
         
-        @media (max-width: 768px) {
-            .logo-tagline {
-                font-size: 0.6rem;
-                margin-top: 3px;
-            }
-        }
         /* WhatsApp Button */
         .whatsapp-button {
             position: fixed;
@@ -643,6 +658,54 @@
             visibility: visible;
             right: 75px;
         }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .solution-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .solution-hero {
+                padding: 100px 0;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -677,8 +740,8 @@
                 <div class="nav-links">
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
-                    <a href="projectors.html#contact">Contact</a>
-                    <a href=index.html#clients">Clients</a>
+                    <a href="#contact">Contact</a>
+                    <a href="index.html#clients">Clients</a>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -695,128 +758,130 @@
         </button>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-       <a href="projectors.html#contact">Contact</a>
-           <a href=index.html#clients">Clients</a>
+        <a href="#contact">Contact</a>
+        <a href="index.html#clients">Clients</a>
         <a href="tel:+254741404232" class="btn btn-primary">Call Now</a>
     </div>
 
     <!-- Main Content -->
     <main>
-        <!-- Projector Hero Section -->
+        <!-- Solar Hero Section -->
         <section class="solution-hero">
             <div class="container">
                 <h1>Professional <span>Solar Installation</span> Solutions</h1>
-                <p>High-quality solar energy systems for residential, commercial, and industrial needs</p>
+                <p>Reliable, sustainable solar energy systems designed to reduce your electricity costs and carbon footprint</p>
                 <div class="hero-btns">
-                    <a href="#contact" class="btn btn-primary">Get a Quote</a>
-                    <a href="#projector-types" class="btn btn-secondary">View Options</a>
+                    <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
+                    <a href="#solar-types" class="btn btn-secondary">View Solutions</a>
                 </div>
             </div>
         </section>
 
-        <!-- Projector Types Section -->
-        <section class="about" id="projector-types">
+        <!-- Solar Types Section -->
+        <section class="about" id="solar-types">
             <div class="container">
                 <div class="section-title">
-                    <h2>Solar Installation <span>Types</span></h2>
-                    <p>We offer a wide range of solar installation solutions to suit every energy need</p>
+                    <h2>Solar Energy <span>Solutions</span></h2>
+                    <p>Custom solar power systems tailored to your specific energy needs and budget</p>
                 </div>
                 
-                <div class="mission-vision">
-<div class="projector-card">
-    <div class="projector-img-container">
-        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80" 
-             alt="Residential Solar" class="projector-img">
-        <div class="projector-badge">Residential</div>
-    </div>
-    <div class="projector-body">
-        <h3>Residential Solar Systems</h3>
-        <p>Reliable solar power solutions for homes to reduce electricity costs</p>
-        <ul class="projector-features">
-            <li><i class="fas fa-check"></i> Roof-mounted panels</li>
-            <li><i class="fas fa-check"></i> Battery storage options</li>
-            <li><i class="fas fa-check"></i> Energy monitoring</li>
-            <li><i class="fas fa-check"></i> Professional installation</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary">Get a Quote</a>
-    </div>
-</div>
+                <div class="solar-grid">
+                    <div class="solar-card">
+                        <div class="solar-img-container">
+                            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Residential Solar Installation" class="solar-img">
+                            <div class="solar-badge">Residential</div>
+                        </div>
+                        <div class="solar-body">
+                            <h3>Home Solar Systems</h3>
+                            <p>Complete solar solutions for residential properties to reduce electricity bills</p>
+                            <ul class="solar-features">
+                                <li><i class="fas fa-check"></i> 3kW - 10kW systems</li>
+                                <li><i class="fas fa-check"></i> Battery storage options</li>
+                                <li><i class="fas fa-check"></i> Grid-tied or hybrid</li>
+                                <li><i class="fas fa-check"></i> 25-year panel warranty</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                        </div>
+                    </div>
 
-<div class="projector-card">
-    <div class="projector-img-container">
-        <img src="https://images.unsplash.com/photo-1506459225024-1428097a7e18?auto=format&fit=crop&w=800&q=80" 
-             alt="Commercial Solar" class="projector-img">
-        <div class="projector-badge">Commercial</div>
-    </div>
-    <div class="projector-body">
-        <h3>Commercial Solar Solutions</h3>
-        <p>Large-scale solar installations for businesses and organizations</p>
-        <ul class="projector-features">
-            <li><i class="fas fa-check"></i> High-efficiency panels</li>
-            <li><i class="fas fa-check"></i> Scalable systems</li>
-            <li><i class="fas fa-check"></i> Maintenance support</li>
-            <li><i class="fas fa-check"></i> Long-term savings</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary">Get a Quote</a>
-    </div>
-</div>
+                    <div class="solar-card">
+                        <div class="solar-img-container">
+                            <img src="https://images.unsplash.com/photo-1506459225024-1428097a7e18?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Commercial Solar Installation" class="solar-img">
+                            <div class="solar-badge">Commercial</div>
+                        </div>
+                        <div class="solar-body">
+                            <h3>Business Solar Solutions</h3>
+                            <p>Large-scale solar installations for offices, factories, and commercial buildings</p>
+                            <ul class="solar-features">
+                                <li><i class="fas fa-check"></i> 10kW - 1MW+ systems</li>
+                                <li><i class="fas fa-check"></i> Peak demand management</li>
+                                <li><i class="fas fa-check"></i> ROI analysis</li>
+                                <li><i class="fas fa-check"></i> Maintenance packages</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                        </div>
+                    </div>
 
-<div class="projector-card">
-    <div class="projector-img-container">
-        <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" 
-             alt="Off-grid Solar" class="projector-img">
-        <div class="projector-badge">Off-grid</div>
-    </div>
-    <div class="projector-body">
-        <h3>Off-grid Solar Systems</h3>
-        <p>Complete energy independence with reliable off-grid solar setups</p>
-        <ul class="projector-features">
-            <li><i class="fas fa-check"></i> Ideal for remote areas</li>
-            <li><i class="fas fa-check"></i> Battery storage</li>
-            <li><i class="fas fa-check"></i> Backup generators</li>
-            <li><i class="fas fa-check"></i> Custom solutions</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary">Get a Quote</a>
-    </div>
-</div>
-</div></div></section>
+                    <div class="solar-card">
+                        <div class="solar-img-container">
+                            <img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Off-grid Solar System" class="solar-img">
+                            <div class="solar-badge">Off-grid</div>
+                        </div>
+                        <div class="solar-body">
+                            <h3>Off-grid Solar Systems</h3>
+                            <p>Complete energy independence for remote locations and backup power needs</p>
+                            <ul class="solar-features">
+                                <li><i class="fas fa-check"></i> Battery storage included</li>
+                                <li><i class="fas fa-check"></i> Generator integration</li>
+                                <li><i class="fas fa-check"></i> Water pumping solutions</li>
+                                <li><i class="fas fa-check"></i> Custom system design</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-secondary">Get a Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Projector Features Section -->
+        <!-- Solar Features Section -->
         <section class="services">
             <div class="container">
                 <div class="section-title">
-                    <h2>Why Choose Our <span>Solar Installation Solutions</span></h2>
-                    <p>Reliable solar energy systems with professional installation and ongoing support</p>
+                    <h2>Why Choose Our <span>Solar Solutions</span></h2>
+                    <p>High-quality solar installations with professional support for maximum energy savings</p>
                 </div>
                 
                 <div class="features-grid">
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-award"></i>
+                            <i class="fas fa-solar-panel"></i>
                         </div>
                         <div>
-                            <h3>Premium Brands</h3>
-                            <p>We work with top brands like Epson, BenQ, and Sony</p>
+                            <h3>Premium Components</h3>
+                            <p>We use only Tier 1 solar panels and certified inverters for maximum efficiency and durability</p>
                         </div>
                     </div>
                     
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
+                            <i class="fas fa-certificate"></i>
                         </div>
                         <div>
-                            <h3>Professional Installation</h3>
-                            <p>Proper setup for optimal performance and safety</p>
+                            <h3>Certified Installers</h3>
+                            <p>Our NABCEP-certified technicians ensure safe and optimal system performance</p>
                         </div>
                     </div>
                     
                     <div class="feature-item">
                         <div class="feature-icon">
-                            <i class="fas fa-headset"></i>
+                            <i class="fas fa-bolt"></i>
                         </div>
                         <div>
-                            <h3>Local Support</h3>
-                            <p>Kenyan-based technicians for quick service</p>
+                            <h3>Energy Monitoring</h3>
+                            <p>Real-time monitoring systems to track your energy production and savings</p>
                         </div>
                     </div>
                     
@@ -825,8 +890,8 @@
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <div>
-                            <h3>Warranty</h3>
-                            <p>Comprehensive warranty on all products</p>
+                            <h3>Comprehensive Warranty</h3>
+                            <p>25-year panel warranty and 10-year workmanship guarantee</p>
                         </div>
                     </div>
                 </div>
@@ -837,8 +902,8 @@
         <section class="contact" id="contact">
             <div class="container">
                 <div class="section-title">
-                    <h2>Contact <span>Us</span></h2>
-                    <p>Get in touch for solar installation inquiries or support</p>
+                    <h2>Get Your <span>Solar Consultation</span></h2>
+                    <p>Contact us for a free solar assessment and quote tailored to your energy needs</p>
                 </div>
                 
                 <div class="contact-container">
@@ -877,48 +942,78 @@
                                 </p>
                             </div>
                         </div>
+                        
+                        <div class="contact-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Business Hours</h3>
+                                <p>
+                                    Monday - Friday: 8:00 AM - 5:00 PM<br>
+                                    Saturday: 9:00 AM - 1:00 PM
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="contact-form">
-                        <h3>Solar Installation Inquiry</h3>
+                        <h3>Solar Assessment Request</h3>
                         <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label for="name">Your Name *</label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email Address *</label>
                                 <input type="email" id="email" name="email" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input type="tel" id="phone" name="phone" class="form-control">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="solar-type">Solar Installation Type</label>
-                                <select name="solar-type" id="solar-type" class="form-control">
-                                    <option value="">Select solar installation type</option>
-                                    <option value="residential">Residential Solar</option>
-                                    <option value="commercial">Commercial Solar</option>
-                                    <option value="offgrid">Off-grid Solar</option>
+                                <label for="property-type">Property Type *</label>
+                                <select name="property-type" id="property-type" class="form-control" required>
+                                    <option value="">Select property type</option>
+                                    <option value="residential">Residential Home</option>
+                                    <option value="apartment">Apartment</option>
+                                    <option value="commercial">Commercial Building</option>
+                                    <option value="industrial">Industrial Facility</option>
+                                    <option value="farm">Farm/Ranch</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="system-type">System Type *</label>
+                                <select name="system-type" id="system-type" class="form-control" required>
+                                    <option value="">Select system type</option>
+                                    <option value="grid-tied">Grid-Tied Solar</option>
+                                    <option value="hybrid">Hybrid System</option>
+                                    <option value="off-grid">Off-Grid System</option>
                                     <option value="not-sure">Not sure - need advice</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+                                <label for="average-bill">Current Monthly Electricity Bill (KSh)</label>
+                                <input type="number" id="average-bill" name="average-bill" class="form-control" min="0">
                             </div>
                             
-                            <input type="hidden" name="_subject" value="Solar Installation Inquiry from Website">
+                            <div class="form-group">
+                                <label for="message">Project Details *</label>
+                                <textarea name="message" id="message" class="form-control" rows="5" required placeholder="Tell us about your solar needs, including location, roof type, and any special requirements"></textarea>
+                            </div>
+                            
+                            <input type="hidden" name="_subject" value="New Solar Installation Inquiry from Website">
                             <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_next" value="">
+                            <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
                             
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-paper-plane"></i> Send Inquiry
+                                <i class="fas fa-paper-plane"></i> Request Assessment
                             </button>
                         </form>
                     </div>
@@ -935,7 +1030,7 @@
                     <div class="footer-logo">
                         <img src="iworth-tech.png" alt="iWorth Technologies">
                     </div>
-                    <p>Providing comprehensive AV and IT solutions to businesses and educational institutions across Kenya.</p>
+                    <p>Providing comprehensive renewable energy and technology solutions across Kenya.</p>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -966,10 +1061,10 @@
                 </div>
                 
                 <div class="footer-newsletter">
-                    <h3>Newsletter</h3>
-                    <p>Subscribe to our newsletter for the latest updates and technology insights.</p>
+                    <h3>Energy Insights</h3>
+                    <p>Subscribe to our newsletter for solar energy tips and renewable technology updates.</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Your Email Address">
+                        <input type="email" placeholder="Your Email Address" required>
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
@@ -987,10 +1082,11 @@
     </div>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/254741404232?text=I%20would%20like%20to%20know%20more%20about%20your%20products." class="whatsapp-button" target="_blank">
+    <a href="https://wa.me/254741404232?text=I'm%20interested%20in%20your%20solar%20installation%20services.%20Please%20contact%20me." class="whatsapp-button" target="_blank">
         <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        <span class="whatsapp-tooltip">Chat about Solar Solutions</span>
     </a>
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
