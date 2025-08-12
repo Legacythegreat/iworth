@@ -1527,17 +1527,168 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <img src="hero.avif" alt="Technology Solutions" class="hero-bg">
-        <div class="container">
-            <h1>Professional AV & IT Solutions for Businesses</h1>
-            <p>iWorth Technologies provides comprehensive technology solutions to help your business or educational institution thrive in the digital age.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn btn-primary">Get a Free Consultation</a>
-                <a href="#services" class="btn btn-secondary">Our Services</a>
-            </div>
-        </div>
-    </section>
+    
+<!-- Product Carousel Hero Replacement -->
+<section class="hero-carousel">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide">
+      <img src="interactivepanel.jpg" alt="Interactive Display">
+      <div class="carousel-caption">
+        <h2>Interactive Displays</h2>
+        <p>Engage your audience with crystal-clear, touch-enabled technology.</p>
+        <a href="products.html#interactive" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <img src="conference.jpeg" alt="Conference Solutions">
+      <div class="carousel-caption">
+        <h2>Conference Room Solutions</h2>
+        <p>Professional AV setups for seamless meetings and presentations.</p>
+        <a href="products.html#conference" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <img src="cables.jpeg" alt="Networking Equipment">
+      <div class="carousel-caption">
+        <h2>Networking Equipment</h2>
+        <p>Reliable infrastructure for fast, secure connections.</p>
+        <a href="products.html#networking" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+    <!-- Slide 4 -->
+    <div class="carousel-slide">
+      <img src="indoor.jpg" alt="Digital Signage">
+      <div class="carousel-caption">
+        <h2>Digital Signage</h2>
+        <p>Deliver messages effectively with dynamic, remote-controlled screens.</p>
+        <a href="products.html#digitalsignage" class="btn btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation -->
+  <div class="carousel-nav">
+    <span class="prev">&#10094;</span>
+    <span class="next">&#10095;</span>
+  </div>
+  <!-- Dots -->
+  <div class="carousel-dots"></div>
+</section>
+
+<style>
+.hero-carousel {
+  position: relative;
+  overflow: hidden;
+  max-height: 400px;
+}
+.carousel-container {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+.carousel-slide {
+  min-width: 100%;
+  position: relative;
+}
+.carousel-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 50px;
+  background: rgba(0,0,0,0.5);
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: white;
+  max-width: 400px;
+}
+.carousel-caption h2 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+.carousel-caption p {
+  font-size: 1rem;
+}
+.carousel-nav {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 10;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+.carousel-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  margin: 0 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.carousel-dots .active {
+  background: var(--accent);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.querySelector('.carousel-dots');
+  let currentIndex = 0;
+  let autoSlide;
+
+  // Create dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.addEventListener('click', () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  });
+  const dots = dotsContainer.querySelectorAll('span');
+
+  function showSlide(index) {
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    document.querySelector('.carousel-container').style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(d => d.classList.remove('active'));
+    dots[index].classList.add('active');
+    currentIndex = index;
+  }
+  function nextSlide() { showSlide(currentIndex + 1); }
+  function prevSlide() { showSlide(currentIndex - 1); }
+
+  document.querySelector('.next').addEventListener('click', nextSlide);
+  document.querySelector('.prev').addEventListener('click', prevSlide);
+
+  function startAutoSlide() {
+    autoSlide = setInterval(nextSlide, 5000);
+  }
+  function stopAutoSlide() {
+    clearInterval(autoSlide);
+  }
+  document.querySelector('.hero-carousel').addEventListener('mouseenter', stopAutoSlide);
+  document.querySelector('.hero-carousel').addEventListener('mouseleave', startAutoSlide);
+
+  showSlide(0);
+  startAutoSlide();
+});
+</script>
+
 
     <!-- About Section -->
     <section class="about">
