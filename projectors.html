@@ -452,6 +452,11 @@
         }
         
         /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -468,6 +473,68 @@
             display: flex;
             align-items: flex-start;
             gap: 15px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(241, 90, 41, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(241, 90, 41, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
         }
         
         /* Footer */
@@ -528,76 +595,6 @@
             opacity: 0.7;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .solution-hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links, .nav-cta {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .solution-hero {
-                padding: 100px 0;
-            }
-            
-            .solution-hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Logo Tagline */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .logo-tagline {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--accent);
-            line-height: 1.2;
-            margin-top: 5px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        header.scrolled .logo-tagline {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        @media (max-width: 768px) {
-            .logo-tagline {
-                font-size: 0.6rem;
-                margin-top: 3px;
-            }
-        }
         /* WhatsApp Button */
         .whatsapp-button {
             position: fixed;
@@ -643,6 +640,79 @@
             visibility: visible;
             right: 75px;
         }
+        
+        /* Logo Tagline */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-tagline {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            line-height: 1.2;
+            margin-top: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled .logo-tagline {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .solution-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links, .nav-cta {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .logo-tagline {
+                font-size: 0.6rem;
+                margin-top: 3px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .solution-hero {
+                padding: 100px 0;
+            }
+            
+            .solution-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -678,7 +748,7 @@
                     <a href="index.html">Home</a>
                     <a href="about.html">About</a>
                     <a href="projectors.html#contact">Contact</a>
-                    <a href=index.html#clients">Clients</a>
+                    <a href="index.html#clients">Clients</a>
                 </div>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -695,8 +765,8 @@
         </button>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
-       <a href="projectors.html#contact">Contact</a>
-           <a href=index.html#clients">Clients</a>
+        <a href="projectors.html#contact">Contact</a>
+        <a href="index.html#clients">Clients</a>
         <a href="tel:+254741404232" class="btn btn-primary">Call Now</a>
     </div>
 
@@ -848,80 +918,102 @@
             </div>
         </section>
 
-        
-<!-- Contact Section -->
-<section class="contact" id="contact">
-    <div class="container">
-        <div class="section-title">
-            <h2>Contact <span>Us</span></h2>
-            <p>Get in touch for projector inquiries or support</p>
-        </div>
-
-        <div class="contact-container">
-            <!-- Contact Info -->
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Our Office</h3>
-                        <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
-                    </div>
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch with our team for all your technology needs</p>
                 </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <h3>Phone</h3>
-                        <p>
-                            <a href="tel:+254741404232">+254 741 404 232</a><br>
-                            <a href="tel:+254774132425">+254 774 132 425</a>
-                        </p>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Our Office</h3>
+                                <p>6th Floor Coffee Plaza - Haile Sellasie Avenue, Nairobi Kenya</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Phone</h3>
+                                <p>
+                                    <a href="tel:+254741404232">+254 741 404 232</a><br>
+                                    <a href="tel:+254774132425">+254 774 132 425</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p>
+                                    <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h3>Working Hours</h3>
+                                <p>
+                                    Monday - Friday: 8:00 AM - 5:00 PM<br>
+                                    Saturday: 9:00 AM - 1:00 PM
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p>
-                            <a href="mailto:info@iworth.co.ke">info@iworth.co.ke</a>
-                        </p>
+                    
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm" action="https://formsubmit.co/info@iworth.co.ke" method="POST">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-control">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="">
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h3>Projector Inquiry</h3>
-                <form action="https://formsubmit.co/info@iworth.co.ke" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <input type="tel" name="phone" placeholder="Your Phone">
-
-                    <select name="projector-type">
-                        <option value="">Select projector type</option>
-                        <option value="standard">Standard Projector</option>
-                        <option value="short-throw">Short Throw Projector</option>
-                        <option value="laser">Laser Projector</option>
-                        <option value="not-sure">Not sure - need advice</option>
-                    </select>
-
-                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-
-                    <!-- Hidden Form Fields -->
-                    <input type="hidden" name="_subject" value="Projector Inquiry from Website">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://iworth.co.ke/thank-you.html">
-
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Inquiry
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
+        </section>
     </main>
 
     <!-- Footer -->
@@ -988,6 +1080,7 @@
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
     </a>
+
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
