@@ -1802,21 +1802,12 @@
                     thumb.classList.add('active');
                     
                     // Update main image
-                    mainImg.src = thumb.src.replace('-thumb', '');
+                    mainImg.src = thumb.src;
                     mainImg.alt = thumb.alt;
                 });
             });
         });
-// ...existing code...
-thumbnails.forEach(thumb => {
-    thumb.addEventListener('click', () => {
-        thumbnails.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        mainImg.src = thumb.src;
-        mainImg.alt = thumb.alt;
-    });
-});
-// ...existing code...
+
         // Quick View Modal
         const productModal = document.getElementById('productModal');
         const closeModal = document.getElementById('closeModal');
@@ -1861,8 +1852,68 @@ thumbnails.forEach(thumb => {
                     { name: "Built-in Apps", value: "Whiteboard, Browser, Media Player" },
                     { name: "Warranty", value: "3 Years" }
                 ]
+            },
+            21: {
+                title: "Optoma ST Short Throw Projector",
+                price: "KSh 175,000",
+                description: "Professional short throw DLP projector with 3,600 lumens brightness and XGA resolution. Ideal for commercial use with a lamp life of 6,500 hours.",
+                images: ["projector-st.jpg", "projector-st2.jpg"],
+                specs: [
+                    { name: "Brand", value: "Optoma" },
+                    { name: "Model", value: "Optoma ST" },
+                    { name: "Brightness", value: "3,600 lumens" },
+                    { name: "Technology", value: "DLP" },
+                    { name: "Resolution", value: "XGA (1024×768)" },
+                    { name: "Contrast Ratio", value: "20000:1" },
+                    { name: "Throw Ratio", value: "0.62:1" },
+                    { name: "Lamp Life", value: "6,500 hours" },
+                    { name: "Lamp Type", value: "Ultra high pressure mercury lamp" }
+                ]
+            },
+            22: {
+                title: "Premium Interactive Flat Panel 65\" 4K UHD",
+                price: "KSh 320,000",
+                description: "Professional interactive display with 4K resolution, Android 14, 48MP camera, and 8 array microphones. Ideal for business, education, and collaboration spaces.",
+                images: ["panel-premium.jpg", "panel-premium2.jpg"],
+                specs: [
+                    { name: "Display Size", value: "65\" 4K UHD" },
+                    { name: "Resolution", value: "3840 x 2160" },
+                    { name: "Operating System", value: "Android 14" },
+                    { name: "Memory", value: "8GB RAM + 128GB Storage" },
+                    { name: "Camera", value: "48MP Built-in" },
+                    { name: "Microphone", value: "8 Array Microphone" },
+                    { name: "Touch Points", value: "20-point multi-touch" },
+                    { name: "Connectivity", value: "WiFi, Bluetooth, USB, Type C, HDMI" },
+                    { name: "Optional OPS", value: "Windows 10 Pro, Core i5/i7" }
+                ]
+            },
+            23: {
+                title: "Interactive Display Floor Stand (65-98\")",
+                price: "KSh 85,000",
+                description: "Universal floor stand designed for interactive flat panel displays from 65\" to 98\". Supports up to 130kg with VESA compatibility up to 1000x600.",
+                images: ["stand-large.jpg"],
+                specs: [
+                    { name: "Compatible Sizes", value: "65\" to 98\" displays" },
+                    { name: "Weight Capacity", value: "130kg (286.601LBS)" },
+                    { name: "VESA Compatibility", value: "200x200 to 1000x600" },
+                    { name: "Color", value: "Black" },
+                    { name: "Features", value: "Height adjustable, sturdy base" }
+                ]
+            },
+            24: {
+                title: "Interactive Display Floor Stand (55-86\")",
+                price: "KSh 65,000",
+                description: "Height-adjustable floor stand for 55\" to 86\" displays with integrated equipment shelf and 5-level height adjustment. Supports up to 80kg.",
+                images: ["stand-medium.jpg"],
+                specs: [
+                    { name: "Compatible Sizes", value: "55\" to 86\" displays" },
+                    { name: "Weight Capacity", value: "80kg (198.416LBS)" },
+                    { name: "VESA Compatibility", value: "100x100 to 800x600" },
+                    { name: "Color", value: "Black" },
+                    { name: "Features", value: "5-level height adjustment, equipment shelf, four lockable casters" },
+                    { name: "Optional", value: "Camera shelf available" }
+                ]
             }
-            // Continue for all products...
         };
 
         quickViewBtns.forEach(btn => {
@@ -1892,7 +1943,7 @@ thumbnails.forEach(thumb => {
                         thumb.addEventListener('click', () => {
                             modalThumbnails.querySelectorAll('.modal-thumbnail').forEach(t => t.classList.remove('active'));
                             thumb.classList.add('active');
-                            modalMainImage.src = img.replace('-thumb', '');
+                            modalMainImage.src = img;
                         });
                         
                         modalThumbnails.appendChild(thumb);
@@ -1953,75 +2004,6 @@ thumbnails.forEach(thumb => {
                 behavior: 'smooth'
             });
         });
-        // Add to your existing products object
-const products = {
-    // ... existing products ...
-    
-    21: {
-        title: "Optoma ST Short Throw Projector",
-        price: "KSh 175,000",
-        description: "Professional short throw DLP projector with 3,600 lumens brightness and XGA resolution. Ideal for commercial use with a lamp life of 6,500 hours.",
-        images: ["projector-st.jpg", "projector-st2.jpg"],
-        specs: [
-            { name: "Brand", value: "Optoma" },
-            { name: "Model", value: "Optoma ST" },
-            { name: "Brightness", value: "3,600 lumens" },
-            { name: "Technology", value: "DLP" },
-            { name: "Resolution", value: "XGA (1024×768)" },
-            { name: "Contrast Ratio", value: "20000:1" },
-            { name: "Throw Ratio", value: "0.62:1" },
-            { name: "Lamp Life", value: "6,500 hours" },
-            { name: "Lamp Type", value: "Ultra high pressure mercury lamp" }
-        ]
-    },
-    
-    22: {
-        title: "Premium Interactive Flat Panel 65\" 4K UHD",
-        price: "KSh 320,000",
-        description: "Professional interactive display with 4K resolution, Android 14, 48MP camera, and 8 array microphones. Ideal for business, education, and collaboration spaces.",
-        images: ["panel-premium.jpg", "panel-premium2.jpg"],
-        specs: [
-            { name: "Display Size", value: "65\" 4K UHD" },
-            { name: "Resolution", value: "3840 x 2160" },
-            { name: "Operating System", value: "Android 14" },
-            { name: "Memory", value: "8GB RAM + 128GB Storage" },
-            { name: "Camera", value: "48MP Built-in" },
-            { name: "Microphone", value: "8 Array Microphone" },
-            { name: "Touch Points", value: "20-point multi-touch" },
-            { name: "Connectivity", value: "WiFi, Bluetooth, USB, Type C, HDMI" },
-            { name: "Optional OPS", value: "Windows 10 Pro, Core i5/i7" }
-        ]
-    },
-    
-    23: {
-        title: "Interactive Display Floor Stand (65-98\")",
-        price: "KSh 85,000",
-        description: "Universal floor stand designed for interactive flat panel displays from 65\" to 98\". Supports up to 130kg with VESA compatibility up to 1000x600.",
-        images: ["stand-large.jpg"],
-        specs: [
-            { name: "Compatible Sizes", value: "65\" to 98\" displays" },
-            { name: "Weight Capacity", value: "130kg (286.601LBS)" },
-            { name: "VESA Compatibility", value: "200x200 to 1000x600" },
-            { name: "Color", value: "Black" },
-            { name: "Features", value: "Height adjustable, sturdy base" }
-        ]
-    },
-    
-    24: {
-        title: "Interactive Display Floor Stand (55-86\")",
-        price: "KSh 65,000",
-        description: "Height-adjustable floor stand for 55\" to 86\" displays with integrated equipment shelf and 5-level height adjustment. Supports up to 80kg.",
-        images: ["stand-medium.jpg"],
-        specs: [
-            { name: "Compatible Sizes", value: "55\" to 86\" displays" },
-            { name: "Weight Capacity", value: "80kg (198.416LBS)" },
-            { name: "VESA Compatibility", value: "100x100 to 800x600" },
-            { name: "Color", value: "Black" },
-            { name: "Features", value: "5-level height adjustment, equipment shelf, four lockable casters" },
-            { name: "Optional", value: "Camera shelf available" }
-        ]
-    }
-};
     </script>
 </body>
 </html>
