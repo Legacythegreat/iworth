@@ -671,7 +671,29 @@
             min-height: 150px;
             resize: vertical;
         }
-        
+
+        .solution-hero .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+    .hero-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+}
         /* Footer */
         footer {
             background-color: var(--primary-dark);
