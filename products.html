@@ -99,6 +99,7 @@
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary-dark);
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
@@ -598,65 +599,6 @@
             background: var(--accent-light);
         }
 
-        /* Brand Slider Section */
-        .brands-section {
-            padding: 40px 0;
-            background-color: var(--light-bg);
-            overflow: hidden;
-        }
-
-        .brands-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .brands-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: var(--primary-dark);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .brands-slider {
-            display: flex;
-            animation: slide 30s linear infinite;
-            padding: 20px 0;
-        }
-
-        .brand-item {
-            flex: 0 0 auto;
-            margin: 0 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-            filter: grayscale(100%);
-        }
-
-        .brand-item:hover {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        .brand-img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        @keyframes slide {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
-
         /* Product Details Modal */
         .product-modal {
             position: fixed;
@@ -1100,6 +1042,71 @@
             transform: translateY(-5px);
         }
 
+        /* Brand Logos Slider */
+        .brands-slider {
+            margin-top: 60px;
+            padding: 30px 0;
+            background: rgba(10, 34, 64, 0.03);
+            border-radius: 8px;
+        }
+
+        .brands-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .brands-slider-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .brands-track {
+            display: flex;
+            animation: slide 30s linear infinite;
+            width: calc(200px * 14);
+        }
+
+        .brand-item {
+            flex: 0 0 auto;
+            width: 150px;
+            margin: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .brand-item:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .brand-logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-150px * 7));
+            }
+        }
+
+        /* Pause animation on hover */
+        .brands-slider-container:hover .brands-track {
+            animation-play-state: paused;
+        }
+
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .product-grid {
@@ -1147,15 +1154,12 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            .brands-slider {
-                animation: slide-mobile 25s linear infinite;
-            }
-
             .brand-item {
+                width: 120px;
                 margin: 0 15px;
             }
 
-            .brand-img {
+            .brand-logo {
                 height: 30px;
             }
         }
@@ -1181,25 +1185,17 @@
                 grid-template-columns: 1fr;
             }
 
-            .brands-title {
-                font-size: 1.2rem;
+            .brands-slider {
+                margin-top: 40px;
             }
 
             .brand-item {
+                width: 100px;
                 margin: 0 10px;
             }
 
-            .brand-img {
+            .brand-logo {
                 height: 25px;
-            }
-        }
-
-        @keyframes slide-mobile {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-200%);
             }
         }
     </style>
@@ -1320,7 +1316,7 @@
                             <span><i class="fas fa-microchip"></i> Android 14</span>
                             <span><i class="fas fa-hand-pointer"></i> 20-Point Touch</span>
                             <span><i class="fas fa-camera"></i> 48MP Camera</span>
-                            <span><i class="fas fa-microphone"></i> 8 Array Mics</span>
+                        <span><i class="fas fa-microphone"></i> 8 Array Mics</span>>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
@@ -1334,10 +1330,10 @@
                 <!-- Product 3 -->
                 <div class="product-card" data-category="interactive">
                     <div class="product-gallery">
-                        <img src="panel3.jpg" alt="Interactive Panel 86" class="main-image">
+                        <img src="panel4.jpg" alt="Interactive Panel 86" class="main-image">
                         <div class="thumbnail-container">
-                            <img src="panel3.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="panel4.jpg" alt="Thumbnail 2" class="thumbnail">
+                            <img src="panel4.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="panel2.jpg" alt="Thumbnail 2" class="thumbnail">
                         </div>
                     </div>
                     <div class="product-info">
@@ -1345,9 +1341,9 @@
                         <div class="product-specs">
                             <span><i class="fas fa-tv"></i> 86" 4K Display</span>
                             <span><i class="fas fa-microchip"></i> Android 14</span>
-                            <span><i class="fas fa-hand-pointer"></i> 20-Point Touch</span>
+                            <span><i class="fas fa-hand-pointer"></i> 40-Point Touch</span>
                             <span><i class="fas fa-camera"></i> 48MP Camera</span>
-                            <span><i class="fas fa-microphone"></i> 8 Array Mics</span>
+                        <span><i class="fas fa-microphone"></i> 8 Array Mics</span>>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
@@ -1362,10 +1358,10 @@
                 <div class="product-card" data-category="interactive">
                     <div class="product-badge sale">Sale</div>
                     <div class="product-gallery">
-                        <img src="panel1.jpg" alt="Interactive Panel 55" class="main-image">
+                        <img src="panel2.jpg" alt="Interactive Panel 55" class="main-image">
                         <div class="thumbnail-container">
-                            <img src="panel1.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="panel2.jpg" alt="Thumbnail 2" class="thumbnail">
+                            <img src="panel2.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="panel6.jpg" alt="Thumbnail 2" class="thumbnail">
                         </div>
                     </div>
                     <div class="product-info">
@@ -1375,14 +1371,64 @@
                             <span><i class="fas fa-microchip"></i> Android 14</span>
                             <span><i class="fas fa-hand-pointer"></i> 20-Point Touch</span>
                             <span><i class="fas fa-camera"></i> 48MP Camera</span>
-                            <span><i class="fas fa-microphone"></i> 8 Array Mics</span>
+                        <span><i class="fas fa-microphone"></i> 8 Array Mics</span>>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
-                                <span class="from">From</span>
-                                <span class="price">KSh 120,000</span>
+                                <span class="price">KSh 150,000</span>
                             </div>
                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Brand Logos Slider -->
+            <div class="brands-slider">
+                <div class="brands-title">Trusted Brands We Partner With</div>
+                <div class="brands-slider-container">
+                    <div class="brands-track">
+                        <div class="brand-item">
+                            <div class="brand-logo">Huawei IdeaHub</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Promethean</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">ActivePanel</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Dahua</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Hisense</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">iWorth</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Arduino</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">RoboRobo</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Globisens</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Epson</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Optoma</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">ViewSonic</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Newline</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Smart</div>
                         </div>
                     </div>
                 </div>
@@ -1390,101 +1436,32 @@
         </div>
     </section>
 
-    <!-- Brand Slider Section -->
-    <section class="brands-section">
-        <div class="brands-container">
-            <h3 class="brands-title">Trusted by Leading Brands</h3>
-            <div class="brands-slider">
-                <div class="brand-item">
-                    <div class="brand-img">Huawei IdeaHub</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Promethean</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Activepanel</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Dahua</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Hisense</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">iWorth</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Arduino</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Roborobo</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Globisens</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Epson</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Optima</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Conferencing Section -->
-    <section class="product-section" id="conferencing">
+    <!-- Projectors Section -->
+    <section class="product-section" id="projectors">
         <div class="container">
             <div class="section-header">
-                <h2>Video Conferencing</h2>
+                <h2>Projectors</h2>
                 
             </div>
             
             <div class="product-grid">
                 <!-- Product 1 -->
-                <div class="product-card" data-category="conferencing">
+                <div class="product-card" data-category="projectors">
                     <div class="product-badge popular">Most Popular</div>
                     <div class="product-gallery">
-                        <img src="vc1.jpg" alt="Video Conferencing System" class="main-image">
+                        <img src="projector1.jpg" alt="Laser Projector" class="main-image">
                         <div class="thumbnail-container">
-                            <img src="vc1.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="vc2.jpg" alt="Thumbnail 2" class="thumbnail">
+                            <img src="projector1.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="projector2.jpg" alt="Thumbnail 2" class="thumbnail">
                         </div>
                     </div>
                     <div class="product-info">
-                        <h3>All-in-One Video Conferencing System</h3>
+                        <h3>Laser Projector 1080P HD</h3>
                         <div class="product-specs">
-                            <span><i class="fas fa-video"></i> 4K Camera</span>
-                            <span><i class="fas fa-microphone"></i> 8m Pickup</span>
-                            <span><i class="fas fa-tv"></i> 55" Display</span>
-                            <span><i class="fas fa-plug"></i> USB/HDMI</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="price-range">
-                                <span class="price">KSh 85,000</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" data-category="conferencing">
-                    <div class="product-badge new">New</div>
-                    <div class="product-gallery">
-                        <img src="vc2.jpg" alt="PTZ Camera" class="main-image">
-                        <div class="thumbnail-container">
-                            <img src="vc2.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="vc3.jpg" alt="Thumbnail 2" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>Professional PTZ Conference Camera</h3>
-                        <div class="product-specs">
-                            <span><i class="fas fa-video"></i> 4K UHD</span>
-                            <span><i class="fas fa-expand"></i> 12x Zoom</span>
-                            <span><i class="fas fa-broadcast-tower"></i> HDMI/USB</span>
-                            <span><i class="fas fa-compress-alt"></i> Low Light</span>
+                            <span><i class="fas fa-lightbulb"></i> Laser Light Source</span>
+                            <span><i class="fas fa-tv"></i> 1080P HD</span>
+                            <span><i class="fas fa-bullhorn"></i> Built-in Speakers</span>
+                            <span><i class="fas fa-expand"></i> Up to 150" Display</span>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
@@ -1495,22 +1472,389 @@
                     </div>
                 </div>
 
-                <!-- Product 3 -->
-                <div class="product-card" data-category="conferencing">
+                <!-- Product 2 -->
+                <div class="product-card" data-category="projectors">
+                    <div class="product-badge new">New</div>
                     <div class="product-gallery">
-                        <img src="vc3.jpg" alt="Soundbar" class="main-image">
+                        <img src="projector2.jpg" alt="4K Projector" class="main-image">
                         <div class="thumbnail-container">
-                            <img src="vc3.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="vc4.jpg" alt="Thumbnail 2" class="thumbnail">
+                            <img src="projector2.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="projector3.jpg" alt="Thumbnail 2" class="thumbnail">
                         </div>
                     </div>
                     <div class="product-info">
-                        <h3>Conference Soundbar with Mic Array</h3>
+                        <h3>4K Ultra HD Projector</h3>
                         <div class="product-specs">
-                            <span><i class="fas fa-microphone"></i> 8m Range</span>
-                            <span><i class="fas fa-volume-up"></i> 60W Output</span>
-                            <span><i class="fas fa-bluetooth"></i> Wireless</span>
-                            <span><i class="fas fa-plug"></i> HDMI ARC</span>
+                            <span><i class="fas fa-lightbulb"></i> LED Light Source</span>
+                            <span><i class="fas fa-tv"></i> 4K Ultra HD</span>
+                            <span><i class="fas fa-bullhorn"></i> Stereo Speakers</span>
+                            <span><i class="fas fa-expand"></i> Up to 200" Display</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 85,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="projectors">
+                    <div class="product-gallery">
+                        <img src="projector3.jpg" alt="Short Throw Projector" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="projector3.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="projector4.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Short Throw Projector</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-lightbulb"></i> Laser Light Source</span>
+                            <span><i class="fas fa-tv"></i> 1080P HD</span>
+                            <span><i class="fas fa-ruler"></i> Short Throw</span>
+                            <span><i class="fas fa-expand"></i> Up to 120" Display</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 75,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="projectors">
+                    <div class="product-badge sale">Sale</div>
+                    <div class="product-gallery">
+                        <img src="projector4.jpg" alt="Portable Projector" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="projector4.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="projector1.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Portable Mini Projector</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-lightbulb"></i> LED Light Source</span>
+                            <span><i class="fas fa-tv"></i> 720P HD</span>
+                            <span><i class="fas fa-weight"></i> Portable</span>
+                            <span><i class="fas fa-expand"></i> Up to 100" Display</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 25,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Brand Logos Slider -->
+            <div class="brands-slider">
+                <div class="brands-title">Trusted Brands We Partner With</div>
+                <div class="brands-slider-container">
+                    <div class="brands-track">
+                        <div class="brand-item">
+                            <div class="brand-logo">Epson</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Optoma</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">BenQ</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">ViewSonic</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">LG</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Sony</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">NEC</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Casio</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Dell</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Acer</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Hisense</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Xiaomi</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Anker</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">iWorth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Robotics & Coding Section -->
+    <section class="product-section" id="robotics">
+        <div class="container">
+            <div class="section-header">
+                <h2>Robotics & Coding</h2>
+                
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="robotics">
+                    <div class="product-badge popular">Most Popular</div>
+                    <div class="product-gallery">
+                        <img src="robot1.jpg" alt="Educational Robot Kit" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="robot1.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="robot2.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Educational Robot Kit - Starter</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-robot"></i> Build & Program</span>
+                            <span><i class="fas fa-code"></i> Block Coding</span>
+                            <span><i class="fas fa-microchip"></i> Arduino Based</span>
+                            <span><i class="fas fa-book"></i> Curriculum Included</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 15,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="robotics">
+                    <div class="product-badge new">New</div>
+                    <div class="product-gallery">
+                        <img src="robot2.jpg" alt="Advanced Robot Kit" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="robot2.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="robot3.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Advanced Robotics Kit</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-robot"></i> Multiple Sensors</span>
+                            <span><i class="fas fa-code"></i> Python & C++</span>
+                            <span><i class="fas fa-microchip"></i> Raspberry Pi</span>
+                            <span><i class="fas fa-book"></i> Advanced Curriculum</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 35,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="robotics">
+                    <div class="product-gallery">
+                        <img src="robot3.jpg" alt="Drone Coding Kit" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="robot3.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="robot4.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Drone Coding Kit</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-drone"></i> Programmable Drone</span>
+                            <span><i class="fas fa-code"></i> Block & Python</span>
+                            <span><i class="fas fa-camera"></i> HD Camera</span>
+                            <span><i class="fas fa-book"></i> Flight Curriculum</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 28,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-category="robotics">
+                    <div class="product-badge sale">Sale</div>
+                    <div class="product-gallery">
+                        <img src="robot4.jpg" alt="Coding Starter Kit" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="robot4.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="robot1.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Coding Starter Kit</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-laptop-code"></i> No Computer Needed</span>
+                            <span><i class="fas fa-code"></i> Block Coding</span>
+                            <span><i class="fas fa-gamepad"></i> Game Based Learning</span>
+                            <span><i class="fas fa-book"></i> Beginner Curriculum</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 12,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Brand Logos Slider -->
+            <div class="brands-slider">
+                <div class="brands-title">Trusted Brands We Partner With</div>
+                <div class="brands-slider-container">
+                    <div class="brands-track">
+                        <div class="brand-item">
+                            <div class="brand-logo">Arduino</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">RoboRobo</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Raspberry Pi</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">LEGO Education</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Makeblock</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Sphero</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Ozobot</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Micro:bit</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">VEX Robotics</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Wonder Workshop</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">iWorth</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Globisens</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Kano</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">UBTECH</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Science Lab Section -->
+    <section class="product-section" id="science">
+        <div class="container">
+            <div class="section-header">
+                <h2>Digital Science Lab</h2>
+                
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="science">
+                    <div class="product-badge popular">Most Popular</div>
+                    <div class="product-gallery">
+                        <img src="science1.jpg" alt="Science Lab Kit" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="science1.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="science2.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Digital Science Lab Kit</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-flask"></i> Multiple Sensors</span>
+                            <span><i class="fas fa-tablet-alt"></i> Tablet Compatible</span>
+                            <span><i class="fas fa-chart-line"></i> Data Analysis</span>
+                            <span><i class="fas fa-book"></i> 50+ Experiments</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 42,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="science">
+                    <div class="product-badge new">New</div>
+                    <div class="product-gallery">
+                        <img src="science2.jpg" alt="Physics Sensor Set" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="science2.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="science3.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Physics Sensor Set</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-weight"></i> Motion & Force</span>
+                            <span><i class="fas fa-bolt"></i> Electricity & Magnetism</span>
+                            <span><i class="fas fa-tablet-alt"></i> Bluetooth Enabled</span>
+                            <span><i class="fas fa-book"></i> 30+ Experiments</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="price-range">
+                                <span class="price">KSh 28,000</span>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-category="science">
+                    <div class="product-gallery">
+                        <img src="science3.jpg" alt="Chemistry Sensor Set" class="main-image">
+                        <div class="thumbnail-container">
+                            <img src="science3.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="science4.jpg" alt="Thumbnail 2" class="thumbnail">
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chemistry Sensor Set</h3>
+                        <div class="product-specs">
+                            <span><i class="fas fa-vial"></i> pH & Temperature</span>
+                            <span><i class="fas fa-tint"></i> Conductivity & Colorimetry</span>
+                            <span><i class="fas fa-tablet-alt"></i> Wireless Connectivity</span>
+                            <span><i class="fas fa-book"></i> 40+ Experiments</span>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
@@ -1522,233 +1866,81 @@
                 </div>
 
                 <!-- Product 4 -->
-                <div class="product-card" data-category="conferencing">
+                <div class="product-card" data-category="science">
                     <div class="product-badge sale">Sale</div>
                     <div class="product-gallery">
-                        <img src="vc4.jpg" alt="Speakerphone" class="main-image">
+                        <img src="science4.jpg" alt="Environmental Science Kit" class="main-image">
                         <div class="thumbnail-container">
-                            <img src="vc4.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="vc1.jpg" alt="Thumbnail 2" class="thumbnail">
+                            <img src="science4.jpg" alt="Thumbnail 1" class="thumbnail active">
+                            <img src="science1.jpg" alt="Thumbnail 2" class="thumbnail">
                         </div>
                     </div>
                     <div class="product-info">
-                        <h3>Wireless Conference Speakerphone</h3>
+                        <h3>Environmental Science Kit</h3>
                         <div class="product-specs">
-                            <span><i class="fas fa-microphone"></i> 360° Pickup</span>
-                            <span><i class="fas fa-bluetooth"></i> Bluetooth 5.0</span>
-                            <span><i class="fas fa-clock"></i> 20h Battery</span>
-                            <span><i class="fas fa-mobile-alt"></i> App Control</span>
+                            <span><i class="fas fa-leaf"></i> Weather & Environment</span>
+                            <span><i class="fas fa-sun"></i> Light & Sound</span>
+                            <span><i class="fas fa-tablet-alt"></i> Mobile App</span>
+                            <span><i class="fas fa-book"></i> 25+ Experiments</span>
                         </div>
                         <div class="product-footer">
                             <div class="price-range">
-                                <span class="price">KSh 18,500</span>
+                                <span class="price">KSh 22,000</span>
                             </div>
                             
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Slider Section -->
-    <section class="brands-section">
-        <div class="brands-container">
-            <h3 class="brands-title">Our Technology Partners</h3>
-            <div class="brands-slider">
-                <div class="brand-item">
-                    <div class="brand-img">Huawei IdeaHub</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Promethean</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Activepanel</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Dahua</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Hisense</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">iWorth</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Arduino</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Roborobo</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Globisens</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Epson</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Optima</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Digital Signage Section -->
-    <section class="product-section" id="signage">
-        <div class="container">
-            <div class="section-header">
-                <h2>Digital Signage</h2>
-                
             </div>
             
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-category="signage">
-                    <div class="product-badge popular">Most Popular</div>
-                    <div class="product-gallery">
-                        <img src="ds1.jpg" alt="Digital Signage Display" class="main-image">
-                        <div class="thumbnail-container">
-                            <img src="ds1.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="ds2.jpg" alt="Thumbnail 2" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>55" Outdoor Digital Signage Display</h3>
-                        <div class="product-specs">
-                            <span><i class="fas fa-sun"></i> 2500 nits</span>
-                            <span><i class="fas fa-tv"></i> 55" Display</span>
-                            <span><i class="fas fa-tint"></i> IP55 Rated</span>
-                            <span><i class="fas fa-microchip"></i> Android 11</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="price-range">
-                                <span class="price">KSh 95,000</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card" data-category="signage">
-                    <div class="product-badge new">New</div>
-                    <div class="product-gallery">
-                        <img src="ds2.jpg" alt="Signage Player" class="main-image">
-                        <div class="thumbnail-container">
-                            <img src="ds2.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="ds3.jpg" alt="Thumbnail 2" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>4K Digital Signage Media Player</h3>
-                        <div class="product-specs">
-                            <span><i class="fas fa-microchip"></i> Quad Core</span>
-                            <span><i class="fas fa-memory"></i> 4GB/32GB</span>
-                            <span><i class="fas fa-wifi"></i> Dual Band WiFi</span>
-                            <span><i class="fas fa-desktop"></i> 4K Output</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="price-range">
-                                <span class="price">KSh 15,000</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card" data-category="signage">
-                    <div class="product-gallery">
-                        <img src="ds3.jpg" alt="Standee Display" class="main-image">
-                        <div class="thumbnail-container">
-                            <img src="ds3.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="ds4.jpg" alt="Thumbnail 2" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>43" Interactive Standee Display</h3>
-                        <div class="product-specs">
-                            <span><i class="fas fa-hand-pointer"></i> Touch Screen</span>
-                            <span><i class="fas fa-tv"></i> 43" Display</span>
-                            <span><i class="fas fa-microchip"></i> Android OS</span>
-                            <span><i class="fas fa-compress-alt"></i> Slim Design</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="price-range">
-                                <span class="price">KSh 65,000</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card" data-category="signage">
-                    <div class="product-badge sale">Sale</div>
-                    <div class="product-gallery">
-                        <img src="ds4.jpg" alt="Video Wall" class="main-image">
-                        <div class="thumbnail-container">
-                            <img src="ds4.jpg" alt="Thumbnail 1" class="thumbnail active">
-                            <img src="ds1.jpg" alt="Thumbnail 2" class="thumbnail">
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3>2x2 Video Wall Solution (55")</h3>
-                        <div class="product-specs">
-                            <span><i class="fas fa-th"></i> 2x2 Configuration</span>
-                            <span><i class="fas fa-tv"></i> 55" Displays</span>
-                            <span><i class="fas fa-border-all"></i> Ultra Narrow Bezel</span>
-                            <span><i class="fas fa-cog"></i> Video Wall Processor</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="price-range">
-                                <span class="price">KSh 320,000</span>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Brand Slider Section -->
-    <section class="brands-section">
-        <div class="brands-container">
-            <h3 class="brands-title">Premium Technology Brands</h3>
+            <!-- Brand Logos Slider -->
             <div class="brands-slider">
-                <div class="brand-item">
-                    <div class="brand-img">Huawei IdeaHub</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Promethean</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Activepanel</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Dahua</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Hisense</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">iWorth</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Arduino</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Roborobo</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Globisens</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Epson</div>
-                </div>
-                <div class="brand-item">
-                    <div class="brand-img">Optima</div>
+                <div class="brands-title">Trusted Brands We Partner With</div>
+                <div class="brands-slider-container">
+                    <div class="brands-track">
+                        <div class="brand-item">
+                            <div class="brand-logo">Globisens</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Pasco</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Vernier</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Arduino</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">iWorth</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Data Harvest</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Intel</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Knight Scientific</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Pico Technology</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Texas Instruments</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">LEGO Education</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Smart</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">RoboRobo</div>
+                        </div>
+                        <div class="brand-item">
+                            <div class="brand-logo">Artec</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1757,50 +1949,42 @@
     <!-- Product Modal -->
     <div class="product-modal" id="productModal">
         <div class="modal-content">
-            <div class="close-modal" id="closeModal">
-                <i class="fas fa-times"></i>
-            </div>
+            <span class="close-modal" id="closeModal">&times;</span>
             <div class="modal-gallery">
                 <img src="panel1.jpg" alt="Product Image" class="modal-main-image" id="modalMainImage">
                 <div class="modal-thumbnails">
                     <img src="panel1.jpg" alt="Thumbnail" class="modal-thumbnail active">
                     <img src="panel2.jpg" alt="Thumbnail" class="modal-thumbnail">
                     <img src="panel3.jpg" alt="Thumbnail" class="modal-thumbnail">
-                    <img src="panel4.jpg" alt="Thumbnail" class="modal-thumbnail">
                 </div>
             </div>
             <div class="modal-info">
                 <h2 id="modalTitle">Interactive Flat Panel 65" 4K UHD</h2>
                 <div class="modal-price" id="modalPrice">KSh 180,000</div>
                 <p class="modal-description" id="modalDescription">
-                    Our premium interactive flat panel display offers an immersive collaborative experience with 4K UHD resolution, 20-point multi-touch capability, and built-in Android system. Perfect for classrooms, boardrooms, and collaborative workspaces.
+                    Our premium interactive flat panel offers stunning 4K resolution, multi-touch capability, and an intuitive interface designed for education and business environments. With built-in Android functionality and seamless connectivity options, it's the perfect solution for collaborative learning and presentations.
                 </p>
                 <div class="modal-specs">
                     <h3>Specifications</h3>
                     <div class="specs-grid" id="modalSpecs">
-                        <div class="spec-item"><strong>Display Size:</strong> 65"</div>
-                        <div class="spec-item"><strong>Resolution:</strong> 3840 × 2160 (4K UHD)</div>
-                        <div class="spec-item"><strong>Touch Points:</strong> 20-point IR Touch</div>
-                        <div class="spec-item"><strong>Operating System:</strong> Android 14</div>
-                        <div class="spec-item"><strong>CPU:</strong> Octa-core 2.5GHz</div>
+                        <div class="spec-item"><strong>Display:</strong> 65" 4K UHD</div>
+                        <div class="spec-item"><strong>Touch Points:</strong> 20-point multi-touch</div>
+                        <div class="spec-item"><strong>OS:</strong> Android 14</div>
                         <div class="spec-item"><strong>RAM:</strong> 4GB</div>
-                        <div class="spec-item"><strong>Storage:</strong> 64GB</div>
+                        <div class="spec-item"><strong>Storage:</strong> 32GB</div>
                         <div class="spec-item"><strong>Connectivity:</strong> Wi-Fi, Bluetooth, HDMI, USB</div>
-                        <div class="spec-item"><strong>Built-in Apps:</strong> Whiteboard, Browser, Play Store</div>
-                        <div class="spec-item"><strong>Warranty:</strong> 2 Years</div>
+                        <div class="spec-item"><strong>Camera:</strong> 48MP Auto-focus</div>
+                        <div class="spec-item"><strong>Microphone:</strong> 8-array microphone</div>
+                        <div class="spec-item"><strong>Speakers:</strong> Dual 15W stereo</div>
+                        <div class="spec-item"><strong>Warranty:</strong> 3 years</div>
                     </div>
                 </div>
                 <div class="modal-actions">
                     <button class="btn btn-primary">Request Quote</button>
-                    <button class="btn btn-secondary">Product Brochure</button>
+                    <button class="btn btn-secondary">Contact Sales</button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
     </div>
 
     <!-- Footer -->
@@ -1809,9 +1993,9 @@
             <div class="footer-container">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <div class="logo-text">iWorth<span>Technologies</span></div>
+                        <div class="logo-text">iWorth<span>.</span></div>
                     </div>
-                    <p>Leading provider of innovative AV & IT solutions in Kenya. We help businesses and educational institutions transform their communication and collaboration experiences.</p>
+                    <p>iWorth Technologies is a leading provider of innovative AV & IT solutions in Kenya, specializing in interactive displays, projectors, robotics, and digital science labs.</p>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1828,19 +2012,19 @@
                         <li><a href="index.html#services">Services</a></li>
                         <li><a href="products.html">Products</a></li>
                         <li><a href="index.html#clients">Clients</a></li>
-                        <li><a href="index.html#contact">Contact Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h3>Our Products</h3>
+                    <h3>Products</h3>
                     <ul>
-                        <li><a href="products.html#interactive">Interactive Displays</a></li>
-                        <li><a href="products.html#conferencing">Video Conferencing</a></li>
-                        <li><a href="products.html#signage">Digital Signage</a></li>
-                        <li><a href="products.html#accessories">Accessories</a></li>
-                        <li><a href="products.html#robotics">Robotics & STEM</a></li>
-                        <li><a href="products.html#training">ICT Training</a></li>
+                        <li><a href="#interactive">Interactive Displays</a></li>
+                        <li><a href="#projectors">Projectors</a></li>
+                        <li><a href="#robotics">Robotics & Coding</a></li>
+                        <li><a href="#science">Digital Science Lab</a></li>
+                        <li><a href="#">Access Control Systems</a></li>
+                        <li><a href="#">Video Conferencing</a></li>
                     </ul>
                 </div>
                 
@@ -1855,156 +2039,146 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 iWorth Technologies. All Rights Reserved. | Website Designed & Developed by iWorth Technologies</p>
+                <p>&copy; 2023 iWorth Technologies. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMenuBtn = document.getElementById('closeMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            mobileMenuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-            mobileMenuOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
-        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
         // Sticky Header
-        const header = document.getElementById('mainHeader');
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('mainHeader');
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
-
-        // Back to Top Button
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
+            
+            // Back to top button visibility
+            const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 500) {
-                backToTopBtn.classList.add('visible');
+                backToTop.classList.add('visible');
             } else {
-                backToTopBtn.classList.remove('visible');
+                backToTop.classList.remove('visible');
             }
         });
-
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Product Gallery Thumbnail Switching
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                const productCard = thumb.closest('.product-card');
-                const mainImage = productCard.querySelector('.main-image');
-                const allThumbs = productCard.querySelectorAll('.thumbnail');
-                
-                allThumbs.forEach(t => t.classList.remove('active'));
-                thumb.classList.add('active');
-                
-                mainImage.style.opacity = 0;
-                setTimeout(() => {
-                    mainImage.src = thumb.src;
-                    mainImage.style.opacity = 1;
-                }, 300);
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Back to Top
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
         });
-
-        // Product Modal
-        const quickViewBtns = document.querySelectorAll('.quick-view');
-        const productModal = document.getElementById('productModal');
-        const closeModalBtn = document.getElementById('closeModal');
-        const modalMainImage = document.getElementById('modalMainImage');
-        const modalThumbnails = document.querySelectorAll('.modal-thumbnail');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalSpecs = document.getElementById('modalSpecs');
-
-        quickViewBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const productCard = btn.closest('.product-card');
-                const productName = productCard.querySelector('h3').textContent;
-                const productPrice = productCard.querySelector('.price').textContent;
+        
+        // Product Gallery Thumbnails
+        document.querySelectorAll('.thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const mainImage = productCard.querySelector('.main-image');
                 
-                modalTitle.textContent = productName;
-                modalPrice.textContent = productPrice;
+                // Update main image
+                mainImage.src = this.src;
+                mainImage.alt = this.alt;
                 
-                productModal.classList.add('active');
+                // Update active thumbnail
+                productCard.querySelectorAll('.thumbnail').forEach(thumb => {
+                    thumb.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Modal Gallery Thumbnails
+        document.querySelectorAll('.modal-thumbnail').forEach(thumbnail => {
+            thumbnail.addEventListener('click', function() {
+                const modal = this.closest('.product-modal');
+                const mainImage = modal.querySelector('.modal-main-image');
+                
+                // Update main image
+                mainImage.src = this.src;
+                mainImage.alt = this.alt;
+                
+                // Update active thumbnail
+                modal.querySelectorAll('.modal-thumbnail').forEach(thumb => {
+                    thumb.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Quick View Button
+        document.querySelectorAll('.quick-view').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const title = productCard.querySelector('h3').textContent;
+                const price = productCard.querySelector('.price').textContent;
+                
+                // Update modal content
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalPrice').textContent = price;
+                
+                // Show modal
+                document.getElementById('productModal').classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
         });
-
-        closeModalBtn.addEventListener('click', () => {
-            productModal.classList.remove('active');
+        
+        // Close Modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         });
-
-        modalThumbnails.forEach(thumb => {
-            thumb.addEventListener('click', () => {
-                modalThumbnails.forEach(t => t.classList.remove('active'));
-                thumb.classList.add('active');
-                
-                modalMainImage.style.opacity = 0;
-                setTimeout(() => {
-                    modalMainImage.src = thumb.src;
-                    modalMainImage.style.opacity = 1;
-                }, 300);
-            });
-        });
-
+        
         // Category Filtering
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const productCards = document.querySelectorAll('.product-card');
-
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.dataset.category;
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
                 
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                productCards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
+                // Filter products
+                const category = this.getAttribute('data-category');
+                document.querySelectorAll('.product-card').forEach(card => {
+                    if (category === 'all') {
                         card.style.display = 'block';
-                        setTimeout(() => {
-                            card.style.opacity = 1;
-                            card.style.transform = 'translateY(0)';
-                        }, 10);
                     } else {
-                        card.style.opacity = 0;
-                        card.style.transform = 'translateY(20px)';
-                        setTimeout(() => {
+                        if (card.getAttribute('data-category') === category) {
+                            card.style.display = 'block';
+                        } else {
                             card.style.display = 'none';
-                        }, 300);
+                        }
                     }
                 });
-            });
-        });
-
-        // Initialize page with all products showing
-        window.addEventListener('DOMContentLoaded', () => {
-            productCards.forEach(card => {
-                card.style.display = 'block';
-                setTimeout(() => {
-                    card.style.opacity = 1;
-                    card.style.transform = 'translateY(0)';
-                }, 10);
             });
         });
     </script>
