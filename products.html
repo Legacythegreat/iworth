@@ -1003,6 +1003,66 @@
                 grid-template-columns: 1fr;
             }
         }
+
+         /* Trusted Brands Section */
+        .trusted-brands {
+            background-color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .trusted-brands h3 {
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .brands-scroll-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .brands-scroll {
+            display: flex;
+            justify-content:center;
+            animation: scroll 30s linear infinite;
+            padding: 10px 0;
+        }
+
+        .brand-item {
+            flex: 0 0 auto;
+            margin: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+        }
+
+        .brand-item img {
+            max-height: 100%;
+            max-width: 120px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .brand-item img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1207,6 +1267,25 @@
     </div>
 </div>
     </section>
+    <!-- Trusted Brands Section for Interactive Displays -->
+    <div class="trusted-brands">
+        <div class="container">
+            <h3>Our Trusted Brands for Interactive Displays</h3>
+            <div class="brands-scroll-container">
+                <div class="brands-scroll">
+                    <!-- Brand logos will be added here -->
+                    <div class="brand-item"><img src="huawei.webp" alt="Huawei"></div>
+                    <div class="brand-item"><img src="promethean.webp" alt="Promethean"></div>
+                    <div class="brand-item"><img src="hisense.webp" alt="Hisense"></div>
+                    <div class="brand-item"><img src="iworth-logo.png" alt="iWorth"></div>
+                    <!-- Additional suggestions: ViewSonic, Newline, SMART -->
+                    <div class="brand-item"><img src="viewsonic.png" alt="ViewSonic"></div>
+                    <div class="brand-item"><img src="newline-logo.png" alt="Newline"></div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Projectors Section -->
     <section class="product-section" id="projectors">
         <div class="container">
@@ -1316,6 +1395,24 @@
         </div>
     </section>
 
+    <!-- Trusted Brands Section for Projectors -->
+    <div class="trusted-brands">
+        <div class="container">
+            <h3>Our Trusted Brands for Projectors</h3>
+            <div class="brands-scroll-container">
+                <div class="brands-scroll">
+                    <!-- Brand logos will be added here -->
+                    <div class="brand-item"><img src="epson.webp" alt="Epson"></div>
+                    <div class="brand-item"><img src="optoma.webp" alt="Optoma"></div>
+                    <div class="brand-item"><img src="promethean.webp" alt="Promethean"></div>
+                    <div class="brand-item"><img src="viewsonic.png" alt="ViewSonic"></div>
+                    <div class="brand-item"><img src="benq-logo.png" alt="BenQ"></div>
+                    <!-- Additional suggestions: BenQ, NEC, Christie -->
+                   
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- STEM & Robotics Section -->
     <section class="product-section" id="stem">
         <div class="container">
@@ -1413,6 +1510,24 @@
         </div>
     </section>
 
+     <!-- Trusted Brands Section for STEM & Robotics -->
+    <div class="trusted-brands">
+        <div class="container">
+            <h3>Our Trusted Brands for STEM & Robotics</h3>
+            <div class="brands-scroll-container">
+                <div class="brands-scroll">
+                    <!-- Brand logos will be added here -->
+                    <div class="brand-item"><img src="arduinologo.wepb" alt="Arduino"></div>
+                    <div class="brand-item"><img src="roborobo.png" alt="Roborobo"></div>
+                    <div class="brand-item"><img src="globisens.webp" alt="Globisens"></div>
+                    <div class="brand-item"><img src="lego-logo.png" alt="LEGO Education"></div>
+                    <div class="brand-item"><img src="makeblock-logo.png" alt="Makeblock"></div>
+                    <!-- Additional suggestions: LEGO Education, Makeblock, VEX Robotics -->
+                    <div class="brand-item"><img src="vex-logo.png" alt="VEX Robotics"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- AV Solutions Section -->
     <section class="product-section" id="av">
         <div class="container">
@@ -1516,7 +1631,21 @@
             </div>
         </div>
     </section>
-
+<!-- Trusted Brands for AV Solutions -->
+<div class="trusted-brands">
+    <div class="container">
+        <h3>Our Trusted Brands for AV Solutions</h3>
+        <div class="brands-scroll-container">
+            <div class="brands-scroll">
+                <div class="brand-item"><img src="huawei.webp" alt="Huawei"></div>
+                <div class="brand-item"><img src="promethean.webp" alt="Promethean"></div>
+                <div class="brand-item"><img src="hisense.webp" alt="Hisense"></div>
+                <div class="brand-item"><img src="benq-logo.png" alt="BenQ"></div>
+                <div class="brand-item"><img src="sony-logo.png" alt="Sony"></div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- New Display Stands Section -->
 <section class="product-section" id="stands">
     <div class="container">
@@ -1670,6 +1799,22 @@
             </div>
         </div>
     </section>
+    <!-- Trusted Brands for Networking -->
+<div class="trusted-brands">
+    <div class="container">
+        <h3>Our Trusted Brands for Networking</h3>
+        <div class="brands-scroll-container">
+            <div class="brands-scroll">
+                <div class="brand-item"><img src="cisco-logo.png" alt="Cisco"></div>
+                <div class="brand-item"><img src="hp-logo.png" alt="HP"></div>
+                <div class="brand-item"><img src="dlink-logo.png" alt="D-Link"></div>
+                <div class="brand-item"><img src="tp-link-logo.png" alt="TP-Link"></div>
+                <div class="brand-item"><img src="mikrotik-logo.png" alt="MikroTik"></div>
+                <div class="brand-item"><img src="juniper-logo.png" alt="Juniper"></div>
+            </div>
+        </div>
+    </div>
+</div>
      <!-- OPS section -->
     <section class="product-section" id="ops">
         <div class="container">
