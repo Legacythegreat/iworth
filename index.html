@@ -1363,6 +1363,69 @@
                 grid-template-columns: 1fr;
             }
         }
+       
+/*another style*/
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.main-logo {
+    height: 200px;
+    display: block;
+}
+
+.logo-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.secondary-logo {
+    height: 32px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.logo-tagline {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.2;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo-tagline {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .logo-tagline {
+        font-size: 0.6rem;
+    }
+    
+    .secondary-logo {
+        height: 24px;
+    }
+    
+    .main-logo {
+        height: 40px;
+    }
+}
+
+
+
+
     </style>
 </head>
 <body>
@@ -1390,11 +1453,16 @@
     <header id="mainHeader">
     <div class="container">
         <nav class="main-nav">
-            <div class="logo-container">
-                <a href="index.html" class="logo">
-                    <img src="iworth-tech.png" alt="iWorth Technologies">
-                </a>
-                <div class="logo-tagline">Touch, Discover & Learn</div>
+           <div class="logo-container">
+    <div class="logo-row">  
+                    <a href="index.html" class="logo">
+                        <img src="pagelogo.png" alt="iWorth Technologies" class="main-logo">
+                    </a>
+                    <div class="logo-right">
+                        <img src="iworth-tech.png" alt="iWorth Technologies" class="secondary-logo">
+                        <div class="logo-tagline">Touch, Discover & Learn</div>
+                    </div>
+                </div>
             </div>
                 
                 <div class="nav-links">
@@ -2078,6 +2146,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
                 <div class="client-logo">
                     <img src="zetech.png" alt="Zetech University">
+                </div>
+                <div class="client-logo">
+                    <img src="fablab.jpg" alt="Fablab Winam">
+                </div>
+                <div class="client-logo">
+                    <img src="itcer.jpg" alt="Itcer">
+                </div>
+                <div class="client-logo">
+                    <img src="rophine.webp" alt="Rophine International School">
+                </div>
+                <div class="client-logo">
+                    <img src="aaagrowers.jpg" alt="AAAgrowers">
+                </div>
+                <div class="client-logo">
+                    <img src="edukenya.jpg" alt="Edu Kenya">
                 </div>
             </div>
         </div>
