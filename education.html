@@ -835,6 +835,67 @@ header.scrolled .logo-tagline {
             visibility: visible;
             right: 75px;
         }
+
+        /*another style*/
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+.main-logo {
+    height: 80px !important;
+    display: block;
+}
+
+.logo-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    text-align: left;
+}
+
+.secondary-logo {
+    height: 42px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.logo-tagline {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.2;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+header.scrolled .logo-tagline {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .logo-tagline {
+        font-size: 0.6rem;
+    }
+    
+    .secondary-logo {
+        height: 24px;
+    }
+    
+    .main-logo {
+        height: 40px;
+    }
+}
+        
     </style>
 </head>
 <body>
@@ -861,10 +922,15 @@ header.scrolled .logo-tagline {
     <div class="container">
         <nav class="main-nav">
             <div class="logo-container">
-                <a href="index.html" class="logo">
-                    <img src="iworth-tech.png" alt="iWorth Technologies">
-                </a>
-                <div class="logo-tagline">Touch, Discover & Learn</div>
+                    <div class="logo-row">  
+                    <a href="index.html" class="logo">
+                        <img src="pagelogo.png" alt="iWorth Technologies" class="main-logo">
+                    </a>
+                    <div class="logo-right">
+                        <img src="iworth-tech.png" alt="iWorth Technologies" class="secondary-logo">
+                        <div class="logo-tagline">Touch, Discover & Learn</div>
+                    </div>
+                </div>
             </div>
                 <div class="nav-links">
                     <a href="index.html">Home</a>
