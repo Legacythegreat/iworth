@@ -1375,7 +1375,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     try {
         // Prepare form data for Formspree
         const formData = new FormData(form);
-        formData.append('_subject', 'New Solar Installation Inquiry from Website');
+        formData.append('_subject', 'New Inquiry from Website');
         formData.append('_replyto', formData.get('email'));
         
         // Send to Formspree using AJAX
@@ -1424,6 +1424,7 @@ document.getElementById('thankYouModal').addEventListener('click', function(e) {
 </script>
 </body>
 </html>
+
 
 
 
